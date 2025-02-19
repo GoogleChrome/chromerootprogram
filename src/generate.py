@@ -89,36 +89,75 @@ def render_file(input_path, output_path, env, page_context={}):
 ConversionResult = namedtuple("ConversionResult", ["converted", "skipped"])
 
 
+import os
+import shutil
+
 def render_markdown(input_dir, output_dir, env, page_context={}) -> ConversionResult:
     converted = 0
     skipped = 0
+
     for root, _, files in os.walk(input_dir):
         for filename in files:
-            # Only Markdown files will have their extension changed, everything
-            # else is copied.
             input_path = os.path.join(root, filename)
-            should_render = False
-            if filename.endswith(".md"):
-                output_filename = replace_extension(filename, "md", "html")
-                should_render = True
-            elif filename.endswith(".jinja2"):
-                should_render = True
-                output_filename = filename[:-7]
-            else:
-                output_filename = filename
+            # Determine the relative path (directory structure under input_dir).
             relative_path = os.path.relpath(os.path.dirname(input_path), input_dir)
-            output_path = os.path.normpath(
-                os.path.join(output_dir, relative_path, output_filename)
-            )
 
-            # Only Markdown files are rendered.
+            # Decide how to handle the file.
+            if filename == "index.md":
+                # Special case index.md to turn into index.html in the exact same location
+                output_path = os.path.join(
+                    output_dir,
+                    relative_path,
+                    "index.html"
+                )
+                should_render = True
+            elif filename.endswith(".md"):
+                # Instead of simply replacing .md with .html, place it in:
+                #
+                #   output_dir / relative_path / [filename-without-.md] / index.html
+                #
+                folder_name = os.path.splitext(filename)[0]  # remove .md
+                output_path = os.path.join(
+                    output_dir,
+                    relative_path,
+                    folder_name,
+                    "index.html"
+                )
+                should_render = True
+
+            elif filename.endswith(".jinja2"):
+                # No change for jinja2 behavior:
+                output_filename = filename[:-7]  # remove '.jinja2'
+                output_path = os.path.join(
+                    output_dir,
+                    relative_path,
+                    output_filename
+                )
+                should_render = True
+
+            else:
+                # All other files are copied as-is (unchanged behavior):
+                output_path = os.path.join(
+                    output_dir,
+                    relative_path,
+                    filename
+                )
+                should_render = False
+
+            # Normalize the path (important on Windows, but generally good practice).
+            output_path = os.path.normpath(output_path)
+
+            # Render if needed; otherwise just copy the file.
             if should_render:
+                # Ensure the parent directory (or in the case of .md, the subfolder) exists.
+                os.makedirs(os.path.dirname(output_path), exist_ok=True)
                 render_file(input_path, output_path, env, page_context=page_context)
                 converted += 1
             else:
                 os.makedirs(os.path.dirname(output_path), exist_ok=True)
                 shutil.copy(input_path, output_path)
                 skipped += 1
+
     return ConversionResult(converted, skipped)
 
 
