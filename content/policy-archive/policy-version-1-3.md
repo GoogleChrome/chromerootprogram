@@ -2,7 +2,7 @@
 
 <p><strong><span style="color:#FF0000">IMPORTANT:</span></strong> This page is retained for historical purposes only.
 
-Version 1.3 of the Chrome Root Program Policy was superseded by Version [1.4](./policy-version-1-4) on March 3, 2023.
+Version 1.3 of the Chrome Root Program Policy was superseded by Version [1.4](./policy-version-1-4.md) on March 3, 2023.
 
 For the latest version of the Chrome Root Program Policy, see <a href="https://g.co/chrome/root-policy">https://g.co/chrome/root-policy</a>.</p>
 
@@ -13,7 +13,7 @@ When making HTTPS connections, Chrome refers to a list of root certificates from
 
 Historically, Chrome has integrated with the Root Store provided by the platform on which it is running. In Chrome 105, Chrome began a platform-by-platform transition from relying on the host operating system’s Root Store to its own on Windows, macOS, ChromeOS, Linux, and Android. This change makes Chrome more secure and promotes consistent user and developer experiences across platforms. Apple policies prevent the Chrome Root Store and corresponding Chrome Certificate Verifier from being used on Chrome for iOS.
 
-The Chrome Root Program policy below establishes the minimum requirements for CA certificates to be included in a default installation of Chrome. Learn more about priorities and initiatives that may influence future versions of this policy [here](../moving-forward-together).
+The Chrome Root Program policy below establishes the minimum requirements for CA certificates to be included in a default installation of Chrome. Learn more about priorities and initiatives that may influence future versions of this policy [here](../moving-forward-together.md).
 
 CA owners that satisfy the requirements defined in the policy below may apply for certificate inclusion in the Chrome Root Store using [these](../apply-for-inclusion.md) instructions.
 

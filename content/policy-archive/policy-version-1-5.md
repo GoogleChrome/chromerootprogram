@@ -33,12 +33,12 @@ In Chrome 105, Chrome began a platform-by-platform transition from relying on th
 The Chrome Root Program Policy below establishes the minimum requirements for self-signed root CA certificates to be included as trusted in a default installation of Chrome.
 
 ### Apply for Inclusion
-CA Owners that satisfy the requirements defined in the policy below may apply for self-signed root CA certificate inclusion in the Chrome Root Store using [these](../apply-for-inclusion) instructions.
+CA Owners that satisfy the requirements defined in the policy below may apply for self-signed root CA certificate inclusion in the Chrome Root Store using [these](../apply-for-inclusion.md) instructions.
 
 ### Moving Forward, Together
 The June 2022 release (Version 1.1) of the Chrome Root Program Policy introduced the Chrome Root Program’s “Moving Forward, Together” initiative that set out to share our vision of the future that includes modern, reliable, highly agile, purpose-driven PKIs with a focus on automation, simplicity, and security.
 
-Learn more about priorities and initiatives that may influence future versions of this policy [here](../moving-forward-together).
+Learn more about priorities and initiatives that may influence future versions of this policy [here](../moving-forward-together.md).
 
 ### Additional Information
 If you’re a Chrome user experiencing a certificate error and need help, please see [this support article](https://support.google.com/chrome/answer/6098869?hl=en).
@@ -76,13 +76,13 @@ Though uncommon, websites can also use certificates to identify clients (e.g., u
 <tbody>
 
    <tr>
-      <td class="tg-center"><a href=/policy-version-1-0>1.0</a></td>
+      <td class="tg-center"><a href=/policy-version-1-0.md>1.0</a></td>
       <td class="tg-center">2020-12-20</td>
       <td class="tg-left">Initial release</td>
    </tr>
 
    <tr>
-      <td class="tg-center"><a href=/policy-version-1-1>1.1</a></td>
+      <td class="tg-center"><a href=/policy-version-1-1.md>1.1</a></td>
       <td class="tg-center">2022-06-01</td>
       <td class="tg-left">Updated in anticipation of the future Chrome Root Program launch.<p>Updates include, but are not limited to:
          <ul>
@@ -96,7 +96,7 @@ Though uncommon, websites can also use certificates to identify clients (e.g., u
    </tr>
 
    <tr>
-      <td class="tg-center"><a href=/policy-version-1-2>1.2</a></td>
+      <td class="tg-center"><a href=/policy-version-1-2.md>1.2</a></td>
       <td class="tg-center">2022-09-01</td>
       <td class="tg-left">Updated to reflect the launch of the Chrome Root Program.<p>Updates include, but are not limited to:
          <ul>
@@ -108,13 +108,13 @@ Though uncommon, websites can also use certificates to identify clients (e.g., u
    </tr>
 
    <tr>
-      <td class="tg-center"><a href=/policy-version-1-3>1.3</a></td>
+      <td class="tg-center"><a href=/policy-version-1-3.md>1.3</a></td>
       <td class="tg-center">2023-01-06</td>
       <td class="tg-left">Updated to include the CCADB Self-Assessment</td>
    </tr>
 
    <tr>
-      <td class="tg-center"><a href=/policy-version-1-4>1.4</a></td>
+      <td class="tg-center"><a href=/policy-version-1-4.md>1.4</a></td>
       <td class="tg-center">2023-03-03</td>
       <td class="tg-left">Updates include, but are not limited to:
          <ul>

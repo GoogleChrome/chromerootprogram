@@ -2,7 +2,7 @@
 
 <p><strong><span style="color:#FF0000">IMPORTANT:</span></strong> This page is retained for historical purposes only.
 
-Version 1.4 of the Chrome Root Program Policy was superseded by Version [1.5](policy-version-1-5) on January 16, 2024.
+Version 1.4 of the Chrome Root Program Policy was superseded by Version [1.5](policy-version-1-5.md) on January 16, 2024.
 
 For the latest version of the Chrome Root Program Policy, see <a href="https://g.co/chrome/root-policy">https://g.co/chrome/root-policy</a>.</p>
 
@@ -35,13 +35,13 @@ The Chrome Root Program Policy below establishes the minimum requirements for ro
 
 ### Apply for Inclusion
 
-CA owners that satisfy the requirements defined in the policy below may apply for self-signed root CA certificate inclusion in the Chrome Root Store using [these](../apply-for-inclusion) instructions.
+CA owners that satisfy the requirements defined in the policy below may apply for self-signed root CA certificate inclusion in the Chrome Root Store using [these](../apply-for-inclusion.md) instructions.
 
 ### Moving Forward, Together
 
-The June 2022 release ([Version 1.1](./policy-version-1-1)) of the Chrome Root Program Policy introduced the Chrome Root Program’s “Moving Forward, Together” initiative that set out to share our vision of the future that includes modern, reliable, highly agile, purpose-driven PKIs with a focus on automation, simplicity, and security.
+The June 2022 release ([Version 1.1](./policy-version-1-1.md)) of the Chrome Root Program Policy introduced the Chrome Root Program’s “Moving Forward, Together” initiative that set out to share our vision of the future that includes modern, reliable, highly agile, purpose-driven PKIs with a focus on automation, simplicity, and security.
 
-Learn more about priorities and initiatives that may influence future versions of this policy [here](../moving-forward-together).
+Learn more about priorities and initiatives that may influence future versions of this policy [here](../moving-forward-together.md).
 
 ### Additional Information
 
@@ -65,7 +65,7 @@ Though uncommon, websites can also use certificates to identify clients (e.g., u
    </td>
   </tr>
   <tr>
-   <td><a href=./policy-version-1-0/>1.0</a>
+   <td><a href=./policy-version-1-0>1.0</a>
       </td>
    <td>2020-12-20
    </td>
@@ -73,7 +73,7 @@ Though uncommon, websites can also use certificates to identify clients (e.g., u
    </td>
   </tr>
   <tr>
-   <td><a href=./policy-version-1-1/>1.1</a>
+   <td><a href=./policy-version-1-1>1.1</a>
    </td>
    <td>2022-06-01
    </td>

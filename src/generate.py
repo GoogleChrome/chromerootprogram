@@ -25,14 +25,43 @@ class Filters:
     def absolute_url(cls, base_url, path):
         parsed_url = urllib.parse.urlparse(base_url, allow_fragments=False)
         new_path = cls.join_paths(parsed_url.path, path)
-        return urllib.parse.urlunparse((
-            parsed_url.scheme or "http",
-            parsed_url.netloc,
-            new_path,
-            parsed_url.params,
-            parsed_url.query,
-            parsed_url.fragment,
-        ))
+        return urllib.parse.urlunparse(
+            (
+                parsed_url.scheme or "http",
+                parsed_url.netloc,
+                new_path,
+                parsed_url.params,
+                parsed_url.query,
+                parsed_url.fragment,
+            )
+        )
+
+
+from markdown.treeprocessors import Treeprocessor
+from markdown.extensions import Extension
+
+
+class RemoveMdExtensionTreeprocessor(Treeprocessor):
+    def run(self, root):
+        """Iterate over all <a> tags in the HTML tree and remove `.md` from their href."""
+        for element in root.iter("a"):
+            href = element.get("href")
+            if href and href.endswith(".md") and not href.startswith("http"):
+                # Strip off the last 3 chars (".md")
+                element.set("href", href[:-3])
+
+
+class RemoveMdExtension(Extension):
+    def extendMarkdown(self, md):
+        md.treeprocessors.register(
+            RemoveMdExtensionTreeprocessor(md), "remove_md_extension", priority=15
+        )
+
+
+def make_extension(**kwargs):
+    """Entry point for the extension."""
+    return RemoveMdExtension(**kwargs)
+
 
 def replace_extension(filename, old, new):
     parts = filename.rsplit(
@@ -69,7 +98,10 @@ def render_file(input_path, output_path, env, page_context={}):
     template = env.get_template(template_name)
 
     # Convert Markdown to HTML
-    html_content = markdown.markdown(md_content, extensions=['tables', 'toc', 'attr_list'])
+    html_content = markdown.markdown(
+        md_content,
+        extensions=["tables", "toc", "attr_list", RemoveMdExtension()],
+    )
 
     # Wrap with a template
     page_context = page_context.copy()
@@ -92,6 +124,7 @@ ConversionResult = namedtuple("ConversionResult", ["converted", "skipped"])
 import os
 import shutil
 
+
 def render_markdown(input_dir, output_dir, env, page_context={}) -> ConversionResult:
     converted = 0
     skipped = 0
@@ -105,11 +138,7 @@ def render_markdown(input_dir, output_dir, env, page_context={}) -> ConversionRe
             # Decide how to handle the file.
             if filename == "index.md":
                 # Special case index.md to turn into index.html in the exact same location
-                output_path = os.path.join(
-                    output_dir,
-                    relative_path,
-                    "index.html"
-                )
+                output_path = os.path.join(output_dir, relative_path, "index.html")
                 should_render = True
             elif filename.endswith(".md"):
                 # Instead of simply replacing .md with .html, place it in:
@@ -118,30 +147,19 @@ def render_markdown(input_dir, output_dir, env, page_context={}) -> ConversionRe
                 #
                 folder_name = os.path.splitext(filename)[0]  # remove .md
                 output_path = os.path.join(
-                    output_dir,
-                    relative_path,
-                    folder_name,
-                    "index.html"
+                    output_dir, relative_path, folder_name, "index.html"
                 )
                 should_render = True
 
             elif filename.endswith(".jinja2"):
                 # No change for jinja2 behavior:
                 output_filename = filename[:-7]  # remove '.jinja2'
-                output_path = os.path.join(
-                    output_dir,
-                    relative_path,
-                    output_filename
-                )
+                output_path = os.path.join(output_dir, relative_path, output_filename)
                 should_render = True
 
             else:
                 # All other files are copied as-is (unchanged behavior):
-                output_path = os.path.join(
-                    output_dir,
-                    relative_path,
-                    filename
-                )
+                output_path = os.path.join(output_dir, relative_path, filename)
                 should_render = False
 
             # Normalize the path (important on Windows, but generally good practice).
@@ -170,13 +188,37 @@ def main():
     CONTEXT_DEFAULT = {"base_url": "http://localhost:8000"}
 
     # Argument parsing
-    parser = argparse.ArgumentParser(description="Process configuration and override context values.")
-    parser.add_argument("--config", type=str, default=CONFIG_PATH_DEFAULT, help="Path to the config file.")
-    parser.add_argument("--input-dir", type=str, default=None, help="Path to the input directory.")
-    parser.add_argument("--output-dir", type=str, default=None, help="Path to the output directory for rendering.")
-    parser.add_argument("--template-dir", type=str, default=None, help="Path to the directory containing jinja2 templates.")
-    parser.add_argument("--context", nargs=2, action="append", metavar=("KEY", "VALUE"),
-                        help="Override context values in config, e.g., --context base_url example.com")
+    parser = argparse.ArgumentParser(
+        description="Process configuration and override context values."
+    )
+    parser.add_argument(
+        "--config",
+        type=str,
+        default=CONFIG_PATH_DEFAULT,
+        help="Path to the config file.",
+    )
+    parser.add_argument(
+        "--input-dir", type=str, default=None, help="Path to the input directory."
+    )
+    parser.add_argument(
+        "--output-dir",
+        type=str,
+        default=None,
+        help="Path to the output directory for rendering.",
+    )
+    parser.add_argument(
+        "--template-dir",
+        type=str,
+        default=None,
+        help="Path to the directory containing jinja2 templates.",
+    )
+    parser.add_argument(
+        "--context",
+        nargs=2,
+        action="append",
+        metavar=("KEY", "VALUE"),
+        help="Override context values in config, e.g., --context base_url example.com",
+    )
     args = parser.parse_args()
 
     # Load YAML config
@@ -192,12 +234,11 @@ def main():
 
     # Override directories from config root with CLI args, if given
     if args.input_dir:
-        config['input_dir'] = args.input_dir
+        config["input_dir"] = args.input_dir
     if args.template_dir:
-        config['template_dir'] = args.template_dir
+        config["template_dir"] = args.template_dir
     if args.output_dir:
-        config['output_dir'] = args.output_dir
-
+        config["output_dir"] = args.output_dir
 
     # Override context values if provided
     if args.context:
