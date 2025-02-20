@@ -3,7 +3,7 @@
 <p><strong><span style="color:#FF0000">IMPORTANT:</span></strong> This page is
  retained for historical purposes only.
 
-Version 1.0 of the Chrome Root Program Policy was superseded by Version [1.1](./policy-version-1-1/) on June 1, 2022.
+Version 1.0 of the Chrome Root Program Policy was superseded by Version [1.1](./policy-version-1-1) on June 1, 2022.
 
 For the latest version of the Chrome Root Program Policy, see <a href="https://g.co/chrome/root-policy">https://g.co/chrome/root-policy</a>.</p>
 

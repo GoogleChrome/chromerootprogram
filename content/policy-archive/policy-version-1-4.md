@@ -1,9 +1,9 @@
-## Archive Notice 
+## Archive Notice
 
-<p><strong><span style="color:#FF0000">IMPORTANT:</span></strong> This page is retained for historical purposes only. 
- 
-Version 1.4 of the Chrome Root Program Policy was superseded by Version <a href=/Home/chromium-security/root-ca-policy/>1.5</a> on January 16, 2024.
- 
+<p><strong><span style="color:#FF0000">IMPORTANT:</span></strong> This page is retained for historical purposes only.
+
+Version 1.4 of the Chrome Root Program Policy was superseded by Version [1.5](policy-version-1-5) on January 16, 2024.
+
 For the latest version of the Chrome Root Program Policy, see <a href="https://g.co/chrome/root-policy">https://g.co/chrome/root-policy</a>.</p>
 
 ## Table of Contents
@@ -29,19 +29,19 @@ Google Chrome relies on Certification Authority systems (herein referred to as �
 
 When making HTTPS connections, Chrome refers to a list of root certificates from CAs that have demonstrated why continued trust in them is justified. This list is known as a “Root Store.” CA certificates included in the [Chrome Root Store](https://g.co/chrome/root-store) are selected on the basis of publicly available and verified information, such as that within the Common CA Database ([CCADB](https://ccadb.org/)), and ongoing reviews by the Chrome Root Program. CCADB is a datastore run by Mozilla and used by various operating systems, browser vendors, and CA owners to share and disclose information regarding the ownership, historical operation, and audit history of CAs and corresponding certificates and key material.
 
-Historically, Chrome has integrated with the Root Store provided by the platform on which it is running. In Chrome 105, Chrome began a platform-by-platform transition from relying on the host operating system’s Root Store to its own on Windows, macOS, ChromeOS, Linux, and Android. This change makes Chrome more secure and promotes consistent user and developer experiences across platforms. Apple policies prevent the Chrome Root Store and corresponding Chrome Certificate Verifier from being used on Chrome for iOS. 
+Historically, Chrome has integrated with the Root Store provided by the platform on which it is running. In Chrome 105, Chrome began a platform-by-platform transition from relying on the host operating system’s Root Store to its own on Windows, macOS, ChromeOS, Linux, and Android. This change makes Chrome more secure and promotes consistent user and developer experiences across platforms. Apple policies prevent the Chrome Root Store and corresponding Chrome Certificate Verifier from being used on Chrome for iOS.
 
-The Chrome Root Program Policy below establishes the minimum requirements for root CA certificates to be included as trusted in a default installation of Chrome. 
+The Chrome Root Program Policy below establishes the minimum requirements for root CA certificates to be included as trusted in a default installation of Chrome.
 
 ### Apply for Inclusion
 
-CA owners that satisfy the requirements defined in the policy below may apply for self-signed root CA certificate inclusion in the Chrome Root Store using [these](/Home/chromium-security/root-ca-policy/apply-for-inclusion/) instructions.
+CA owners that satisfy the requirements defined in the policy below may apply for self-signed root CA certificate inclusion in the Chrome Root Store using [these](../apply-for-inclusion) instructions.
 
 ### Moving Forward, Together
 
-The June 2022 release ([Version 1.1](/Home/chromium-security/root-ca-policy/policy-archive/version-1-1/)) of the Chrome Root Program Policy introduced the Chrome Root Program’s “Moving Forward, Together” initiative that set out to share our vision of the future that includes modern, reliable, highly agile, purpose-driven PKIs with a focus on automation, simplicity, and security.
+The June 2022 release ([Version 1.1](./policy-version-1-1)) of the Chrome Root Program Policy introduced the Chrome Root Program’s “Moving Forward, Together” initiative that set out to share our vision of the future that includes modern, reliable, highly agile, purpose-driven PKIs with a focus on automation, simplicity, and security.
 
-Learn more about priorities and initiatives that may influence future versions of this policy [here](/Home/chromium-security/root-ca-policy/moving-forward-together/). 
+Learn more about priorities and initiatives that may influence future versions of this policy [here](../moving-forward-together).
 
 ### Additional Information
 
@@ -65,7 +65,7 @@ Though uncommon, websites can also use certificates to identify clients (e.g., u
    </td>
   </tr>
   <tr>
-   <td><a href=/Home/chromium-security/root-ca-policy/policy-archive/version-1-0/>1.0</a>
+   <td><a href=./policy-version-1-0/>1.0</a>
       </td>
    <td>2020-12-20
    </td>
@@ -73,16 +73,16 @@ Though uncommon, websites can also use certificates to identify clients (e.g., u
    </td>
   </tr>
   <tr>
-   <td><a href=/Home/chromium-security/root-ca-policy/policy-archive/version-1-1/>1.1</a>
+   <td><a href=./policy-version-1-1/>1.1</a>
    </td>
    <td>2022-06-01
    </td>
-   <td>Updated in anticipation of the future Chrome Root Program launch. 
+   <td>Updated in anticipation of the future Chrome Root Program launch.
 <p>
 Updates include, but are not limited to:<ul>
 
 <li>future-dated applicant requirements for dedicated TLS-hierarchies and key-pair freshness
-<li>clarification of audit expectations 
+<li>clarification of audit expectations
 <li>requirements for cross-certificate issuance notification
 <li>description of and requirements related to an annual self-assessment process
 <li>an outline of priority Chrome Root Program initiatives </li></ul>
@@ -132,22 +132,22 @@ Updates include, but are not limited to:<ul>
 
 ## Minimum Requirements for CAs
 This policy considers a CA owner to be the organization or legal entity that is either:
-* represented in the subject DN of the CA certificate, or 
+* represented in the subject DN of the CA certificate, or
 * in possession or control of the corresponding private key capable of issuing new certificates, if not the same organization or legal entity directly represented in the subject DN of the certificate.
 
 The Chrome Root Program relies on the [CCADB](https://ccadb.org/) to identify and maintain up-to-date information for the CA owners whose certificates are trusted by default in Chrome.
 
 CA owners with self-signed root CA certificates included in the Chrome Root Store must satisfy the requirements defined in this policy, including taking responsibility for ensuring the continued compliance of all corresponding subordinate CAs and delegated third parties participating in the Public Key Infrastructure (PKI).
 
-This policy considers an “applicant” to be an organization or legal entity that has an active self-signed root CA certificate inclusion request submitted to the Chrome Root Store in the CCADB. 
+This policy considers an “applicant” to be an organization or legal entity that has an active self-signed root CA certificate inclusion request submitted to the Chrome Root Store in the CCADB.
 
 This policy uses the term “Chrome Root Program Participants” to describe applicants and CA owners with:
-*   CA certificates included in the Chrome Root Store; or 
+*   CA certificates included in the Chrome Root Store; or
 *   CA certificates that validate to certificates included in the Chrome Root Store.
 
-Google includes or removes self-signed root CA certificates in the Chrome Root Store as it deems appropriate at its sole discretion. The selection and ongoing inclusion of CA certificates is done to enhance the security of Chrome and promote interoperability. CA certificates that do not provide a broad service to all browser users will not be added to, or may be removed from the Chrome Root Store. CA certificates included in the Chrome Root Store must provide value to Chrome end users that exceeds the risk of their continued inclusion. 
+Google includes or removes self-signed root CA certificates in the Chrome Root Store as it deems appropriate at its sole discretion. The selection and ongoing inclusion of CA certificates is done to enhance the security of Chrome and promote interoperability. CA certificates that do not provide a broad service to all browser users will not be added to, or may be removed from the Chrome Root Store. CA certificates included in the Chrome Root Store must provide value to Chrome end users that exceeds the risk of their continued inclusion.
 
-Chrome maintains a variety of mechanisms to protect its users from certificates that put their safety and privacy at risk, and is prepared to use them as necessary. A Chrome Root Program Participant’s failure to follow the minimum requirements defined in this policy may result in the corresponding CA certificate’s removal from the Chrome Root Store, limitations on Chrome's acceptance of the certificates they issue, or other technical or policy restrictions. 
+Chrome maintains a variety of mechanisms to protect its users from certificates that put their safety and privacy at risk, and is prepared to use them as necessary. A Chrome Root Program Participant’s failure to follow the minimum requirements defined in this policy may result in the corresponding CA certificate’s removal from the Chrome Root Store, limitations on Chrome's acceptance of the certificates they issue, or other technical or policy restrictions.
 
 The requirements included in this policy are effective immediately, unless explicitly stated as otherwise.
 
@@ -159,11 +159,11 @@ Chrome Root Program Participants that issue TLS server authentication certificat
 This policy describes TLS server authentication certificates in [Section 4](#4-dedicated-tls-server-authentication-pki-hierarchies) (“Dedicated TLS Server Authentication PKI Hierarchies”).
 
 ### 2. Chrome Root Program Participant Policies
-Chrome Root Program Participants must accurately describe the policies and practices of their CA(s) within a Certificate Policy (CP) and corresponding Certification Practice Statement (CPS). 
+Chrome Root Program Participants must accurately describe the policies and practices of their CA(s) within a Certificate Policy (CP) and corresponding Certification Practice Statement (CPS).
 
 These documents must provide sufficient detail to assess the operations of the CA(s) and the compliance with these expectations and those of the Baseline Requirements, and must not conflict with either of these requirements. Chrome Root Program Participants may combine their CP and CPS into a single document as a CP/CPS. These documents must be freely publicly available for examination, and include at least an authoritative English language version.
 
-Chrome Root Program Participants must ensure updated versions of a CA’s CP, CPS, or CP/CPS are uploaded to their own publicly accessible policy repository and the CCADB before the corresponding changes are put into practice. 
+Chrome Root Program Participants must ensure updated versions of a CA’s CP, CPS, or CP/CPS are uploaded to their own publicly accessible policy repository and the CCADB before the corresponding changes are put into practice.
 
 The Chrome Root Program considers policy documentation in the CCADB to be authoritative. Chrome Root Program Participant operational practices must comply with those defined in the corresponding policy documents stored in the CCADB.
 
@@ -191,7 +191,7 @@ To qualify as a dedicated TLS server authentication PKI hierarchy under this pol
 It is expected that a future version of this policy will identify a phase-out plan for existing root CA certificates included in the Chrome Root Store that do not satisfy the requirements above to align all included CAs on these principles.
 
 ### 5. Audits
-Chrome Root Program Participant CAs must be audited in accordance with the table below. 
+Chrome Root Program Participant CAs must be audited in accordance with the table below.
 
 <style type="text/css">
 .tg  {border-collapse:collapse;border-spacing:0;}
@@ -259,7 +259,7 @@ Recurring complete (i.e., “full”, “full system” or “full re-assessment
 
 #### Ad-Hoc Audits
 
-Root CA certificate key material generation must be observed and audited by a Qualified Auditor who is unaffiliated with the CA owner, as described and required by Section 6.1.1.1 of the Baseline Requirements. 
+Root CA certificate key material generation must be observed and audited by a Qualified Auditor who is unaffiliated with the CA owner, as described and required by Section 6.1.1.1 of the Baseline Requirements.
 
 When deemed necessary, the Chrome Root Program may require CAs undergo additional ad-hoc audits, including, but not limited to, instances of CA private key destruction or verification of incident remediation.
 
@@ -269,7 +269,7 @@ When deemed necessary, the Chrome Root Program may require CAs undergo additiona
 All audit reports must be uploaded to the CCADB within 90 calendar days from the audit period ending date specified in the audit letter. See CCADB.org instructions for formatting and uploading audit reports.
 
 ### 6. Annual Self Assessments
-CA owners with certificates included in the Chrome Root Store must complete and submit an annual self assessment to the CCADB. Instructions for completing the self assessment are included in the required assessment [template](https://www.ccadb.org/cas/self-assessment). 
+CA owners with certificates included in the Chrome Root Store must complete and submit an annual self assessment to the CCADB. Instructions for completing the self assessment are included in the required assessment [template](https://www.ccadb.org/cas/self-assessment).
 
 A single self assessment may cover multiple CAs operating under both the same CP and CPS(s), or combined CP/CPS. CAs not operated under the same CP and CPS(s) or combined CP/CPS must be covered in a separate self assessment.
 
@@ -278,7 +278,7 @@ The scope of the self assessment submission must include:
 * any corresponding subordinate CA technically capable of issuing TLS certificates (i.e., explicitly contains an extendedKeyUsage value of id-kp-serverAuth or the functional equivalent, for example, due to the absence of any extendedKeyUsage values).
 
 The self assessment submission date is determined by the earliest appearing “BR Audit Period End Date” field specified in any of the CA owner’s “CA Owner/Certificate” CCADB root records.
-* The initial annual self assessment must be completed and submitted to the CCADB within 90 calendar days from the CA owner's earliest appearing root record “BR Audit Period End Date” that is after December 31, 2022. 
+* The initial annual self assessment must be completed and submitted to the CCADB within 90 calendar days from the CA owner's earliest appearing root record “BR Audit Period End Date” that is after December 31, 2022.
 * Subsequent annual submissions must be made no later than 365 calendar days after the previous submission to the CCADB.
 
 CA owners should always use the latest available version of the self assessment template. CA owners must not use a version of the self assessment template that has been superseded by more than 90 calendar days before their submission.
@@ -300,10 +300,10 @@ The Chrome Root Program will evaluate every incident on a case-by-case basis, an
 
 CA owners must be detailed, candid, timely, and transparent in describing their architecture, implementation, operations, and external dependencies as necessary for the Chrome Root Program and the public to evaluate the nature of the incident and the CA owner’s response. When evaluating an incident response, the Chrome Root Program’s primary concern is ensuring that browsers, other CA owners, users, and website developers have the necessary information to identify improvements, and that the CA owner is responsive to addressing identified issues.
 
-Factors that are significant to the Chrome Root Program when evaluating incidents include (but are not limited to): 
-* a demonstration of understanding of the [root causes](https://sre.google/sre-book/postmortem-culture/) of an incident, 
-* a substantive commitment and timeline to changes that clearly and persuasively address the root cause, 
-* past history by the CA owner in its incident handling and its follow through on commitments, and, 
+Factors that are significant to the Chrome Root Program when evaluating incidents include (but are not limited to):
+* a demonstration of understanding of the [root causes](https://sre.google/sre-book/postmortem-culture/) of an incident,
+* a substantive commitment and timeline to changes that clearly and persuasively address the root cause,
+* past history by the CA owner in its incident handling and its follow through on commitments, and,
 * the severity of the security impact of the incident.
 
 Due to the incorporation of the Baseline Requirements into the CP and/or CPS, incidents may include a prescribed follow-up action, such as revoking impacted certificates within a certain timeframe. If the CA owner does not perform the required follow-up actions, or does not perform them in the expected timeframe, the CA owner should file a secondary incident report describing any certificates involved, the expected timeline to complete any follow-up actions, and what changes they are making to ensure they can meet these requirements consistently in the future.
@@ -312,18 +312,18 @@ Due to the incorporation of the Baseline Requirements into the CP and/or CPS, in
 
 For ETSI audits, any non-conformity and/or problem identified over the course of the audit is considered an incident and must have an [Audit Incident Report](https://www.ccadb.org/cas/incident-report#audit-incident-reports) created in Bugzilla by the CA owner prior to or within seven calendar days of the AAL’s issuance date.
 
-For WebTrust audits, any qualification and/or modified opinion is considered an incident and must have an [Audit Incident Report](https://www.ccadb.org/cas/incident-report#audit-incident-reports) created in Bugzilla by the CA owner prior to or within seven calendar days of the Assurance Report’s issuance date. 
+For WebTrust audits, any qualification and/or modified opinion is considered an incident and must have an [Audit Incident Report](https://www.ccadb.org/cas/incident-report#audit-incident-reports) created in Bugzilla by the CA owner prior to or within seven calendar days of the Assurance Report’s issuance date.
 
 ### 8. Common CA Database
 Chrome Root Program Participants must:
 1. Follow the requirements defined in the [CCADB policy](https://www.ccadb.org/policy).
-    * In instances where the CCADB policy conflicts with this policy, this policy must take precedence. 
+    * In instances where the CCADB policy conflicts with this policy, this policy must take precedence.
     * When a timeline is not defined for a requirement specified within the CCADB policy, updates must be submitted to the CCADB within 14 calendar days of being completed.
 2. Ensure information stored in the CCADB is reviewed monthly and updated when changes occur.
-3. Disclose all subordinate CA certificates capable of validating to a certificate included in the Chrome Root Store to the CCADB. 
+3. Disclose all subordinate CA certificates capable of validating to a certificate included in the Chrome Root Store to the CCADB.
     * All unrevoked and unexpired subordinate CA certificates must be disclosed no later than April 1, 2023.
-    * For new subordinate CA certificates, CCADB disclosure must take place within seven calendar days of issuance and before the subject CA represented in the certificate begins issuing publicly-trusted certificates. 
-4. Disclose revocation of all subordinate CA certificates capable of validating to a certificate included in the Chrome Root Store to the CCADB within seven calendar days of revocation. 
+    * For new subordinate CA certificates, CCADB disclosure must take place within seven calendar days of issuance and before the subject CA represented in the certificate begins issuing publicly-trusted certificates.
+4. Disclose revocation of all subordinate CA certificates capable of validating to a certificate included in the Chrome Root Store to the CCADB within seven calendar days of revocation.
 
 ### 9. Timely and Transparent Communications
 At any time, the Chrome Root Program may request additional information from a Chrome Root Program Participant using email or CCADB communications to verify the commitments and obligations outlined in this policy are being met, or as updates to policy requirements are being considered. Chrome Root Program Participants must provide the requested information within 14 calendar days unless specified otherwise.

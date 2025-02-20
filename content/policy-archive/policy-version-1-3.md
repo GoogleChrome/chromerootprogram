@@ -1,8 +1,8 @@
-## Archive Notice 
+## Archive Notice
 
-<p><strong><span style="color:#FF0000">IMPORTANT:</span></strong> This page is retained for historical purposes only. 
- 
-Version 1.3 of the Chrome Root Program Policy was superseded by Version <a href=/Home/chromium-security/root-ca-policy/policy-archive/version-1-4/>1.4</a> on March 3, 2023.
+<p><strong><span style="color:#FF0000">IMPORTANT:</span></strong> This page is retained for historical purposes only.
+
+Version 1.3 of the Chrome Root Program Policy was superseded by Version [1.4](./policy-version-1-4) on March 3, 2023.
 
 For the latest version of the Chrome Root Program Policy, see <a href="https://g.co/chrome/root-policy">https://g.co/chrome/root-policy</a>.</p>
 
@@ -11,11 +11,11 @@ Google Chrome relies on Certification Authority systems (herein referred to as �
 
 When making HTTPS connections, Chrome refers to a list of root certificates from CAs that have demonstrated why continued trust in them is justified. This list is known as a “Root Store.” CA certificates included in the [Chrome Root Store](https://g.co/chrome/root-store) are selected on the basis of publicly available and verified information, such as that within the Common CA Database ([CCADB](https://ccadb.org/)), and ongoing reviews by the Chrome Root Program. CCADB is a datastore run by Mozilla and used by various operating systems, browser vendors, and CA owners to share and disclose information regarding the ownership, historical operation, and audit history of CAs and corresponding certificates and key material.
 
-Historically, Chrome has integrated with the Root Store provided by the platform on which it is running. In Chrome 105, Chrome began a platform-by-platform transition from relying on the host operating system’s Root Store to its own on Windows, macOS, ChromeOS, Linux, and Android. This change makes Chrome more secure and promotes consistent user and developer experiences across platforms. Apple policies prevent the Chrome Root Store and corresponding Chrome Certificate Verifier from being used on Chrome for iOS. 
+Historically, Chrome has integrated with the Root Store provided by the platform on which it is running. In Chrome 105, Chrome began a platform-by-platform transition from relying on the host operating system’s Root Store to its own on Windows, macOS, ChromeOS, Linux, and Android. This change makes Chrome more secure and promotes consistent user and developer experiences across platforms. Apple policies prevent the Chrome Root Store and corresponding Chrome Certificate Verifier from being used on Chrome for iOS.
 
-The Chrome Root Program policy below establishes the minimum requirements for CA certificates to be included in a default installation of Chrome. Learn more about priorities and initiatives that may influence future versions of this policy [here](/Home/chromium-security/root-ca-policy/moving-forward-together/). 
+The Chrome Root Program policy below establishes the minimum requirements for CA certificates to be included in a default installation of Chrome. Learn more about priorities and initiatives that may influence future versions of this policy [here](../moving-forward-together).
 
-CA owners that satisfy the requirements defined in the policy below may apply for certificate inclusion in the Chrome Root Store using [these](/Home/chromium-security/root-ca-policy/apply-for-inclusion/) instructions.
+CA owners that satisfy the requirements defined in the policy below may apply for certificate inclusion in the Chrome Root Store using [these](../apply-for-inclusion.md) instructions.
 
 ### Additional Information
 If you’re a Chrome user experiencing a certificate error and need help, please see [this support article](https://support.google.com/chrome/answer/6098869?hl=en).
@@ -26,7 +26,7 @@ If you're responsible for a CA that only issues certificates to your enterprise 
 
 Though uncommon, websites can also use certificates to identify clients (e.g., users) connecting to them. Besides ensuring it is well-formed, Chrome passes this type of certificate to the server, which then evaluates and enforces its chosen policy. The policies on this page do not apply to client authentication certificates.
 
-## Change History 
+## Change History
 
 <style type="text/css">.tg  {border-collapse:collapse;border-spacing:0;}
 .tg td{border-color:black;border-style:solid;border-width:1px;overflow:hidden;padding:10px 5px;word-break:normal;}
@@ -63,7 +63,7 @@ Though uncommon, websites can also use certificates to identify clients (e.g., u
 		<tr>
 			<td class="tg-center">1.2</td>
 			<td class="tg-center">2022-09-01</td>
-			<td class="tg-left">Updated to reflect the launch of the Chrome Root Program. <br><br>Updates include, but are not limited to:			
+			<td class="tg-left">Updated to reflect the launch of the Chrome Root Program. <br><br>Updates include, but are not limited to:
 			<li>removal of pre-launch discussion</li>
 			<li>clarifications resulting from the June 2022 Chrome CCADB survey</li>
 			<li>minor reorganization of normative and non-normative requirements</li>
@@ -78,7 +78,7 @@ Though uncommon, websites can also use certificates to identify clients (e.g., u
 </table>
 
 
-## Minimum Requirements for CAs 
+## Minimum Requirements for CAs
 
 This policy considers a CA owner to be an organization or legal entity that is represented in the subject DN of a CA certificate that is in possession or control of the corresponding private key capable of issuing new certificates. CA owners with certificates included in the Chrome Root Store must satisfy the requirements defined in this policy, including taking responsibility for ensuring the continued compliance of all corresponding subordinate CAs and delegated third parties participating in the Public Key Infrastructure (PKI).
 
@@ -106,20 +106,20 @@ To qualify as a dedicated TLS PKI hierarchy under this policy:
 
 1. All corresponding subordinate CA certificates operated beneath a root CA must:
     - <u>include</u> the extendedKeyUsage extension and <u>only</u> assert an extendedKeyUsage purpose of either:
-        1. id-kp-serverAuth, or 
+        1. id-kp-serverAuth, or
         2. id-kp-serverAuth and id-kp-clientAuth
     - not contain a public key corresponding to any other unexpired or non-revoked certificate that asserts different extendedKeyUsage values.
 <br><br>
 2. All corresponding subscriber certificates must:
     - <u>include</u> the extendedKeyUsage extension and <u>only</u> assert an extendedKeyUsage purpose of either:
-        1. id-kp-serverAuth, or 
+        1. id-kp-serverAuth, or
         2. id-kp-serverAuth and id-kp-clientAuth
 
 It is expected that a future version of this policy will identify a phase-out plan for existing root CA certificates included in the Chrome Root Store that do not satisfy the requirements above to align all included CAs on these principles.
 
 ### 5. Audits
 
-Both applicant CAs and those with certificates already included in the Chrome Root Store, along with all corresponding subordinate CAs, must be audited in accordance with the table below. 
+Both applicant CAs and those with certificates already included in the Chrome Root Store, along with all corresponding subordinate CAs, must be audited in accordance with the table below.
 
 <style type="text/css">
 .tg  {border-collapse:collapse;border-spacing:0;}
@@ -185,7 +185,7 @@ CAs must retain an unbroken, contiguous audit coverage.
 Recurring complete (i.e., “full”, “full system” or “full re-assessment”) annual audits must begin once a CA’s key material has been generated and must continue until the corresponding root CA’s key material has been destroyed or is no longer included in the Chrome Root Store.
 
 #### Ad-Hoc Audits
-Root CA certificate key material generation must be observed and audited by a Qualified Auditor who is unaffiliated with the CA owner, as described and required by Section 6.1.1.1 of the Baseline Requirements. 
+Root CA certificate key material generation must be observed and audited by a Qualified Auditor who is unaffiliated with the CA owner, as described and required by Section 6.1.1.1 of the Baseline Requirements.
 
 When deemed necessary, the Chrome Root Program may require CAs undergo additional ad-hoc audits, including, but not limited to, instances of CA private key destruction or verification of incident remediation.
 
@@ -210,10 +210,10 @@ Any suspected or actual incident must be reported and publicly disclosed at the 
 
 When evaluating an incident response, Chrome’s primary concern is ensuring that browsers, other CA owners, users, and website developers have the necessary information to identify improvements, and that the CA owner is responsive to addressing identified issues.
 
-Factors that are significant to Chrome when evaluating incidents include (but are not limited to): 
-- a demonstration of understanding of the root causes of an incident, 
-- a substantive commitment and timeline to changes that clearly and persuasively address the root cause, 
-- past history by the CA owner in its incident handling and its follow through on commitments, and, 
+Factors that are significant to Chrome when evaluating incidents include (but are not limited to):
+- a demonstration of understanding of the root causes of an incident,
+- a substantive commitment and timeline to changes that clearly and persuasively address the root cause,
+- past history by the CA owner in its incident handling and its follow through on commitments, and,
 - the severity of the security impact of the incident.
 
 In general, a single incident considered alone is unlikely to result in removal of a CA certificate from the Chrome Root Store.
