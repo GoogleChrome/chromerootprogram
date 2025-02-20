@@ -23,3 +23,11 @@ The site is deployed on commits to `main`. To add a new policy revision:
 - Update `content/index.md` with the new content.
 
 This can all be done in a single pull request. The diff in the PR will show the diff between the two policy versions.
+
+### A note on links
+
+Links in Markdown to other documents in this repository should end in `md`, e.g.
+`[Policy](index.md)`. Links in raw HTML, e.g. `<a
+href=/moving-forward-together`> should not. This make the links in the Github UI
+work for Markdown, and results in a correctly-compiled site. Hardcoded HTML
+links will not resolve correctly in previews.
