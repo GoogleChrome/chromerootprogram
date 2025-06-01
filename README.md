@@ -14,13 +14,19 @@ Any questions regarding the Chrome Root Program Policy can be directed to chrome
 
 The site is deployed on commits to `main`. To add a new policy revision:
 
-- Archive the current version in `content/policy-archive/`.
+- Archive the current version in `content/policy-archive/` (create the directory
+  and copy it to the proper index.md file).
 - Update `config.yaml`:
     - Update `context.versions` array so that the path for the now archived
-      version is correct.
-    - Add a new entry at the bottom of the array for the next version, with `path: /`
-    - Bump `context.current_version` to the next version value
-- Update `content/index.md` with the new content.
+      version is no longer marked as `current`
+    - Add a new entry at the bottom of the array for the next version, with an
+      archive path, `path: content/policy-archive/policy-version-NEW-VERSION`.
+      The file and folder do not need to exist.
+    - Bump `context.current_version` to the next version value. It should match
+      the version number in at the end of the versions array. Be sure all version
+      numbers are in quotes so they are interpreted as strings, not floats.
+- Update `content/index.md` with the new content. This way the PR will show a
+  diff of the new policies in index.md.
 
 This can all be done in a single pull request. The diff in the PR will show the diff between the two policy versions.
 

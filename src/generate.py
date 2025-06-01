@@ -302,6 +302,17 @@ def main():
     )
     print(f"Converted {res.converted} files, copied {res.skipped} non-input files")
 
+    versions = config["context"].get("versions", [])
+    current_version = config["context"].get("current_version", "")
+    for version in versions:
+        if current_version and version.get("version", "") != current_version:
+            continue
+        print(version)
+        output_path = os.path.join(config.get("output_dir"), version["path"], "index.html")
+        output_index = os.path.join(config.get("output_dir"), "index.html")
+        print(f"Will copy {output_index} to {output_path}")
+        os.makedirs(os.path.dirname(output_path), exist_ok=True)
+        shutil.copy(output_index, output_path)
 
 if __name__ == "__main__":
     main()
