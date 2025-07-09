@@ -4,7 +4,7 @@ title: Chrome Root Program Policy, Version 1.7
 
 # Chrome Root Program Policy, Version 1.7
 
-## Last updated: 2025-07-14
+## Last updated: 2025-07-15
 
 Bookmark this page as [https://g.co/chrome/root-policy](https://g.co/chrome/root-policy)
 
@@ -89,7 +89,7 @@ This policy, along with archived versions, is available in Markdown [here](https
 
 | Version | Date | Note |
 |-------- |----- |----- |
-| 1.7 | 2025-07-14 | Updates include, but are not limited to: *(1)* add the ARI RFC numerical identifier, *(2)* remove requirements redundant with CCADB Policy Version 2.0
+| 1.7 | 2025-07-15 | Updates include, but are not limited to: *(1)* add the ARI RFC numerical identifier, *(2)* remove requirements redundant with CCADB Policy Version 2.0
 | 1.6 | 2025-02-15 | Updates include, but are not limited to: *(1)* the future phase-out of non-TLS server authentication dedicated hierarchies from the Chrome Root Store, *(2)* requirements for future Applicants related to automation support, promoting simplicity of policy documents, and the definition of a dedicated TLS server authentication PKI hierarchy, *(3)* improved alignment with the TLS Baseline Requirements following Ballot SC-077, *(4)* addition of subsection numbers and major reorganization of normative and non-normative requirements|
 | 1.5 | 2024-01-16 | Updates include, but are not limited to: *(1)* incorporated CA Owner feedback in response to policy Version 1.4 (clean-ups and clarifications throughout the policy), *(2)* added new subsections for Root CA Key Material Freshness, Automation Support, and the Root CA Term-Limit, *(3)* aligned incident reporting format and timelines with CCADB.org |
 | 1.4 | 2023-03-03 | Updates include, but are not limited to: *(1)* alignment with CCADB Policy Version 1.2 and the Baseline Requirements, *(2)* clarify requirements related to the submission of annual self-assessments, *(3)* clarify requirements to better align with program intent (e.g., CA Owner policy document freshness), *(4)* updated audit and incident reporting requirements to promote increased transparency, *(5)* require subordinate CA disclosures in CCADB, *(6)* clarify CA certificate issuance notification requirements |
