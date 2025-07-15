@@ -1,6 +1,6 @@
 context:
   base_url: "http://localhost:8000"
-  current_version: "1.6"
+  current_version: "1.7"
   versions:
     - path: policy-archive/policy-version-1-0
       version: "1.0"
@@ -23,6 +23,9 @@ context:
     - path: policy-archive/policy-version-1-6
       version: "1.6"
       date: "2025-02-15"
+    - path: policy-archive/policy-version-1-7
+      version: "1.7"
+      date: "2025-07-15"
 input_dir: content
 template_dir: templates
 output_dir: output_html
