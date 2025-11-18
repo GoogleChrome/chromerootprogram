@@ -5,13 +5,13 @@ title: Apply for Inclusion
 
 ## Last updated: 2025-05-27
 
-The Chrome Root Program Policy defines the [minimum requirements](policy) that must be met by Certification Authority (CA) Owners for both initial and continued inclusion in the Chrome Root Store. The policy is periodically updated to further promote the Chrome Root Program's goals of [security, agility, and simplicity](moving-forward-together). Generally, all pending applications submitted to Google Chrome in the Common CA Database (CCADB) should adhere to the latest version of this policy, including any specific criteria for applicants. If an existing inclusion request doesn't meet the requirements of a revised policy or updated applicant-specific criteria, the relevant CA Owner should request a reversion of their CCADB case status to "CA Providing Data." This allows the CA Owner to modify their inclusion request and demonstrate sufficient alignment with the current policy and requirements.
+The Chrome Root Program Policy defines the [minimum requirements](../policy) that must be met by Certification Authority (CA) Owners for both initial and continued inclusion in the Chrome Root Store. The policy is periodically updated to further promote the Chrome Root Program's goals of [security, agility, and simplicity](../moving-forward-together). Generally, all pending applications submitted to Google Chrome in the Common CA Database (CCADB) should adhere to the latest version of this policy, including any specific criteria for applicants. If an existing inclusion request doesn't meet the requirements of a revised policy or updated applicant-specific criteria, the relevant CA Owner should request a reversion of their CCADB case status to "CA Providing Data." This allows the CA Owner to modify their inclusion request and demonstrate sufficient alignment with the current policy and requirements.
 
 Google includes or removes self-signed root CA certificates in the Chrome Root Store as it deems appropriate at its sole discretion. The selection and ongoing inclusion of CA certificates is done to enhance the security of Chrome and promote interoperability. CA certificates that do not provide a broad service to all browser users will not be added to, or may be removed from the Chrome Root Store. CA certificates included in the Chrome Root Store must provide value to Chrome end users that exceeds the risk of their continued inclusion.
 
 ### Inclusion Processing
 
-The Chrome Root Program and corresponding Root Store processes inclusion requests and requests for changes through the CCADB. CA Owners who satisfy all of the requirements in the Chrome Root Program [Policy](policy) may apply.
+The Chrome Root Program and corresponding Root Store processes inclusion requests and requests for changes through the CCADB. CA Owners who satisfy all of the requirements in the Chrome Root Program [Policy](../policy) may apply.
 
 The application process includes:
 
@@ -39,7 +39,7 @@ Illustrative behaviors demonstrating value include:
 *   supporting customers in multiple geographic markets and in multiple native languages.
 *   freely-available guidance, help articles, or FAQ to support the user community in requesting/renewing certificates or configuring TLS.
 *   not relying on “cached" domain validation information during certificate issuance.
-*   leveraging operational practices consistent with those described in [Moving Forward, Together](moving-forward-together) at the time of application submission. For example, reliably issuing TLS server authentication certificates that are valid for a much shorter period of time than the maximum validity allowed by the Baseline Requirements for the Issuance and Management of Publicly-Trusted TLS Server Certificates.
+*   leveraging operational practices consistent with those described in [Moving Forward, Together](../moving-forward-together) at the time of application submission. For example, reliably issuing TLS server authentication certificates that are valid for a much shorter period of time than the maximum validity allowed by the Baseline Requirements for the Issuance and Management of Publicly-Trusted TLS Server Certificates.
 *   supporting the Automatic Certificate Management Environment (ACME) protocol and the ACME Renewal Information (ARI) extension, complemented by technical controls that encourage cryptographic agility.
 *   responsibly operating [Certificate Transparency](https://googlechrome.github.io/CertificateTransparency/) log(s) qualified in Chrome.
 
@@ -51,7 +51,7 @@ CA Owners should not anticipate receiving application coaching beyond what is sp
 
 ### Inclusion Rejection
 
-The Chrome Root Program will reject inclusion requests where an applicant does not meet the minimum requirements defined by the Chrome Root Program [Policy](index) or the application is deemed incomplete or inaccurate.
+The Chrome Root Program will reject inclusion requests where an applicant does not meet the minimum requirements defined by the Chrome Root Program [Policy](../policy) or the application is deemed incomplete or inaccurate.
 
 The Chrome Root Program may reject requests for inclusion into the Chrome Root Store as deemed appropriate, and is not obligated to justify any inclusion decision.
 
@@ -63,7 +63,7 @@ Illustrative factors for application rejection may include:
 *   where the corresponding CA Owner has ever been:
     *   determined to have acted in an untrustworthy manner or created unnecessary ecosystem risk, or
     *   associated with a certificate that was previously distrusted by Chrome or any other public root program.
-*   has an incident history that does not convey the [factors](index#51-incident-reports) significant to Chrome.
+*   has an incident history that does not convey the [factors]((../policy#61-incident-reports) significant to Chrome.
 *   completion of a CCADB root inclusion public discussion that casts doubt over the CA Owners security, honesty or reliability.
 *   discovery of false or misleading information provided by the CA Owner.
 *   significant delays in response from the CA Owner when seeking additional or clarifying information.
