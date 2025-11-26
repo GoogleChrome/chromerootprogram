@@ -24,7 +24,6 @@ Bookmark this page as [https://g.co/chrome/root-policy](https://g.co/chrome/root
     - [1.1.3. Chrome Root Program Participant Policies](#113-chrome-root-program-participant-policies)
   - [1.2. Reducing Attack Surface of the Chrome Root Store](#12-reducing-attack-surface-of-the-chrome-root-store)
     - [1.2.1. Maximum Number of CAs per CA Owner](#121-maximum-number-of-cas-per-ca-owner)
-    - [1.2.2. Externally-operated Subordinate CAs](#122-externally-operated-subordinate-cas)
   - [1.3. Modern Infrastructures](#13-modern-infrastructures)
     - [1.3.1. Promote use of Modern PKI Hierarchies](#131-promote-use-of-modern-pki-hierarchies)
       - [1.3.1.1. Root CA Succession Planning](#1311-root-ca-succession-planning)
