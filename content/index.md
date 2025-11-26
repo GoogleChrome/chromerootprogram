@@ -23,18 +23,18 @@ Bookmark this page as [https://g.co/chrome/root-policy](https://g.co/chrome/root
     - [1.1.2. Common CA Database](#112-common-ca-database)
     - [1.1.3. Chrome Root Program Participant Policies](#113-chrome-root-program-participant-policies)
   - [1.2. Reducing Attack Surface of the Chrome Root Store](#12-reducing-attack-surface-of-the-chrome-root-store)
-    - [1.2.1 Maximum Number of CAs per CA Owner](#121-maximum-number-of-cas-per-ca-owner)
-    - [1.2.2 Externally-operated Subordinate CAs](#122-externally-operated-subordinate-cas)
+    - [1.2.1. Maximum Number of CAs per CA Owner](#121-maximum-number-of-cas-per-ca-owner)
+    - [1.2.2. Externally-operated Subordinate CAs](#122-externally-operated-subordinate-cas)
   - [1.3. Modern Infrastructures](#13-modern-infrastructures)
-    - [1.3.1 Promote use of Modern PKI Hierarchies](#131-promote-use-of-modern-pki-hierarchies)
-      - [1.3.1.1 Root CA Succession Planning](#1311-root-ca-succession-planning)
-      - [1.3.1.2 Root CA Term-Limit](#1312-root-ca-term-limit)
-      - [1.3.1.3 Subordinate CA Certificate Lifecycle Management](#1313-subordinate-ca-certificate-lifecycle-management)
-    - [1.3.2 Promote use of Dedicated TLS Server Authentication PKI Hierarchies](#132-promote-use-of-dedicated-tls-server-authentication-pki-hierarchies)
-    - [1.3.3 Promote Cryptographic Agility and Resilience](#133-promote-cryptographic-agility-and-resilience)
-      - [1.3.3.1 Automation Support](#1331-automation-support)
-        - [1.3.3.1.1 ACME Solutions](#13311-acme-solutions)
-        - [1.3.3.1.2 Non-ACME Solutions](#13312-non-acme-solutions)
+    - [1.3.1. Promote use of Modern PKI Hierarchies](#131-promote-use-of-modern-pki-hierarchies)
+      - [1.3.1.1. Root CA Succession Planning](#1311-root-ca-succession-planning)
+      - [1.3.1.2. Root CA Term-Limit](#1312-root-ca-term-limit)
+      - [1.3.1.3. Subordinate CA Certificate Lifecycle Management](#1313-subordinate-ca-certificate-lifecycle-management)
+    - [1.3.2. Promote use of Dedicated TLS Server Authentication PKI Hierarchies](#132-promote-use-of-dedicated-tls-server-authentication-pki-hierarchies)
+    - [1.3.3. Promote Cryptographic Agility and Resilience](#133-promote-cryptographic-agility-and-resilience)
+      - [1.3.3.1. Automation Support](#1331-automation-support)
+        - [1.3.3.1.1. ACME Solutions](#13311-acme-solutions)
+        - [1.3.3.1.2. Non-ACME Solutions](#13312-non-acme-solutions)
     - [1.3.4. Promote Increased Transparency](#134-promote-increased-transparency)
     - [1.3.5. Additional Recommended Practices](#135-recommended-practices)
   - [1.4. Audits](#14-audits)
@@ -43,18 +43,18 @@ Bookmark this page as [https://g.co/chrome/root-policy](https://g.co/chrome/root
   - [1.5. Reporting and Responding to Incidents](#15-reporting-and-responding-to-incidents)
     - [1.5.1. Incident Reports](#151-incident-reports)
     - [1.5.2. Communicating with Chrome During Incidents](#152-communicating-with-chrome-during-incidents)
-  - [1.6. Timely and Transparent Communications](#16-timely-and-transparent-communications)
+  - [1.6 Timely and Transparent Communications](#16-timely-and-transparent-communications)
     - [1.6.1. Notification of CA Certificate Issuance](#161-notification-of-ca-certificate-issuance)
     - [1.6.2. Notification of Procurement, Sale, or other Change Control Events](#162-notification-of-procurement-sale-or-other-change-control-events)
     - [1.6.3. Industry and Community Forum Engagement](#163-industry-and-community-forum-engagement)
 - [2. Minimum Requirements for Applicant CAs Requesting Inclusion into the Chrome Root Store](#2-minimum-requirements-for-applicant-cas-requesting-inclusion-into-the-chrome-root-store)
   - [2.1. PKI Policy Governance and Requirements](#21-pki-policy-governance-and-requirements)
-  - [2.2 Root CA Key Material Freshness](#22-root-ca-key-material-freshness)
-  - [2.3 Dedicated TLS Server Authentication PKI Hierarchies](#23-dedicated-tls-server-authentication-pki-hierarchies)
+  - [2.2. Root CA Key Material Freshness](#22-root-ca-key-material-freshness)
+  - [2.3. Dedicated TLS Server Authentication PKI Hierarchies](#23-dedicated-tls-server-authentication-pki-hierarchies)
   - [2.4. Promote Cryptographic Agility and Resilience](#24-promote-cryptographic-agility-and-resilience)
   - [2.5. Encouraging use of Automation Solutions](#25-encouraging-use-of-automation-solutions)
-  - [2.6 Promote Increased Transparency](#26-promote-increased-transparency)
-  - [2.7 Annual Audits](#27-annual-audits)
+  - [2.6. Promote Increased Transparency](#26-promote-increased-transparency)
+  - [2.7. Annual Audits](#27-annual-audits)
 
 ## Introduction
 
@@ -173,7 +173,7 @@ In some cases, this policy strengthens requirements described in the CCADB Polic
 
 ### 1.2. Reducing Attack Surface of the Chrome Root Store
 
-#### 1.2.1 Maximum Number of CAs per CA Owner
+#### 1.2.1. Maximum Number of CAs per CA Owner
 
 If a CA Owner already has two (2) or more self-signed root CA certificates included in the Chrome Root Store, the Chrome Root Program will only accept a new CCADB Root Inclusion Request to replace an existing certificate (i.e., 'one in, one out').
 
@@ -187,9 +187,9 @@ To further reduce negative impact to the ecosystem, the Chrome Root Store may te
 
 ### 1.3. Modern Infrastructures
 
-#### 1.3.1 Promote use of Modern PKI Hierarchies
+#### 1.3.1. Promote use of Modern PKI Hierarchies
 
-##### 1.3.1.1 Root CA Succession Planning
+##### 1.3.1.1. Root CA Succession Planning
 
 CA Owners SHOULD request for the replacement of a certificate included in the Chrome Root Store no later than five (5) years after the release date of the Chrome Root Store's initial inclusion of the certificate.
 
@@ -204,7 +204,7 @@ The CA certificate being replaced will be removed from the Chrome Root Store upo
 
 Due to the existence of the cross-certificate, TLS server authentication certificates issued by the replacement PKI hierarchy will be trusted by default in versions of Chrome relying on the Chrome Root Store, regardless of whether they are capable of receiving updates to the Chrome Root Store.
 
-##### 1.3.1.2 Root CA Term-Limit
+##### 1.3.1.2. Root CA Term-Limit
 
 Any root CA certificate with corresponding key material generated more than 15 years ago will be removed from the Chrome Root Store on an ongoing basis.
 
@@ -227,7 +227,7 @@ To further reduce negative impact to the ecosystem, the Chrome Root Store may te
 
 Other circumstances may lead to the removal of a root CA certificate included in the Chrome Root Store before the completion of its term.
 
-##### 1.3.1.3 Subordinate CA Certificate Lifecycle Management
+##### 1.3.1.3. Subordinate CA Certificate Lifecycle Management
 
 The lifecycle management of subordinate CA certificates plays a crucial role in promoting agility and resilience within the ecosystem. By setting clear expectations for their validity and renewal, the Chrome Root Program aims to align certificate profiles with modern best practices, reduce reliance on specific subordinate CA certificates that could be single points of failure, and discourage potentially harmful practices. This approach allows the ecosystem to benefit from continuous improvement efforts.
 
@@ -236,7 +236,7 @@ To achieve these goals, all subordinate CA certificates that validate to a certi
 - Subordinate CA certificates SHOULD have a maximum validity period of three (3) years.
 - CA Owners SHOULD create and deploy new subordinate CA certificates at least once every six (6) months. CA Owners SHOULD actively transition subscriber certificate issuance to these newly deployed CAs.
 
-#### 1.3.2 Promote use of Dedicated TLS Server Authentication PKI Hierarchies
+#### 1.3.2. Promote use of Dedicated TLS Server Authentication PKI Hierarchies
 
 The Chrome Root Store is solely relied upon for TLS server authentication in Chrome; it is not used for any other PKI use case (e.g., TLS client authentication, secure email, code-signing, etc.).
 
@@ -263,9 +263,9 @@ The subsequently constrained multi-purpose root CA certificate(s) will be schedu
 
 To reduce negative impact to the ecosystem, the Chrome Root Store may temporarily continue to include a multi-purpose root CA certificate in the Chrome Root Store on a case-by-case basis, but only if the corresponding CA Owner has submitted a Root Inclusion Request to the CCADB for a replacement root CA certificate **before June 15, 2026**.
 
-#### 1.3.3 Promote Cryptographic Agility and Resilience
+#### 1.3.3. Promote Cryptographic Agility and Resilience
 
-##### 1.3.3.1 Automation Support
+##### 1.3.3.1. Automation Support
 
 Certificate lifecycle management automation solutions ("automation solutions") increase agility and improve the [security](https://zanema.com/papers/imc23_stale_certs.pdf) and resilience of the Internet ecosystem. Automation solutions minimize "hands-on" input required from humans during certificate issuance and renewal. Routine certificate issuance and renewal SHOULD NOT involve human input except as needed for identity or business document verification related to IV, OV, or EV certificate issuance.
 
@@ -277,7 +277,7 @@ These requirements do not:
 
 Beginning September 15, 2026, the Chrome Root Program will phase-out PKI hierarchies found issuing new certificates containing a Baseline Requirements certificate policy OID lacking an automation solution attestation disclosure in the CCADB. In these cases, the phase-out date will be set to 90 calendar days following the violation’s detection.
 
-###### 1.3.3.1.1 ACME Solutions
+###### 1.3.3.1.1. ACME Solutions
 
 PKI hierarchies SHOULD support the Automatic Certificate Management Environment (ACME) protocol. If ACME is supported:
 
@@ -294,7 +294,7 @@ PKI hierarchies SHOULD support the Automatic Certificate Management Environment 
 - ACME endpoints SHOULD be publicly accessible.
 - Each endpoint SHOULD be hosted using an appropriate and readily accessible online means that is available on a 24x7 basis.
 
-###### 1.3.3.1.2 Non-ACME Solutions
+###### 1.3.3.1.2. Non-ACME Solutions
 
 While ACME support is encouraged, PKI hierarchies MAY support other automation solutions so long as the following characteristics are verifiably demonstrated to the Chrome Root Program. The CA Owner MUST disclose to the CCADB publicly available information that describes the other automation solution capability for each Baseline Requirements certificate policy OID that the corresponding CA issues and how a subscriber can leverage its benefits.
 
@@ -316,11 +316,11 @@ While ACME support is encouraged, PKI hierarchies MAY support other automation s
 
 #### 1.3.4. Promote Increased Transparency
 
-##### 1.3.4.1 Logging Final Certificates 
+##### 1.3.4.1. Logging Final Certificates 
 
 Within 24 hours of issuance, Chrome Root Program Participants SHOULD log final certificates to at least one CT log [usable or qualified](https://googlechrome.github.io/CertificateTransparency/log_list.html) in Chrome at the time of issuance.
 
-##### 1.3.4.2 Contributing to a healthy CT ecosystem
+##### 1.3.4.2. Contributing to a healthy CT ecosystem
 
 Chrome Root Program Participants SHOULD contribute to the health and diversity of the CT ecosystem. Such contributions may include, but are not limited to:
 
@@ -461,7 +461,7 @@ Applicants MUST accurately describe the policies and practices of their CA(s) wi
 
 The immediately above requirements do not prohibit Applicants from maintaining additional policy documents, which may also be considered authoritative by other stakeholders. However, the consolidated policy document made available to the Chrome Root Program MUST NOT conflict with any additional policy documents that might exist for the corresponding PKI hierarchy.
 
-### 2.2 Root CA Key Material Freshness
+### 2.2. Root CA Key Material Freshness
 
 The Chrome Root Program only accepts CCADB Root Inclusion Requests from Applicant PKI hierarchies with corresponding root CA key material generated within five (5) years of application to the Chrome Root Store.
 
@@ -474,7 +474,7 @@ Applicants MUST submit written evidence to the CCADB identifying the date(s) of 
 
 If key material is not used to issue a self-signed root CA certificate on the same date it was generated, Applicants MUST present written evidence from a Qualified Auditor, attesting that keys were minimally protected in a manner consistent with the requirements defined in Section 6.2 ("Private Key Protection and Cryptographic Module Engineering Controls") of the Baseline Requirements from the time of generation to the time the self-signed certificate was issued. Publicly-accessible links for these documents MUST be disclosed to the CCADB.
 
-### 2.3 Dedicated TLS Server Authentication PKI Hierarchies
+### 2.3. Dedicated TLS Server Authentication PKI Hierarchies
 
 The Chrome Root Program will only accept CCADB Root Inclusion Requests from Applicant PKI hierarchies that are dedicated to TLS server authentication certificate issuance.
 
@@ -509,7 +509,7 @@ The following requirements are intended to promote use of automation solutions t
 
 In cases where the above requirements cannot be met, CA Owners are encouraged to collect and share the corresponding subscriber use cases and affected technologies with chrome-root-program [at] google [dot] com on a quarterly basis in a format of their choosing to support the Chrome Root Program in better understanding blockers and opportunities for ecosystem improvement.
 
-### 2.6 Promote Increased Transparency
+### 2.6. Promote Increased Transparency
 
 Applicants MUST ensure their Applicant PKI hierarchies log all TLS server authentication precertificates and final certificates to at least one (1) CT log. The specific log type required depends on the eligibility of the Applicant PKI hierarchy:
 
@@ -525,7 +525,7 @@ Many "Test" CT logs automatically ingest CCADB data to determine their set of ac
 
 To enhance the security and resilience of the Internet ecosystem, and as a critical component of the Chrome Root Program's commitment to CT, Applicants SHOULD reliably operate at least one (1) CT log. This log MUST operate in accordance with the requirements defined in the [Chrome CT Log Policy](https://googlechrome.github.io/CertificateTransparency/log_policy.html), and MUST be [listed](https://www.gstatic.com/ct/log_list/v3/all_logs_list.json) as either "Usable" or "Qualified."
 
-### 2.7 Annual Audits
+### 2.7. Annual Audits
 
 Applicant PKI hierarchies MUST provide evidence of at least one (1) complete audit by disclosing the applicable ETSI Audit Attestation Letter(s) or WebTrust Assurance Report(s) to the CCADB before submitting a CCADB Root Inclusion Request to Google Chrome. The initial complete audit SHOULD cover a period of at least 180 calendar days.
 
