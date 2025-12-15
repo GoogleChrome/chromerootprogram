@@ -322,7 +322,7 @@ In cases where the above requirements cannot be met, CA Owners are encouraged to
 
 #### 4.4 Promote Increased Transparency
 
-Within 24 hours of issuance, Chrome Root Program Participants SHOULD log final certificates to at least one CT log [usable](https://googlechrome.github.io/CertificateTransparency/log_list.html) in Chrome at the time of issuance.
+Within 24 hours of issuance, Chrome Root Program Participants SHOULD log final certificates to at least one CT log [usable](https://www.gstatic.com/ct/log_list/v3/log_list.json) in Chrome at the time of issuance.
 
 Applicants MUST log pre-certificates and final certificates to at least one "Test" CT log disclosed [here](https://www.gstatic.com/ct/log_list/v3/all_logs_list.json) (i.e., log type = "test") until eligible for logging in logs usable in Chrome at the time of issuance (e.g., due to being accepted by a publicly-trusted root store operator or due to the existence of a cross-certificate issued from a publicly-trusted root CA).
 
