@@ -467,7 +467,7 @@ For each Baseline Requirements reserved certificate policy OID an Applicant inte
 
 Applicant PKI hierarchies MUST provide evidence of at least one (1) complete audit by disclosing the applicable ETSI Audit Attestation Letter(s) or WebTrust Assurance Report(s) to the CCADB before submitting a CCADB Root Inclusion Request to Google Chrome. The initial complete audit SHOULD cover a period of at least 180 calendar days.
 
-For Applicant PKI hierarchies subject of a CCADB Root Inclusion Request submitted to Google Chrome **on or after September 15, 2025**:
+For Applicant PKI hierarchies subject of a CCADB Root Inclusion Request submitted to Google Chrome:
 
 -  Except for Externally-operated CAs, when CAs in the hierarchy are assessed against:
     -  **only a single audit scheme** (e.g., all CAs in the hierarchy are only assessed against the WebTrust scheme), they MUST fall under a single audit scope (i.e., represented in a single WebTrust Assurance Report) for the assessed criteria (e.g., (a) WebTrust Principles and Criteria for Certification Authorities, (b) WebTrust Principles and Criteria for Certification Authorities - Network Security, (c) WebTrust Principles and Criteria for Certification Authorities - SSL Baseline, or (4) WebTrust for CA - Extended Validation - SSL).
