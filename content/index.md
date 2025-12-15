@@ -178,7 +178,7 @@ If a CA Owner already has two (2) or more self-signed root CA certificates inclu
 
 **Before June 15, 2026**, CA Owners with more than two (2) self-signed root CA certificates in the Chrome Root Store MUST submit a written consolidation plan to the Chrome Root Program. This plan MUST:
 1. Identify the two (2) root CA certificates that will remain in the Chrome Root Store, and 
-2. Provide a phase-out date for all of their other root CA certificates. The phase-out date MUST be before **September 15, 2027, (00:00 UTC)**.
+2. Provide a phase-out date for all of their other root CA certificates. The phase-out date MUST be **before September 15, 2027, (00:00 UTC)**.
 
 **Effective September 15, 2027**, the Chrome Root Store will only include a maximum of two (2) self-signed root CA certificates per CA Owner. PKI hierarchies being phased-out are not counted toward this limit.
 
@@ -240,7 +240,7 @@ To align all PKI hierarchies included in the Chrome Root Store on the principle 
     -  if disclosed to the CCADB **before June 15, 2026**: include the extendedKeyUsage extension and (a) only assert an extendedKeyUsage purpose of id-kp-serverAuth OR (b) only assert extendedKeyUsage purposes of id-kp-serverAuth and id-kp-clientAuth.
     -  if disclosed to the CCADB **on or after June 15, 2026**: include the extendedKeyUsage extension and only assert an extendedKeyUsage purpose of id-kp-serverAuth.
     -  NOT contain a public key corresponding to any other unexpired or unrevoked certificate that asserts different extendedKeyUsage values.
-2. All corresponding subscriber certificates issued on or after **March 15, 2027**, MUST include the extendedKeyUsage extension and only assert an extendedKeyUsage purpose of id-kp-serverAuth.
+2. All corresponding subscriber certificates issued **on or after March 15, 2027**, MUST include the extendedKeyUsage extension and only assert an extendedKeyUsage purpose of id-kp-serverAuth.
        
 #### 1.3.3. Promote Cryptographic Agility and Resilience
 
