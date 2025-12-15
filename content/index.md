@@ -301,7 +301,7 @@ While ACME support is encouraged, PKI hierarchies MAY support other automation s
 
 Within 24 hours of issuance, Chrome Root Program Participants SHOULD log precertificates to at least one CT log [usable or qualified](https://www.gstatic.com/ct/log_list/v3/log_list.json) in Chrome at the time of issuance.
 
-Effective June 15, 2026, within 24 hours of issuance, Chrome Root Program Participants MUST log precertificates to at least one CT log [usable or qualified](https://www.gstatic.com/ct/log_list/v3/log_list.json) in Chrome at the time of issuance.
+**Effective June 15, 2026**, within 24 hours of issuance, Chrome Root Program Participants MUST log precertificates to at least one CT log [usable or qualified](https://www.gstatic.com/ct/log_list/v3/log_list.json) in Chrome at the time of issuance.
 
 ##### 1.3.4.2. Logging Final Certificates 
 
