@@ -35,7 +35,8 @@ Bookmark this page as [https://g.co/chrome/root-policy](https://g.co/chrome/root
         - [1.3.3.1.1. ACME Solutions](#13311-acme-solutions)
         - [1.3.3.1.2. Non-ACME Solutions](#13312-non-acme-solutions)
     - [1.3.4. Promote Increased Transparency](#134-promote-increased-transparency)
-        - [1.3.4.1. Logging Final Certificates ](#1341-logging-final-certificates)
+        - [1.3.4.1. Logging Precertificates ](#1341-logging-precertificates)
+        - [1.3.4.2. Logging Final Certificates ](#1341-logging-final-certificates)
         - [1.3.4.2. Contributing to a healthy CT ecosystem](#1342-contributing-to-a-healthy-ct-ecosystem)
   - [1.4. Audits](#14-audits)
     - [1.4.1. Annual Audits](#141-annual-audits)
@@ -296,11 +297,17 @@ While ACME support is encouraged, PKI hierarchies MAY support other automation s
 
 #### 1.3.4. Promote Increased Transparency
 
-##### 1.3.4.1. Logging Final Certificates 
+##### 1.3.4.1. Logging Precertificates 
+
+Within 24 hours of issuance, Chrome Root Program Participants SHOULD log precertificates to at least one CT log [usable or qualified](https://www.gstatic.com/ct/log_list/v3/log_list.json) in Chrome at the time of issuance.
+
+Effective June 15, 2026, within 24 hours of issuance, Chrome Root Program Participants MUST log precertificates to at least one CT log [usable or qualified](https://www.gstatic.com/ct/log_list/v3/log_list.json) in Chrome at the time of issuance.
+
+##### 1.3.4.2. Logging Final Certificates 
 
 Within 24 hours of issuance, Chrome Root Program Participants SHOULD log final certificates to at least one CT log [usable or qualified](https://www.gstatic.com/ct/log_list/v3/log_list.json) in Chrome at the time of issuance.
 
-##### 1.3.4.2. Contributing to a healthy CT ecosystem
+##### 1.3.4.3. Contributing to a healthy CT ecosystem
 
 Chrome Root Program Participants SHOULD contribute to the health and diversity of the CT ecosystem. Such contributions may include, but are not limited to:
 
