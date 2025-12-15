@@ -298,7 +298,7 @@ While ACME support is encouraged, PKI hierarchies MAY support other automation s
 
 ##### 1.3.4.1. Logging Final Certificates 
 
-Within 24 hours of issuance, Chrome Root Program Participants SHOULD log final certificates to at least one CT log [usable or qualified](https://googlechrome.github.io/CertificateTransparency/log_list.html) in Chrome at the time of issuance.
+Within 24 hours of issuance, Chrome Root Program Participants SHOULD log final certificates to at least one CT log [usable or qualified](https://www.gstatic.com/ct/log_list/v3/log_list.json) in Chrome at the time of issuance.
 
 ##### 1.3.4.2. Contributing to a healthy CT ecosystem
 
