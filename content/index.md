@@ -141,7 +141,7 @@ This policy uses the term "Externally-operated CA" to describe a subordinate CA 
 
 This policy considers a PKI hierarchy as "dedicated" if it is intended to serve one specific use case, for example, the issuance of TLS server authentication certificates.
 
-To continually raise the baseline of trust and drive the adoption of modern, agile, and secure PKIs, this policy sometimes "phases out" practices (sometimes referred to as a "phase-out"). Unless otherwise specified, phase-outs are accomplished using an [SCTNotAfter constraint](https://source.chromium.org/chromium/chromium/src/+/main:net/cert/root_store.proto;drc=a783c3bab474ff68e675e2753f91c92ca817e072;l=15?q=f:root_store.proto&ss=chromium) on a corresponding root CA’s certificate included in the Chrome Root Store. TLS server authentication certificates issued on or before a practice’s or PKI hierarchy’s specified phase-out date and time will be trusted in Chrome until expiry, whereas certificates issued after will not be trusted by default.
+To continually raise the baseline of trust and drive the adoption of modern, agile, and secure PKIs, this policy sometimes "phases out" practices (sometimes referred to as a "phase-out"). Unless otherwise specified, phase-outs are accomplished using an [SCTNotAfter constraint](https://source.chromium.org/chromium/chromium/src/+/main:net/cert/root_store.proto;drc=a783c3bab474ff68e675e2753f91c92ca817e072;l=15?q=f:root_store.proto&ss=chromium) on a corresponding root CA’s certificate included in the Chrome Root Store. TLS server authentication certificates issued on or before a practice’s or PKI hierarchy’s specified phase-out date and time will be trusted in Chrome until expiry, whereas certificates issued after will not be trusted by default. The corresponding root CA’s certificate included in the Chrome Root Store will be removed upon the absence of unexpired and unrevoked TLS server authentication certificates issued prior to the phase-out date.
 
 ## 1. Minimum Requirements for CAs Included in the Chrome Root Store
 
@@ -241,8 +241,6 @@ To align all PKI hierarchies included in the Chrome Root Store on the principle 
     -  NOT contain a public key corresponding to any other unexpired or unrevoked certificate that asserts different extendedKeyUsage values.
 2. All corresponding subscriber certificates issued on or after **March 15, 2027**, MUST include the extendedKeyUsage extension and only assert an extendedKeyUsage purpose of id-kp-serverAuth.
        
-The subsequently constrained multi-purpose root CA certificate(s) will be scheduled for removal from the Chrome Root Store upon the absence of unexpired and unrevoked TLS server authentication certificates (excluding test certificates like those disclosed to the CCADB) disclosed to CT **before March 15, 2027**.
-
 #### 1.3.3. Promote Cryptographic Agility and Resilience
 
 ##### 1.3.3.1. Automation Support
