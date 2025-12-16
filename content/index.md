@@ -271,7 +271,7 @@ PKI hierarchies SHOULD support the Automatic Certificate Management Environment 
     - revokeCert.
 - Each endpoint's corresponding issuing CA(s) MUST support Certification Authority Authorization (CAA) Record Extensions for Account URI and ACME Method Binding, as specified in [RFC 8657](https://www.rfc-editor.org/rfc/rfc8657).
 - PKI hierarchies supporting the ACME protocol MUST support ACME Renewal Information (ARI, [RFC 9773](https://datatracker.ietf.org/doc/rfc9773/)).
-- ACME endpoints SHOULD support the Profiles extension ([RFC TBD]((https://datatracker.ietf.org/doc/draft-ietf-acme-profiles/)).
+- ACME endpoints SHOULD support the Profiles extension ([RFC TBD](https://datatracker.ietf.org/doc/draft-ietf-acme-profiles/)).
 - ACME endpoints SHOULD be publicly accessible.
 - Each endpoint SHOULD be hosted using an appropriate and readily accessible online means that is available on a 24x7 basis.
 
@@ -293,7 +293,7 @@ While ACME support is encouraged, PKI hierarchies MAY support other automation s
 
 - The automation solution SHOULD:
     - support automated deployment (i.e., installation and configuration) of the issued certificate without "hands-on" input from humans (comparable to how ACME clients function).
-    - support comparable features as described by the ACME Profiles extension ([RFC TBD]((https://datatracker.ietf.org/doc/draft-ietf-acme-profiles/)).
+    - support comparable features as described by the ACME Profiles extension ([RFC TBD](https://datatracker.ietf.org/doc/draft-ietf-acme-profiles/)).
 
 #### 1.3.4. Promote Increased Transparency
 
