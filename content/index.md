@@ -332,7 +332,7 @@ Audits MUST NOT rely on a version of the accepted audit criteria below if it has
 | Technically Constrained Non-TLS Subordinate CA | EKU is present and does not include id-kp-serverAuth or anyExtendedKeyUsage. | Minimally expected to be audited as defined in Section 8.7 of the BRs (self-audit). |
 | All others | N/A | Minimally expected to be audited as defined in Section 8.7 of the BRs (self-audit). |
 
-\*\* while existing CA certificates trusted by Chrome MAY have EKU values as described in this table, Applicant PKI hierarchies MUST remain [dedicated to only TLS server authentication use cases](#42-promote-use-of-dedicated-tls-server-authentication-pki-hierarchies)
+\*\* CA certificates within PKI hierarchies included in the Chrome Root Store prior to September 1, 2022, MAY have EKU values as described in this table. However, PKI hierarchies added to the Chrome Root Store after September 1, 2022, MUST remain [dedicated to only TLS server authentication use cases](#132-promote-use-of-dedicated-tls-server-authentication-pki-hierarchies)
 
 \*\*\* accepted on a discretionary basis
 
