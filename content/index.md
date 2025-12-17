@@ -37,7 +37,7 @@ Bookmark this page as [https://g.co/chrome/root-policy](https://g.co/chrome/root
     - [1.3.4. Promote Increased Transparency](#134-promote-increased-transparency)
         - [1.3.4.1. Logging Precertificates ](#1341-logging-precertificates)
         - [1.3.4.2. Logging Final Certificates ](#1341-logging-final-certificates)
-        - [1.3.4.3. Contributing to a healthy CT ecosystem](#1342-contributing-to-a-healthy-ct-ecosystem)
+        - [1.3.4.3. Contributing to a Healthy CT Ecosystem](#1342-contributing-to-a-healthy-ct-ecosystem)
   - [1.4. Audits](#14-audits)
     - [1.4.1. Annual Audits](#141-annual-audits)
     - [1.4.2. Ad-Hoc Audits](#142-ad-hoc-audits)
@@ -307,7 +307,7 @@ CA Owners with CA certificates that validate to a certificate included in the Ch
 
 CA Owners with CA certificates that validate to a certificate included in the Chrome Root Store SHOULD ensure that all TLS server authentication certificates (i.e., "final certificates") issued by such CAs are logged to at least one (1) CT log recognized by Chrome as [usable or qualified](https://www.gstatic.com/ct/log_list/v3/log_list.json) within 24 hours of issuance.
 
-##### 1.3.4.3. Contributing to a healthy CT ecosystem
+##### 1.3.4.3. Contributing to a Healthy CT Ecosystem
 
 Chrome Root Program Participants SHOULD contribute to the health and diversity of the CT ecosystem. Such contributions may include, but are not limited to:
 
