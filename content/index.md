@@ -237,7 +237,7 @@ To align all PKI hierarchies included in the Chrome Root Store on the principle 
 **Beginning June 15, 2026**, the Chrome Root Program will phase-out PKI hierarchies found in violation of the below requirements. In these cases, the phase-out date will be set to 90 calendar days following the violation’s detection.
 
 1. All corresponding unexpired and unrevoked subordinate CA certificates operated beneath an existing root included in the Chrome Root Store MUST:
-    -  if disclosed to the CCADB **before June 15, 2026**: include the extendedKeyUsage extension and (a) only assert an extendedKeyUsage purpose of id-kp-serverAuth OR (b) only assert extendedKeyUsage purposes of id-kp-serverAuth and id-kp-clientAuth.
+    -  if disclosed to the CCADB **before June 15, 2026**: include the extendedKeyUsage extension and (a) only assert an extendedKeyUsage purpose of id-kp-serverAuth or (b) only assert extendedKeyUsage purposes of id-kp-serverAuth and id-kp-clientAuth.
     -  if disclosed to the CCADB **on or after June 15, 2026**: include the extendedKeyUsage extension and only assert an extendedKeyUsage purpose of id-kp-serverAuth.
     -  NOT contain a public key corresponding to any other unexpired or unrevoked certificate that asserts different extendedKeyUsage values.
 2. All corresponding subscriber certificates issued **on or after March 15, 2027**, MUST include the extendedKeyUsage extension and only assert an extendedKeyUsage purpose of id-kp-serverAuth.
@@ -459,7 +459,7 @@ The Chrome Root Program will only accept CCADB Root Inclusion Requests from Appl
 To qualify as a dedicated TLS server authentication PKI hierarchy under this policy:
 
 1. All corresponding unexpired and unrevoked subordinate CA certificates operated beneath an Applicant root CA certificate MUST:
-    -  if disclosed to the CCADB **before June 15, 2025**: include the extendedKeyUsage extension and (a) only assert an extendedKeyUsage purpose of id-kp-serverAuth OR (b) only assert extendedKeyUsage purposes of id-kp-serverAuth and id-kp-clientAuth.
+    -  if disclosed to the CCADB **before June 15, 2025**: include the extendedKeyUsage extension and (a) only assert an extendedKeyUsage purpose of id-kp-serverAuth or (b) only assert extendedKeyUsage purposes of id-kp-serverAuth and id-kp-clientAuth.
     -  if disclosed to the CCADB **on or after June 15, 2025**: include the extendedKeyUsage extension and only assert an extendedKeyUsage purpose of id-kp-serverAuth.
     -  NOT contain a public key corresponding to any other unexpired or unrevoked certificate that asserts different extendedKeyUsage values.
 2. All corresponding unexpired and unrevoked subscriber (i.e., TLS server authentication) certificates MUST include the extendedKeyUsage extension and only assert an extendedKeyUsage purpose of id-kp-serverAuth.
