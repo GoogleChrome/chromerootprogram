@@ -301,7 +301,7 @@ While ACME support is encouraged, PKI hierarchies MAY support other automation s
 
 CA Owners with CA certificates that validate to a certificate included in the Chrome Root Store SHOULD ensure that all TLS server authentication precertificates issued by such CAs are logged to at least one (1) CT log recognized by Chrome as [Usable or Qualified](https://www.gstatic.com/ct/log_list/v3/log_list.json) within 24 hours of issuance.
 
-**Effective June 15, 2026**, CA Owners with CA certificates that validate to a certificate included in the Chrome Root Store MUST ensure that all TLS server authentication precertificates issued by such CAs are logged to at least one (1) CT log recognized by Chrome as [Usable or Qualified](https://www.gstatic.com/ct/log_list/v3/log_list.json) within 24 hours of issuance.
+**Effective June 15, 2026**, CA Owners with CA certificates that validate to a certificate included in the Chrome Root Store MUST ensure that all TLS server authentication precertificates issued by such CAs are logged to at least one (1) CT log recognized by Chrome as [Usable or Qualified](https://www.gstatic.com/ct/log_list/v3/log_list.json) before issuing the corresponding certificate.
 
 ##### 1.3.4.2. Logging Final Certificates 
 
