@@ -69,7 +69,7 @@ While not a comprehensive list, the following behaviors can serve as positive in
 * Issuing certificates to a broad range of entities, beyond just the CA Owner's existing subscriber base or subscribers of its other business offerings.
 * Issuing certificates for a broad range of Top-Level Domains (TLDs), not limited to specific or restricted domains.
 
-Actions in this list are only illustrative and do not guarantee inclusion application acceptance.
+Actions in this list are only illustrative and do not guarantee inclusion application acceptance (nor are they requirements for acceptance).
 
 Root CA certificates approved for distribution will be added to the Chrome Root Store on approximately, but not limited to, a quarterly basis. However, the Chrome Root Program offers no guarantees related to the timeliness of CA certificate distribution.
 
