@@ -52,7 +52,7 @@ This helps ensure our decisions are informed by real-world data, observed Chrome
 
 ## Areas under exploration:
 
-### Experiment and evolve the ecosystem through Photosynthesis
+### Experiment and evolve the ecosystem through Merkle Tree Certificates
 
 **Themes:** (1) "Encouraging modern infrastructures and agility", (2) "Focusing on simplicity", and (3) "Preparing for a post-quantum world"
 
@@ -62,7 +62,7 @@ The first is the threat to traffic generated today. An adversary could store enc
 
 The second threat is that future traffic is vulnerable to impersonation by a quantum computer. Once a CRQC exists, it could break the asymmetric cryptography used for authentication in HTTPS. To defend against impersonation from a CRQC, we need to migrate all of the asymmetric cryptography used for authentication to post-quantum variants. Unfortunately, post-quantum keys and signatures have a fundamental problem: their size. A single post-quantum signature can be over 20 times larger than the classical cryptography signatures commonly used today (e.g., ECDSA). Considering that secure connections in Chrome often rely on more than 5 signatures and 2 public keys, attempting to use post-quantum cryptography as a "drop-in" replacement within the existing ecosystem would drastically [degrade internet performance](https://blog.cloudflare.com/another-look-at-pq-signatures/). **For this reason Chrome has no immediate plan to add traditional X.509 certificates containing post-quantum cryptography to the Chrome Root Store and will only do so as a last resort.**
 
-Instead, Chrome, in collaboration with other partners, is exploring a fundamental [evolution](https://drive.google.com/file/d/1KQXAGBHXR4S_prwFrZlyfA6DrpvfJwuJ/view) of the ecosystem based on [Merkle Tree Certificates](https://datatracker.ietf.org/doc/draft-davidben-tls-merkle-tree-certs/) (MTCs), a concept often referred to as "Photosynthesis". MTCs replace the heavy, serialized chain of signatures found in traditional PKI with compact Merkle Tree proofs. In this model, a CA signs a single "Tree Head" representing potentially millions of certificates, and the "certificate" sent to the browser is merely a lightweight proof of inclusion in that tree.
+Instead, Chrome, in collaboration with other partners, is exploring a fundamental [evolution](https://drive.google.com/file/d/1KQXAGBHXR4S_prwFrZlyfA6DrpvfJwuJ/view) of the ecosystem based on [Merkle Tree Certificates](https://datatracker.ietf.org/doc/draft-davidben-tls-merkle-tree-certs/) (MTCs). MTCs replace the heavy, serialized chain of signatures found in traditional PKI with compact Merkle Tree proofs. In this model, a CA signs a single "Tree Head" representing potentially millions of certificates, and the "certificate" sent to the browser is merely a lightweight proof of inclusion in that tree.
 
 **Why it matters:**
 *   **Enables feasible Post-Quantum security:** MTCs allow the ecosystem to adopt robust post-quantum algorithms without incurring the massive bandwidth penalty of legacy certificate chains. It decouples the security strength of the algorithm from the size of the data transmitted to the user.
