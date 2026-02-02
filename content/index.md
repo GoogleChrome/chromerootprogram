@@ -4,7 +4,7 @@ title: Chrome Root Program Policy, Version 1.8
 
 # Chrome Root Program Policy, Version 1.8
 
-## Last updated: 2026-XX-XX
+## Last updated: 2026-02-05
 
 Bookmark this page as [https://g.co/chrome/root-policy](https://g.co/chrome/root-policy)
 
@@ -36,8 +36,8 @@ Bookmark this page as [https://g.co/chrome/root-policy](https://g.co/chrome/root
         - [1.3.3.1.2. Non-ACME Solutions](#13312-non-acme-solutions)
     - [1.3.4. Promote Increased Transparency](#134-promote-increased-transparency)
         - [1.3.4.1. Logging Precertificates ](#1341-logging-precertificates)
-        - [1.3.4.2. Logging Final Certificates ](#1341-logging-final-certificates)
-        - [1.3.4.3. Contributing to a Healthy CT Ecosystem](#1342-contributing-to-a-healthy-ct-ecosystem)
+        - [1.3.4.2. Logging Final Certificates ](#1342-logging-final-certificates)
+        - [1.3.4.3. Contributing to a Healthy CT Ecosystem](#1343-contributing-to-a-healthy-ct-ecosystem)
   - [1.4. Audits](#14-audits)
     - [1.4.1. Annual Audits](#141-annual-audits)
     - [1.4.2. Ad-Hoc Audits](#142-ad-hoc-audits)
@@ -112,9 +112,9 @@ This policy, along with archived versions, is available in Markdown [here](https
 
 | Version | Date | Note |
 |-------- |----- |----- |
-| 1.8 | 2026-XX-XX | Updates include, but are not limited to: *(1)* limiting the number of root certificates per CA Owner included in the Chrome Root Store, *(2)* extending automation support requirements from Applicants to all existing CAs trusted by Chrome, *(3)* requiring CA policy documents to state adherence to the Chrome Root Program Policy, *(4)* setting expectations for industry engagement, *(5)* recommending practices for Subordinate CA lifecycle management, *(6)* encouraging support for the Certificate Transparency ecosystem, and *(7)* consolidating all requirements applicable only to Applicants
-| 1.7 | 2025-07-15 | Updates include, but are not limited to: *(1)* add the ARI RFC numerical identifier, *(2)* remove requirements redundant with CCADB Policy Version 2.0
-| 1.6 | 2025-02-15 | Updates include, but are not limited to: *(1)* the future phase-out of non-TLS server authentication dedicated hierarchies from the Chrome Root Store, *(2)* requirements for future Applicants related to automation support, promoting simplicity of policy documents, and the definition of a dedicated TLS server authentication PKI hierarchy, *(3)* improved alignment with the TLS Baseline Requirements following Ballot SC-077, *(4)* addition of subsection numbers and major reorganization of normative and non-normative requirements|
+| 1.8 | 2026-02-05 | Updates include, but are not limited to: *(1)* limiting the number of root certificates per CA Owner included in the Chrome Root Store, *(2)* extending automation support requirements from Applicants to all existing CAs trusted by Chrome, *(3)* requiring CA policy documents to state adherence to the Chrome Root Program Policy, *(4)* setting expectations for industry engagement, *(5)* recommending practices for Subordinate CA lifecycle management, *(6)* encouraging support for the Certificate Transparency ecosystem, and *(7)* consolidating all requirements applicable only to Applicants in a dedicated section |
+| 1.7 | 2025-07-15 | Updates include, but are not limited to: *(1)* add the ARI RFC numerical identifier, *(2)* remove requirements redundant with CCADB Policy Version 2.0 |
+| 1.6 | 2025-02-15 | Updates include, but are not limited to: *(1)* the future phase-out of non-TLS server authentication dedicated hierarchies from the Chrome Root Store, *(2)* requirements for future Applicants related to automation support, promoting simplicity of policy documents, and the definition of a dedicated TLS server authentication PKI hierarchy, *(3)* improved alignment with the TLS Baseline Requirements following Ballot SC-077, *(4)* addition of subsection numbers and major reorganization of normative and non-normative requirements |
 | 1.5 | 2024-01-16 | Updates include, but are not limited to: *(1)* incorporated CA Owner feedback in response to policy Version 1.4 (clean-ups and clarifications throughout the policy), *(2)* added new subsections for Root CA Key Material Freshness, Automation Support, and the Root CA Term-Limit, *(3)* aligned incident reporting format and timelines with CCADB.org |
 | 1.4 | 2023-03-03 | Updates include, but are not limited to: *(1)* alignment with CCADB Policy Version 1.2 and the Baseline Requirements, *(2)* clarify requirements related to the submission of annual self-assessments, *(3)* clarify requirements to better align with program intent (e.g., CA Owner policy document freshness), *(4)* updated audit and incident reporting requirements to promote increased transparency, *(5)* require subordinate CA disclosures in CCADB, *(6)* clarify CA certificate issuance notification requirements |
 | 1.3 | 2023-01-06 | Updated to include the CCADB Self-Assessment |
