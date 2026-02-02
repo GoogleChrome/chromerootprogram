@@ -3,7 +3,7 @@ title: Moving Forward, Together
 ---
 # Moving Forward, Together
 
-## Last updated: 2026-XX-XX
+## Last updated: 2026-02-05
 
 For more than the last decade, community members have tirelessly worked together to make the Internet a safer place. However, there’s still more work to be done. While we don’t know exactly what the future looks like, we remain focused on promoting changes that increase speed, security, stability, and simplicity throughout the ecosystem.
 
@@ -124,7 +124,7 @@ While simple in concept, this capability is critical for ecosystem resilience. I
 
 **Why it matters:**
 *   **Automates incident response:** In the event of a mass revocation (e.g., due to a CA compliance incident or a cryptographic vulnerability like Heartbleed), ARI allows CAs to signal clients to renew immediately, potentially automating the replacement of millions of certificates without human intervention.
-*   **Facilitates agility:** As certificate lifetimes shorten (e.g., to 45 days or less), ARI prevents clients from misconfiguring renewal windows, ensuring they adapt automatically to new validity periods.
+*   **Facilitates agility:** As certificate lifetimes shorten (e.g., to 47 days or less), ARI prevents clients from misconfiguring renewal windows, ensuring they adapt automatically to new validity periods.
 *   **Improves stability:** CAs can use ARI to spread renewal traffic over time, preventing dangerous load spikes that could cause issuance outages.
 
 ## Past accomplishments:
@@ -163,7 +163,7 @@ Beginning in September 2022, the Chrome Root Program [codified](policy-archive/p
 
 **Understanding certificate lifetimes and validation reuse:** Certificates represent a "point-in-time" state of reality; the more time passes from the moment of issuance, the more likely it becomes that the data represented in the certificate diverges from reality. For years, the Chrome Root Program advocated for shorter certificate lifespans to address this divergence and improve ecosystem agility. This effort, with collaboration from other members of the ecosystem, culminated in Ballot [SC-081v3](https://cabforum.org/2025/04/11/ballot-sc081v3-introduce-schedule-of-reducing-validity-and-data-reuse-periods/), which was passed by the CA/Browser Forum in 2025.
 
-This ballot establishes a roadmap to reduce the maximum validity of publicly-trusted TLS certificates from 398 days down to 47 days. It also introduces a significant reduction in DCV reuse periods, eventually bringing the limit for reusing validation data down to just 10 days. Previously, a single validation check could be used for over two years, creating a risk that certificates were issued based on [stale ownership information](https://insecure.design/). These changes are scheduled to phase in starting March 2026 and concluding in March 2029.
+This ballot establishes a roadmap to reduce the maximum validity of publicly-trusted TLS certificates from 398 days down to 47 days. It also introduces a significant reduction in DCV reuse periods, eventually bringing the limit for reusing validation data down to just 10 days. Previously, a single validation check could be used for over two years, creating a risk that certificates were issued based on [stale ownership information](https://insecure.design/). These changes are scheduled to phase in starting March 2026 and will conclude in March 2029.
 
 **Why it matters:**
 *   **Increases agility and cryptographic safety:** Deprecating ecosystem practices (e.g., use of a specific cryptographic algorithm) is a complex process; a reduced maximum validity period provides substantial support for smoothly, and when necessary, swiftly transitioning between practices when weaknesses are identified.
