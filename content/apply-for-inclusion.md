@@ -3,7 +3,7 @@ title: Apply for Inclusion
 ---
 # Apply for Inclusion
 
-## Last updated: 2025-XX-XX
+## Last updated: 2026-02-05
 
 The Chrome Root Program's primary commitment is to the security of Chrome's users. We are continuously working to improve the baseline of security on the web, and our policies, procedures, and initiatives reflect that goal. Every Certification Authority (CA) in the Chrome Root Store is a critical link in the chain of trust relied upon by Chrome’s billions of users. Any compromise or misoperation by a single CA can have cascading, detrimental effects, with harm not strictly limited to subscribers of the corresponding CA.
 
