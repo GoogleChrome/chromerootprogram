@@ -65,6 +65,7 @@ The second threat is that future traffic is vulnerable to impersonation by a qua
 Instead, Chrome, in collaboration with other partners, is exploring a fundamental [evolution](https://drive.google.com/file/d/1KQXAGBHXR4S_prwFrZlyfA6DrpvfJwuJ/view) of the ecosystem based on [Merkle Tree Certificates](https://datatracker.ietf.org/doc/draft-davidben-tls-merkle-tree-certs/) (MTCs). MTCs replace the heavy, serialized chain of signatures found in traditional PKI with compact Merkle Tree proofs. In this model, a CA signs a single "Tree Head" representing potentially millions of certificates, and the "certificate" sent to the browser is merely a lightweight proof of inclusion in that tree.
 
 **Why it matters:**
+
 *   **Enables feasible Post-Quantum security:** MTCs allow the ecosystem to adopt robust post-quantum algorithms without incurring the massive bandwidth penalty of legacy certificate chains. It decouples the security strength of the algorithm from the size of the data transmitted to the user.
 *   **Improves performance:** By shrinking the authentication data in a TLS handshake to the absolute minimum, MTCs prevent the latency and fragmentation issues that would otherwise plague a post-quantum web.
 *   **Bakes in transparency:** In the current ecosystem, Certificate Transparency (CT) is an "add-on" that adds extra overhead to the TLS handshake. With MTCs, transparency is a fundamental property of issuance; a certificate cannot be trusted by a client unless it is included in the public tree.
@@ -76,11 +77,13 @@ Instead, Chrome, in collaboration with other partners, is exploring a fundamenta
 **Understanding modern issuance practices:** Today, the "intermediate" or "issuing" CAs that sit between the Root and the leaf certificate presented by a server are traditionally treated as static, long-lived infrastructure. Often valid for a decade or more, these intermediates can become single points of failure. If an intermediate CA is compromised or needs replacement due to an unforeseen circumstance, for example a cryptographic vulnerability, the "blast radius" can be massive, potentially requiring the revocation of tens or hundreds of millions of certificates.
 
 To address this, the Chrome Root Program is exploring policies that encourage a shift toward more ephemeral and dynamic CA infrastructure. This includes:
+
 *   **Reducing maximum validity**: Limiting the currently unbounded lifetime of Subordinate CA certificates to ensure they naturally expire and cycle out of the ecosystem faster.
 *   **Faster issuer rotation**: Encouraging CAs to frequently rotate the active issuing key(s). This ensures that any single key is responsible for a smaller "shard" of the total certificate volume.
 *   **Issuance randomization**: Promoting the use of dynamic or randomized intermediates. By issuing certificates from a changing pool of intermediates, rather than a single static issuer, reliance on specific issuer identities is reduced.
 
 **Why it matters:**
+
 *   **Reduces blast radius:** Frequent rotation and randomization mean that if an issuing key is compromised or needs decommissioning, it only impacts a small slice of valid certificates (those issued from that specific CA during that specific window), rather than the CA's full certificate corpus.
 *   **Prevents rigid dependencies:** Dynamic issuance discourages "pinning" (where software hard-codes trust in a specific CA). This improves compatibility and uptime when CAs need to replace infrastructure, and decreases the likelihood of operational footguns.
 *   **Increases resilience:** Shorter-lived, agile intermediates allow the ecosystem to adopt new practices and cryptographic standards (like Post-Quantum Cryptography) much faster, as there is less "legacy debt" tied to old certificates or keys.
@@ -94,6 +97,7 @@ To address this, the Chrome Root Program is exploring policies that encourage a 
 This creates a fragmented security model where "legacy" infrastructure operates under outdated rules, effectively indefinitely. While SHA-1, which still appears in time-valid CA certificates and CRLs trusted by Chrome, is the most prominent example, this issue extends to other legacy practices that should no longer be considered relevant or acceptable in 2026 and beyond. The Chrome Root Program is exploring steps to close these gaps by removing exceptions for legacy systems and practices, ensuring that all trusted PKI artifacts, regardless of their creation date or inclusion in the Chrome Root Store, adhere to modern security standards.
 
 **Why it matters:**
+
 *   **Ensures uniform security:** Vulnerabilities do not respect historical exemptions. A cryptographically broken artifact poses a risk to the ecosystem regardless of when it was issued.
 *   **Reduces ecosystem complexity:** Maintaining special-case logic to support deprecated artifacts or practices forces browsers and relying parties to carry technical debt and compatibility code, which complicates validation logic.
 *   **Retires unmanaged infrastructure:** Legacy CAs that have existed for decades are often less agile and may not adhere to contemporary operational best practices. Forcing their retirement ensures the ecosystem runs on modern, actively managed infrastructure that closely aligns with modern security expectations. Doing so also reduces risk associated with lingering but unknown vulnerabilities, while also creating opportunities for process improvement and ensuring capability retention. 
@@ -110,6 +114,7 @@ The following initiatives are planned for future exploration by the Chrome Root 
 "Reproducible" Domain Control Validation proposes a model where the proof of domain control is made publicly and persistently available, allowing any party, not just the issuing CA, to independently and retroactively verify the validation's legitimacy. Defining this model's practical implementation is a key objective we look forward to pursuing with the broader community.
 
 **Why it matters:**
+
 *   **Prevents mass revocations:** If a CA has a software flaw, certificates corroborated by external monitors may not need to be revoked, as the "receipts" prove the domain control was valid despite the CA's internal bug.
 *   **Increases integrity:** Shifts trust from a single CA's internal logs to a validation model that is observable and verifiable by the broader ecosystem.
 *   **Bakes in validation from multiple perspectives:** Corroboration from diverse network vantage points ensures that a CA isn't tricked by localized network attacks (like BGP hijacking) that might otherwise pass a single-point check. This complements existing [Multi-Perspective Issuance Corroboration](#require-multi-perspective-issuance-corroboration) implementations.
@@ -123,6 +128,7 @@ The following initiatives are planned for future exploration by the Chrome Root 
 While simple in concept, this capability is critical for ecosystem resilience. It creates a direct communication channel for CAs to prioritize specific renewals, whether to smooth out infrastructure load or to urgently replace certificates in response to security incidents.
 
 **Why it matters:**
+
 *   **Automates incident response:** In the event of a mass revocation (e.g., due to a CA compliance incident or a cryptographic vulnerability like Heartbleed), ARI allows CAs to signal clients to renew immediately, potentially automating the replacement of millions of certificates without human intervention.
 *   **Facilitates agility:** As certificate lifetimes shorten (e.g., to 47 days or less), ARI prevents clients from misconfiguring renewal windows, ensuring they adapt automatically to new validity periods.
 *   **Improves stability:** CAs can use ARI to spread renewal traffic over time, preventing dangerous load spikes that could cause issuance outages.
@@ -140,6 +146,7 @@ Historically, the ecosystem permitted validation methods that relied on "indirec
 To address this, the Chrome Root Program collaborated with members of the ecosystem in the CA/Browser Forum to pass Ballots [SC-080](https://cabforum.org/2024/11/14/ballot-sc080v3-sunset-the-use-of-whois-to-identify-domain-contacts-and-relying-dcv-methods/), [SC-090](https://cabforum.org/2025/11/20/ballot-sc-090-gradually-sunset-all-remaining-email-based-phone-based-and-crossover-validation-methods-from-sections-3.2.2.4-and-3.2.2.5/), and [SC-091](https://www.google.com/search?q=https://cabforum.org/2025/11/12/ballot-sc-091-sunset-3-2-2-5-3-reverse-address-lookup-validation-proposal-of-new-dns-based-validation-using-persistent-dcv-txt-record-for-ip-addresses/). These ballots sunset these legacy methods in favor of automated, cryptographically verifiable alternatives (like ACME-based DNS or HTTP challenges) that confine the attack surface to the validated domain itself.
 
 **Why it matters:**
+
 *   **Enhances security:** These changes make it harder for attackers to trick a CA into issuing a certificate for a domain they don’t control. This reduces the risk that stale or indirect signals, (like outdated WHOIS data, complex phone and email ecosystems, or inherited infrastructure) can be abused.
 *   **Encourages automation:** The shift toward standardized validation methods pushes the ecosystem toward modern, auditable practices and away from complex, manual workflows.
 
@@ -152,6 +159,7 @@ To address this, the Chrome Root Program collaborated with members of the ecosys
 Beginning in September 2022, the Chrome Root Program [codified](policy-archive/policy-version-1-1#4-dedicated-tls-pki-hierarchies) its commitment to simplicity by requiring applicant PKI hierarchies submitted for inclusion in the Chrome Root Store focus only on serving TLS use cases. However, while that approach promoted future simplicity, not all CA certificates included in the Chrome Root Store aligned with this principle. To address this, and to completely realize the benefits of the transition to TLS-dedicated hierarchies, Chrome Root Program Policy Version 1.6 established a future phase-out of existing "multi-purpose" root CA certificates, or those CA certificates not dedicated to TLS server authentication use cases, from the Chrome Root Store. The adoption process is ongoing, but is expected to complete by the end of 2027.
 
 **Why it matters:**
+
 *   **Improves security by reducing attack surface:** Today, Chrome transitively trusts over 2,300 CA certificates, however, only about half of these CAs issue TLS server authentication certificates, the only PKI use case applicable for Chrome when authenticating websites. Removing out-of-scope CAs from Chrome’s security boundary results in fewer potential points of vulnerability, reducing risk for Chrome users.
 *   **Promotes simplicity:** Dedicated-use hierarchies reduce complexity, clarify priorities, and improve maintainability for the use cases they serve. This simplicity can lead to more effective policies, practices, and operations compared to multi-use hierarchies that try to address multiple disparate requirements and standards at once.
 *   **Focuses innovation:** By focusing on purpose-built hierarchies, the community can work together to more directly satisfy the specific needs of TLS certificate subscriber use cases (e.g., improve support for automation) and allow unencumbered innovation and iteration, rather than being obligated to satisfy the lowest common denominator of many different subscriber-type use cases or corresponding certificate issuance and management requirements.
@@ -166,6 +174,7 @@ Beginning in September 2022, the Chrome Root Program [codified](policy-archive/p
 This ballot establishes a roadmap to reduce the maximum validity of publicly-trusted TLS certificates from 398 days down to 47 days. It also introduces a significant reduction in DCV reuse periods, eventually bringing the limit for reusing validation data down to just 10 days. Previously, a single validation check could be used for over two years, creating a risk that certificates were issued based on [stale ownership information](https://insecure.design/). These changes are scheduled to phase in starting March 2026 and will conclude in March 2029.
 
 **Why it matters:**
+
 *   **Increases agility and cryptographic safety:** Deprecating ecosystem practices (e.g., use of a specific cryptographic algorithm) is a complex process; a reduced maximum validity period provides substantial support for smoothly, and when necessary, swiftly transitioning between practices when weaknesses are identified.
 *   **Reduces risk of stale data:** Because certificates represent a verification performed at a specific moment, reducing lifetimes [minimizes](https://zanema.com/papers/imc23_stale_certs.pdf) the period in which a certificate remains valid after the information it contains is no longer accurate.
 *   **Reduces reliance on revocation checks:** Certificate status services (like CRLs and OCSP) often struggle with privacy, performance, and timeliness; shorter certificate lifetimes provide firm protection to users independent of these services.
