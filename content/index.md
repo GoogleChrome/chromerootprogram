@@ -241,6 +241,8 @@ To align all PKI hierarchies included in the Chrome Root Store on the principle 
     -  if disclosed to the CCADB **on or after June 15, 2026**: include the extendedKeyUsage extension and only assert an extendedKeyUsage purpose of id-kp-serverAuth.
     -  NOT contain a public key corresponding to any other unexpired or unrevoked certificate that asserts different extendedKeyUsage values.
 2. All corresponding subscriber certificates issued **on or after March 15, 2027**, MUST include the extendedKeyUsage extension and only assert an extendedKeyUsage purpose of id-kp-serverAuth.
+
+To reduce negative impact to the ecosystem, the Chrome Root Store may temporarily continue to include a multi-purpose root CA certificate in the Chrome Root Store without an SCTNotAfter constraint on a case-by-case basis, but only if the corresponding CA Owner has submitted a Root Inclusion Request to the CCADB for a replacement root CA certificate before June 15, 2026.
        
 #### 1.3.3. Promote Cryptographic Agility and Resilience
 
