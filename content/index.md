@@ -177,7 +177,8 @@ In some cases, this policy strengthens requirements described in the CCADB Polic
 If a CA Owner already has two (2) or more self-signed root CA certificates included in the Chrome Root Store, the Chrome Root Program will only accept a new CCADB Root Inclusion Request to replace an existing certificate (i.e., 'one in, one out').
 
 **Before June 15, 2026**, CA Owners with more than two (2) self-signed root CA certificates in the Chrome Root Store MUST submit a written consolidation plan to the Chrome Root Program. This plan MUST:
-1. Identify the two (2) root CA certificates that will remain in the Chrome Root Store, and 
+
+1. Identify the two (2) root CA certificates that will remain in the Chrome Root Store, and
 2. Provide a phase-out date for all of their other root CA certificates. The phase-out date MUST be **before September 15, 2027, (00:00 UTC)**.
 
 **Effective September 15, 2027**, the Chrome Root Store will only include a maximum of two (2) self-signed root CA certificates per CA Owner. PKI hierarchies being phased-out are not counted toward this limit.
@@ -255,6 +256,7 @@ Certificate lifecycle management automation solutions ("automation solutions") i
 Additionally, **effective March 15, 2027**, for each CCADB root certificate record corresponding to a root included in the Chrome Root Store, CA Owners MUST disclose at least one (1) automation solution for each Baseline Requirements certificate policy OID appearing in unexpired and unrevoked subscriber certificates. For each such OID, the CA Owner MUST use a disclosed automation solution to issue "Automation Test Certificates" to demonstrate its automation capabilities. Automation Test Certificates MUST be renewed at least once every 30 calendar days; however, at any point, the Chrome Root Program may request more frequent renewal. At least one (1) valid Automation Test Certificate corresponding to each Baseline Requirements certificate policy OID MUST be served by a publicly accessible website whose URL is disclosed to the CCADB on the corresponding intermediate certificate record. CA Owners are encouraged to issue "Short-lived Subscriber Certificates," as [introduced](https://cabforum.org/2023/07/14/ballot-sc-063-v4make-ocsp-optional-require-crls-and-incentivize-automation/) in Version 2.0.1 of the Baseline Requirements, for the Automation Test Certificates.
 
 The above requirements do not:
+
 - Prohibit PKI hierarchies from also supporting other "non-automated" methods of certificate issuance and renewal.
 - Require website operators to rely on the automation solution(s) for certificate issuance and renewal.
 
@@ -378,7 +380,7 @@ The Chrome Root Program prioritizes and remains committed to promoting public di
 
 As standard practice, the Chrome Root Program does not:
 
-- discuss ongoing public incident reports privately. We believe using information disclosed to the public as the basis for our response is the most transparent and effective way of upholding the security expectations of Chrome's users, while also ensuring the [factors](#51-incident-reports) that are significant to Chrome are adequately addressed;
+- discuss ongoing public incident reports privately. We believe using information disclosed to the public as the basis for our response is the most transparent and effective way of upholding the security expectations of Chrome's users, while also ensuring the [factors](#151-incident-reports) that are significant to Chrome are adequately addressed;
 - advise on or approve a CA Owner's proposed or planned response to an incident; or
 - offer guarantees of specific outcomes in response to the course of action deemed most appropriate by the CA Owner.
 
@@ -416,6 +418,7 @@ Not limited to the circumstances above, the Chrome Root Program reserves the rig
 #### 1.6.3. Industry and Community Forum Engagement
 
 Chrome Root Program Participants are expected to maintain awareness of, and where relevant, actively engage in public discussions concerning CA practices, policy developments, and incidents, within minimally the following public forums:
+
 - [CCADB Public](https://groups.google.com/a/ccadb.org/g/public),
 - the CA/Browser Forum [Server Certificate Working Group](https://groups.google.com/a/groups.cabforum.org/g/servercert-wg), [Validation Subcommittee](https://groups.google.com/a/groups.cabforum.org/g/validation), and [Network Security Working Group](https://lists.cabforum.org/mailman/listinfo/netsec) mailing lists, 
 - the Bugzilla [CA Certificate Compliance](https://bugzilla.mozilla.org/buglist.cgi?product=CA%20Program&component=CA%20Certificate%20Compliance&bug_status=__open__&list_id=17629668) component, and
