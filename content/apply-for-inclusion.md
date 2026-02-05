@@ -45,17 +45,20 @@ While not a comprehensive list, the following behaviors can serve as positive in
 #### Indicators of security best practices and technical leadership
 
 **Agility & Modernization**
+
 * Supporting the Automatic Certificate Management Environment (ACME) protocol and the ACME Renewal Information (ARI) extension, complemented by technical controls that encourage cryptographic agility.
 * Issuing TLS server authentication certificates with a validity period of 90 calendar days or fewer to increase agility and reduce the window of exposure for compromised keys.
 * Limiting the reuse of domain control validation data to 90 calendar days or fewer, ensuring that ownership information remains fresh and reliable.
 * Prioritizing automatable validation methods by refraining from the use of legacy email, phone, and postal contact-based validation methods (specifically those targeted for sunset by CA/Browser Forum Ballots [SC-090](https://cabforum.org/2025/11/20/ballot-sc-090-gradually-sunset-all-remaining-email-based-phone-based-and-crossover-validation-methods-from-sections-3.2.2.4-and-3.2.2.5/) and [SC-091](https://cabforum.org/2025/11/12/ballot-sc-091-sunset-3.2.2.5.3-reverse-address-lookup-validation-proposal-of-new-dns-based-validation-using-persistent-dcv-txt-record-for-ip-addresses/)).
 
 **Transparency & Accountability**
+
 * Enhancing ecosystem resilience by reliably operating at least one (1) Certificate Transparency log that is [listed](https://www.gstatic.com/ct/log_list/v3/all_logs_list.json) as "Usable" or "Qualified" and operates in accordance with the [Chrome CT Log Policy](https://googlechrome.github.io/CertificateTransparency/log_policy.html).
 * Ensuring complete transparency by logging all TLS server authentication precertificates and final certificates to at least one Certificate Transparency log within 24 hours of issuance. Applicants eligible for "Usable" logs (typically those cross-certified by an existing root) should utilize those, while new Applicants not yet eligible should utilize "Test" logs.
 * Broadly participating in the Web PKI incident reporting process described in the [CCADB Incident Reporting Guidelines](https://www.ccadb.org/cas/incident-report), extending contributions beyond one's own incidents to foster a collaborative learning environment and strengthen the ecosystem's security posture.
 
 **Operational Resilience & Infrastructure**
+
 * Strengthening validation security by leveraging Internet Service Providers that use Resource Public Key Infrastructure (RPKI) with invalid route filtering during Domain and IP Address Control Validation.
 * Utilizing partitioned CRLs for serving TLS server authentication certificate status information to make revocation checking faster, more cost-effective, and more reliable.
 * Operating a publicly accessible test infrastructure that mirrors the production environment to facilitate proactive testing of new features, policy changes, and client behaviors.
@@ -64,6 +67,7 @@ While not a comprehensive list, the following behaviors can serve as positive in
 * Proactively implementing security controls and operational practices that exceed the minimum requirements established in the CA/Browser Forum TLS Baseline Requirements.
 
 **Indicators of a public-serving mission**
+
 * Supporting subscribers in multiple geographic markets and in multiple native languages.
 * Freely-available guidance, help articles, or FAQs to support the user community in requesting/renewing certificates or configuring TLS.
 * Issuing certificates to a broad range of entities, beyond just the CA Owner's existing subscriber base or subscribers of its other business offerings.
