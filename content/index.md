@@ -311,6 +311,8 @@ CA Owners with CA certificates that validate to a certificate included in the Ch
 
 ##### 1.3.4.3. Contributing to a Healthy CT Ecosystem
 
+Within 24 hours of issuance, Chrome Root Program Participants SHOULD log final certificates to at least one CT log [usable](https://www.gstatic.com/ct/log_list/v3/log_list.json) in Chrome at the time of issuance.
+
 Chrome Root Program Participants SHOULD contribute to the health and diversity of the CT ecosystem. Such contributions may include, but are not limited to:
 
 - reliably operating CT logs [Usable](https://googlechrome.github.io/CertificateTransparency/log_states.html#usable) in Chrome.
