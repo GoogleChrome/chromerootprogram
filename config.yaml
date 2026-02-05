@@ -28,7 +28,7 @@ context:
       date: "2025-07-15"
     - path: policy-archive/policy-version-1-8
       version: "1.8"
-      date: "YYYY-DD-MM"
+      date: "2026-02-05"
 input_dir: content
 template_dir: templates
 output_dir: output_html
