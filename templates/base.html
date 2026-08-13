@@ -11,28 +11,31 @@
 </head>
 <body>
   <header>
-    <h4>Policy</h4>
-    <nav>
+      <h4>Home</h4>
       <ul>
-        <li><a href="{{ '/' | absolute_url }}">Chrome Root Program Policy</a></li>
+        <li><a href="{{ '/index.html' | absolute_url }}">Programs Overview</a></li>
       </ul>
-    </nav>
-    <h4>Resources</h4>
-    <nav>
+
+      <h4>Chrome Root Program</h4>
       <ul>
+        <li><a href="{{ '/crp/policy' | absolute_url }}">Policy</a></li>
+        <li><a href="https://chromium.googlesource.com/chromium/src/+/main/net/data/ssl/chrome_root_store/root_store.md" target="_blank" rel="noopener">Chrome Root Store</a></li>
         <li><a href="{{ '/apply-for-inclusion' | absolute_url }}">Apply for Inclusion</a></li>
         <li><a href="{{ '/moving-forward-together' | absolute_url }}">Moving Forward, Together</a></li>
+        <li><a href="{{ '/policy-archive' | absolute_url }}">Policy Archive</a></li>
+        <li><a href="https://chromium.googlesource.com/chromium/src/+/main/net/data/ssl/chrome_root_store/faq.md" target="_blank" rel="noopener">Frequently Asked Questions</a></li>
       </ul>
-    </nav>
-    <h4>Policy Archive</h4>
-    <nav>
+
+      <h4>Chrome Quantum-resistant Root Program</h4>
       <ul>
-      {% for v in versions[:-1] %}
-        <li><a href="{{ v.path | absolute_url }}">Version {{ v.version }}</a></li>
-      {% endfor %}
+        <li><a href="{{ '/cqrp/draft-policy' | absolute_url }}">Policy (Draft)</a></li>
+        <li><a href="{{ '/cqrp/root-store' | absolute_url }}">CQRP Root Store</a></li>
+        <li><a href="{{ '/cqrp/apply' | absolute_url }}">Apply for Inclusion</a></li>
+        <li><a href="{{ '/cqrp/testing' | absolute_url }}">Testing Instructions</a></li>
+        <li><a href="{{ '/cqrp/faq' | absolute_url }}">Frequently Asked Questions</a></li>
+        <li><a href="https://www.chromium.org/Home/chromium-security/post-quantum-auth-roadmap/" target="_blank" rel="noopener">Post-Quantum HTTPS Authentication Roadmap</a></li>
       </ul>
-    </nav>
-  </header>
+    </header>
   <section>
     {{ content | safe }}
   </section>
