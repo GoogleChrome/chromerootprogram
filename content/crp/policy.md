@@ -71,7 +71,7 @@ Any questions regarding this policy can be directed to chrome-root-program [at] 
 
 ### Apply for Inclusion
 
-CA Owners that satisfy the requirements defined in the policy below may apply for self-signed root CA certificate inclusion in the Chrome Root Store using [these](../apply-for-inclusion.md) instructions.
+CA Owners that satisfy the requirements defined in the policy below may apply for self-signed root CA certificate inclusion in the Chrome Root Store using [these](apply-for-inclusion.md) instructions.
 
 Applicants are expected to continuously adhere to the policies outlined herein, irrespective of their inclusion request submission date. All Applicants are expected to satisfy the requirements set forth in both the ["Minimum Requirements for CAs included in the Chrome Root Store"](#1-minimum-requirements-for-cas-included-in-the-chrome-root-store) and ["Minimum Requirements for Applicant CAs Requesting Inclusion into the Chrome Root Store"](#2-minimum-requirements-for-applicant-cas-requesting-inclusion-into-the-chrome-root-store) Sections. Where requirements in these sections differ, the Applicant-specific requirements take precedence.
 
@@ -92,7 +92,7 @@ Chrome maintains a variety of mechanisms to protect its users from certificates 
 
 The "Moving Forward, Together" initiative envisions a future Internet ecosystem that includes modern, reliable, highly agile, purpose-driven PKIs with an emphasis on automation, simplicity, and security.
 
-Learn more about priorities and initiatives that may influence future versions of this policy [here](../moving-forward-together.md). Please note "Moving Forward, Together" is future looking and does not describe normative requirements.
+Learn more about priorities and initiatives that may influence future versions of this policy [here](moving-forward-together.md). Please note "Moving Forward, Together" is future looking and does not describe normative requirements.
 
 ### Additional Information
 

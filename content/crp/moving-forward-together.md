@@ -19,7 +19,7 @@ With those goals in mind, the Chrome Root Program continues to explore introduci
 
 ## Understanding "Moving Forward, Together" initiatives
 
-The initiatives described on this page are distinct from the requirements detailed in the [Chrome Root Program Policy](index). These initiatives are proposals for exploration. They are not requirements.
+The initiatives described on this page are distinct from the requirements detailed in the [Chrome Root Program Policy](policy.md). These initiatives are proposals for exploration. They are not requirements.
 
 Some proposals may change during our review process, after considering community feedback, or studying the ecosystem impacts and tradeoffs of adoption. Others may not be adopted at all.
 
