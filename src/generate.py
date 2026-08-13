@@ -9,6 +9,7 @@ import markdown
 
 from collections import namedtuple
 import urllib.parse
+import urllib.request
 
 from jinja2 import Environment, FileSystemLoader
 
@@ -77,6 +78,41 @@ class RemoveMdExtensionTreeprocessor(Treeprocessor):
                 element.set("href", target)
 
 
+ALERT_TYPES = {
+    "NOTE": ("Note", "<svg viewBox=\"0 0 16 16\" width=\"16\" height=\"16\" fill=\"currentColor\"><path d=\"M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25V8.5h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z\"></path></svg>"),
+    "TIP": ("Tip", "<svg viewBox=\"0 0 16 16\" width=\"16\" height=\"16\" fill=\"currentColor\"><path d=\"M8 1.5c-2.363 0-4 1.69-4 3.75 0 .984.424 1.625.984 2.304l.214.253c.223.264.47.556.673.868.347.533.629 1.157.629 1.825v.75h3v-.75c0-.668.282-1.292.629-1.825.203-.312.45-.604.673-.868l.214-.253c.56-.679.984-1.32.984-2.304 0-2.06-1.637-3.75-4-3.75ZM4.5 11.75c0-.138.112-.25.25-.25h6.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-6.5a.25.25 0 0 1-.25-.25v-.5ZM6 13.75c0-.138.112-.25.25-.25h3.5a.25.25 0 0 1 .25.25v.25a1.25 1.25 0 0 1-1.25 1.25h-1.5A1.25 1.25 0 0 1 6 14.00v-.25Z\"></path></svg>"),
+    "IMPORTANT": ("Important", "<svg viewBox=\"0 0 16 16\" width=\"16\" height=\"16\" fill=\"currentColor\"><path d=\"M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v12.5A1.75 1.75 0 0 1 14.25 16H1.75A1.75 1.75 0 0 1 0 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25V1.75a.25.25 0 0 0-.25-.25ZM8 4a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 8 4Zm0 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z\"></path></svg>"),
+    "WARNING": ("Warning", "<svg viewBox=\"0 0 16 16\" width=\"16\" height=\"16\" fill=\"currentColor\"><path d=\"M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z\"></path></svg>"),
+    "CAUTION": ("Caution", "<svg viewBox=\"0 0 16 16\" width=\"16\" height=\"16\" fill=\"currentColor\"><path d=\"M4.47.22A.749.749 0 0 1 5 0h6c.199 0 .389.079.53.22l4.25 4.25c.141.141.22.331.22.53v6a.749.749 0 0 1-.22.53l-4.25 4.25A.749.749 0 0 1 11 16H5a.749.749 0 0 1-.53-.22L.22 11.53A.749.749 0 0 1 0 11V5c0-.199.079-.389.22-.53Zm.84 1.28L1.5 5.31v5.38l3.81 3.81h5.38l3.81-3.81V5.31L10.69 1.5ZM8 4a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 8 4Zm0 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z\"></path></svg>")
+}
+
+import xml.etree.ElementTree as ET
+
+class GitHubAlertsTreeprocessor(Treeprocessor):
+    def run(self, root):
+        for bq in root.iter("blockquote"):
+            first_p = bq.find("p")
+            if first_p is not None and first_p.text:
+                text = first_p.text.strip()
+                for alert_key, (title, svg) in ALERT_TYPES.items():
+                    tag = f"[!{alert_key}]"
+                    if text.startswith(tag):
+                        bq.attrib["class"] = f"markdown-alert markdown-alert-{alert_key.lower()}"
+                        remainder = text[len(tag):].lstrip()
+                        first_p.text = remainder
+                        
+                        title_p = ET.Element("p", {"class": "markdown-alert-title"})
+                        svg_elem = ET.fromstring(svg)
+                        title_p.append(svg_elem)
+                        svg_elem.tail = f" {title}"
+                        bq.insert(0, title_p)
+                        break
+
+class GitHubAlertsExtension(Extension):
+    def extendMarkdown(self, md):
+        md.treeprocessors.register(GitHubAlertsTreeprocessor(md), "github_alerts", priority=20)
+
+
 class RemoveMdExtension(Extension):
 
     def __init__(self, base_url, dir_path):
@@ -134,10 +170,16 @@ def render_file(input_path, output_path, env, page_context={}):
             "tables",
             "toc",
             "attr_list",
+            GitHubAlertsExtension(),
             RemoveMdExtension(
                 page_context.get("base_url"), page_context.get("dir_path")
             ),
         ],
+        extension_configs={
+            "toc": {
+                "toc_depth": "3-3",
+            }
+        },
     )
 
     # Wrap with a template
@@ -292,6 +334,19 @@ def main():
 
     # Ensure output directory exists
     os.makedirs(config.get("output_dir"), exist_ok=True)
+
+    # Fetch latest cosigners.json at build time for fallback
+    try:
+        req = urllib.request.Request("https://www.gstatic.com/mtcs/cosigners/v1/cosigners.json", headers={"User-Agent": "Mozilla/5.0"})
+        with urllib.request.urlopen(req) as resp:
+            fallback_bytes = resp.read()
+            static_dir = os.path.join(config.get("output_dir"), "static")
+            os.makedirs(static_dir, exist_ok=True)
+            with open(os.path.join(static_dir, "cosigners_fallback.json"), "wb") as f:
+                f.write(fallback_bytes)
+            print("Successfully saved static/cosigners_fallback.json for build fallback")
+    except Exception as e:
+        print(f"Warning: Could not fetch cosigners.json at build time ({e})")
 
     # Render the markdow and copy assets
     res = render_markdown(

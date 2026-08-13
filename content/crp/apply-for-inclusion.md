@@ -1,5 +1,5 @@
 ---
-title: Apply for Inclusion
+title: Chrome Root Program - Apply for Inclusion
 ---
 # Apply for Inclusion
 
@@ -11,11 +11,11 @@ Because of this significant and inherent security risk, our Chrome Root Store in
 
 Google includes or removes self-signed root CA certificates in the Chrome Root Store as it deems appropriate at its sole discretion. The selection and ongoing inclusion of CA certificates is done to enhance the security of Chrome. CA certificates included in the Chrome Root Store must provide value to Chrome end users that clearly exceeds the risk of their continued inclusion.
 
-To that end, the Chrome Root Program Policy defines the [minimum requirements](../index) that must be met by CA Owners for both initial and continued inclusion in the Chrome Root Store. The policy is periodically updated to further promote the Chrome Root Program's goals of [security, agility, and simplicity](../moving-forward-together). Generally, all pending inclusion applications submitted to Google Chrome in the Common CA Database (CCADB) should adhere to the latest version of the Chrome Root Program Policy, including any specific criteria for Applicants. If an existing inclusion application submitted in the CCADB doesn't meet the requirements of a revised policy or updated Applicant-specific criteria, the  CA Owner should request a reversion of their CCADB case status back to "CA Providing Data." This allows the CA Owner to modify their inclusion application and demonstrate sufficient alignment with the current policy and requirements.
+To that end, the Chrome Root Program Policy defines the [minimum requirements](policy.md) that must be met by CA Owners for both initial and continued inclusion in the Chrome Root Store. The policy is periodically updated to further promote the Chrome Root Program's goals of [security, agility, and simplicity](moving-forward-together.md). Generally, all pending inclusion applications submitted to Google Chrome in the Common CA Database (CCADB) should adhere to the latest version of the Chrome Root Program Policy, including any specific criteria for Applicants. If an existing inclusion application submitted in the CCADB doesn't meet the requirements of a revised policy or updated Applicant-specific criteria, the  CA Owner should request a reversion of their CCADB case status back to "CA Providing Data." This allows the CA Owner to modify their inclusion application and demonstrate sufficient alignment with the current policy and requirements.
 
 ### Inclusion Processing
 
-The Chrome Root Program and corresponding Root Store processes inclusion applications and requests for changes through the CCADB. CA Owners who satisfy all of the requirements in the Chrome Root Program [Policy](../index) may apply.
+The Chrome Root Program and corresponding Root Store processes inclusion applications and requests for changes through the CCADB. CA Owners who satisfy all of the requirements in the Chrome Root Program [Policy](policy.md) may apply.
 
 The application process includes:
 
@@ -63,7 +63,7 @@ While not a comprehensive list, the following behaviors can serve as positive in
 * Utilizing partitioned CRLs for serving TLS server authentication certificate status information to make revocation checking faster, more cost-effective, and more reliable.
 * Operating a publicly accessible test infrastructure that mirrors the production environment to facilitate proactive testing of new features, policy changes, and client behaviors.
 * Randomizing the use of subordinate CAs for issuing TLS server authentication certificates to discourage harmful practices like [Key Pinning](https://en.wikipedia.org/wiki/HTTP_Public_Key_Pinning).
-* Leveraging operational practices consistent with those described in [Moving Forward, Together](../moving-forward-together).
+* Leveraging operational practices consistent with those described in [Moving Forward, Together](moving-forward-together.md).
 * Proactively implementing security controls and operational practices that exceed the minimum requirements established in the CA/Browser Forum TLS Baseline Requirements.
 
 **Indicators of a public-serving mission**
@@ -79,7 +79,7 @@ Root CA certificates approved for distribution will be added to the Chrome Root 
 
 ### Inclusion Rejection
 
-The Chrome Root Program will reject inclusion applications where an Applicant does not meet the minimum requirements defined by the Chrome Root Program [Policy](../index) or the application is deemed incomplete or inaccurate.
+The Chrome Root Program will reject inclusion applications where an Applicant does not meet the minimum requirements defined by the Chrome Root Program [Policy](policy.md) or the application is deemed incomplete or inaccurate.
 
 While the Chrome Root Program may communicate the basis for its decision, all inclusion determinations are made at its sole discretion and are final.
 
@@ -92,7 +92,7 @@ Illustrative factors for application rejection may include:
 * A corresponding Public Key Infrastructure (PKI) certificate hierarchy where leaf certificates are not primarily intended to be used for server authentication facilitating a secure connection between a web browser and a corresponding website (e.g., client authentication certificates, Internet of Things (IoT) device certificates, smart cities, transportation, medical devices, etc.).
 * A corresponding PKI hierarchy that currently or previously allowed, facilitated, or enabled “Monster in the Middle” (MITM) attacks (either successful or attempted) where a certificate was issued for the purposes of impersonation, interception, or to alter communications.
 * Where the corresponding CA Owner has ever been determined to have acted in an untrustworthy manner or created unnecessary ecosystem risk.
-* Where the corresponding CA Owner has an incident history that does not convey the [factors](../index#151-incident-reports) significant to Chrome.
+* Where the corresponding CA Owner has an incident history that does not convey the [factors](policy.md#151-incident-reports) significant to Chrome.
 * Completion of a CCADB root inclusion public discussion that casts doubt over the CA Owners security, honesty or reliability.
 * Discovery of false or misleading information provided by the CA Owner.
 * Significant delays in response from the CA Owner when seeking additional or clarifying information.

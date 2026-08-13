@@ -54,7 +54,7 @@ The Chrome Root Program Policy below establishes the minimum requirements for CA
 
 ### Apply for Inclusion
 
-CA Owners that satisfy the requirements defined in the policy below may apply for self-signed root CA certificate inclusion in the Chrome Root Store using [these](apply-for-inclusion.md) instructions.
+CA Owners that satisfy the requirements defined in the policy below may apply for self-signed root CA certificate inclusion in the Chrome Root Store using [these](../apply-for-inclusion.md) instructions.
 
 ### Chrome's Ongoing Commitment to Transport Security
 
@@ -71,7 +71,7 @@ Chrome maintains a variety of mechanisms to protect its users from certificates 
 
 The "Moving Forward, Together" initiative envisions a future Internet ecosystem that includes modern, reliable, highly agile, purpose-driven PKIs with an emphasis on automation, simplicity, and security.
 
-Learn more about priorities and initiatives that may influence future versions of this policy [here](moving-forward-together.md). Please note "Moving Forward, Together" is future looking and does not describe normative requirements.
+Learn more about priorities and initiatives that may influence future versions of this policy [here](../moving-forward-together.md). Please note "Moving Forward, Together" is future looking and does not describe normative requirements.
 
 ### Additional Information
 
