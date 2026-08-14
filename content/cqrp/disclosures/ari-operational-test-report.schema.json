@@ -1,0 +1,205 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/GoogleChrome/chromerootprogram/tree/main/content/cqrp/disclosures/ari-operational-test-report.schema.json",
+  "title": "MTC CA Operational ARI Test Report Schema",
+  "description": "Schema for reporting quarterly operational ACME Renewal Information (ARI) client responsiveness test cycles.",
+  "type": "object",
+  "required": [
+    "test_cycle_id",
+    "sample_selection",
+    "summary",
+    "results"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "format": "uri"
+    },
+    "test_cycle_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Unique identifier for this operational ARI test cycle (e.g., 2026-Q3-ARI-TEST-01)."
+    },
+    "sample_selection": {
+      "type": "object",
+      "description": "Metadata regarding the derivation of the sample population.",
+      "required": [
+        "timestamp",
+        "methodology_description",
+        "filter_criteria",
+        "selection_algorithm",
+        "eligible_certificate_count",
+        "sampled_certificate_count",
+        "sample_percentage"
+      ],
+      "properties": {
+        "timestamp": {
+          "type": "string",
+          "format": "date-time",
+          "description": "UTC timestamp when sample selection occurred."
+        },
+        "methodology_description": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Detailed human-readable explanation of sample selection methodology."
+        },
+        "filter_criteria": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Criteria used to filter the eligible certificate population."
+        },
+        "selection_algorithm": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Random selection algorithm or mechanism used to collect the sample."
+        },
+        "eligible_certificate_count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Total count of eligible certificates meeting sample criteria."
+        },
+        "sampled_certificate_count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Total count of certificates selected for sampling."
+        },
+        "sample_percentage": {
+          "type": "number",
+          "minimum": 3.0,
+          "maximum": 100.0,
+          "description": "Percentage of eligible certificates sampled (MUST be at least 3.0%)."
+        }
+      },
+      "additionalProperties": false
+    },
+    "summary": {
+      "type": "object",
+      "description": "Aggregate summary statistics for the test cycle.",
+      "required": [
+        "overall_pass_rate_percentage",
+        "median_time_to_renewal_seconds",
+        "p95_time_to_renewal_seconds",
+        "user_agent_version_breakdown"
+      ],
+      "properties": {
+        "overall_pass_rate_percentage": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 100.0,
+          "description": "Overall percentage of sampled certificates that passed the ARI test."
+        },
+        "median_time_to_renewal_seconds": {
+          "type": ["number", "null"],
+          "description": "Median time to renewal in seconds for successful test cases."
+        },
+        "p95_time_to_renewal_seconds": {
+          "type": ["number", "null"],
+          "description": "95th percentile time to renewal in seconds for successful test cases."
+        },
+        "user_agent_version_breakdown": {
+          "type": "array",
+          "description": "Pass/fail breakdown by parsed client software name and version.",
+          "items": {
+            "type": "object",
+            "required": [
+              "software",
+              "version",
+              "total",
+              "passed",
+              "failed",
+              "pass_rate_percentage"
+            ],
+            "properties": {
+              "software": { "type": "string", "minLength": 1 },
+              "version": { "type": "string", "minLength": 1 },
+              "total": { "type": "integer", "minimum": 0 },
+              "passed": { "type": "integer", "minimum": 0 },
+              "failed": { "type": "integer", "minimum": 0 },
+              "pass_rate_percentage": {
+                "type": "number",
+                "minimum": 0.0,
+                "maximum": 100.0
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "results": {
+      "type": "array",
+      "description": "Individual test results for every sampled certificate.",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "serial_number",
+          "issuance_log_entry_index",
+          "ari_renewal_window",
+          "outcome",
+          "user_agent",
+          "parsed_client",
+          "user_agent_source",
+          "renewal_timestamp",
+          "time_to_renewal_seconds"
+        ],
+        "properties": {
+          "serial_number": {
+            "type": "string",
+            "pattern": "^[a-fA-F0-9]+$",
+            "description": "Hex-encoded serial number of the sampled certificate."
+          },
+          "issuance_log_entry_index": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Issuance Log Entry Index for the sampled certificate."
+          },
+          "ari_renewal_window": {
+            "type": "object",
+            "required": ["start", "end"],
+            "properties": {
+              "start": { "type": "string", "format": "date-time" },
+              "end": { "type": "string", "format": "date-time" }
+            },
+            "additionalProperties": false
+          },
+          "outcome": {
+            "type": "string",
+            "enum": ["pass", "fail"]
+          },
+          "user_agent": {
+            "type": "string",
+            "description": "Full untruncated HTTP User-Agent request header string."
+          },
+          "parsed_client": {
+            "type": "object",
+            "required": ["name", "version"],
+            "properties": {
+              "name": { "type": "string", "minLength": 1 },
+              "version": { "type": "string", "minLength": 1 }
+            },
+            "additionalProperties": false
+          },
+          "user_agent_source": {
+            "type": "string",
+            "enum": ["renewal_request", "initial_issuance"]
+          },
+          "renewal_timestamp": {
+            "type": ["string", "null"],
+            "format": "date-time",
+            "description": "UTC timestamp of renewal for successful tests, or null if failed."
+          },
+          "time_to_renewal_seconds": {
+            "type": ["integer", "null"],
+            "description": "Calculated time to renewal in seconds relative to the start of the ARI window for successful tests, or null if failed."
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}
+
+

@@ -1,0 +1,125 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/GoogleChrome/chromerootprogram/tree/main/content/cqrp/disclosures/mtc-disclosures.schema.json",
+  "title": "MTC CA Operator Disclosures Schema",
+  "description": "Schema for MTC CA Operator disclosures supporting per-key and global disclosure URLs.",
+  "type": "object",
+  "required": [
+    "operator_name",
+    "last_updated",
+    "global_disclosures",
+    "ca_cosigner_keys"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "format": "uri"
+    },
+    "operator_name": {
+      "type": "string",
+      "description": "Legal name of the MTC CA Operator."
+    },
+    "last_updated": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 UTC timestamp indicating when this manifest was last updated."
+    },
+    "global_disclosures": {
+      "type": "object",
+      "description": "Operator-wide disclosures applicable across all CA Cosigner Keys.",
+      "required": [
+        "ca_repository_url",
+        "legal_entity_and_ownership_url",
+        "status_and_incidents_url",
+        "facility_certification_url"
+      ],
+      "properties": {
+        "ca_repository_url": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL to the CA Operator's public repository where items like policy documents, Subscriber agreements, and historical revisions reside."
+        },
+        "legal_entity_and_ownership_url": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL detailing legal entity status, beneficial ownership, and corporate control."
+        },
+        "status_and_incidents_url": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL to public operational status and incident reporting pages."
+        },
+        "facility_certification_url": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL to ISO/IEC 27001 or equivalent facility audit certification."
+        }
+      },
+      "additionalProperties": false
+    },
+    "ca_cosigner_keys": {
+      "type": "array",
+      "description": "List of disclosures specific to each CA Cosigner Key operated by the CA.",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "friendly_name",
+          "key_sha256",
+          "disclosures"
+        ],
+        "properties": {
+          "friendly_name": {
+            "type": "string",
+            "description": "Human-readable name for the CA Cosigner Key."
+          },
+          "key_sha256": {
+            "type": "string",
+            "pattern": "^[a-fA-F0-9]{64}$",
+            "description": "Hex-encoded SHA-256 hash of the CA Cosigner Key public key."
+          },
+          "disclosures": {
+            "type": "object",
+            "description": "Key-specific disclosure URLs.",
+            "required": [
+              "policy_documents_url",
+              "reserve_keys_url",
+              "key_generation_attestation_url",
+              "infrastructure_architecture_url"
+            ],
+            "properties": {
+              "policy_documents_url": {
+                "type": "string",
+                "format": "uri",
+                "description": "URL to the Markdown/AsciiDoc CPS for this specific key."
+              },
+              "reserve_keys_url": {
+                "type": "string",
+                "format": "uri",
+                "description": "URL disclosing anticipated Reserve CA Cosigner Keys for this key lineage."
+              },
+              "key_generation_attestation_url": {
+                "type": "string",
+                "format": "uri",
+                "description": "URL to the Key Generation Ceremony Attestation report for this key."
+              },
+              "infrastructure_architecture_url": {
+                "type": "string",
+                "format": "uri",
+                "description": "URL describing infrastructure architecture and geographic diversity for this key."
+              },
+              "facility_certification_url": {
+                "type": "string",
+                "format": "uri",
+                "description": "Optional override URL for facility certification if this key is hosted in a distinct facility."
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

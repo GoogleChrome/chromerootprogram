@@ -1,0 +1,81 @@
+{
+  "$schema": "https://github.com/GoogleChrome/chromerootprogram/tree/main/content/cqrp/disclosures/ari-operational-test-report.schema.json",
+  "test_cycle_id": "2026-Q3-ARI-TEST-01",
+  "sample_selection": {
+    "timestamp": "2026-08-05T00:00:00Z",
+    "methodology_description": "Queried all time-valid, unrevoked Subscriber certificates with validity > 7 days issued between 2026-07-22T00:00:00Z and 2026-08-05T00:00:00Z (preceding 336 hours). A uniform random sample of 3.0% was selected using a cryptographically secure pseudorandom number generator (CSPRNG).",
+    "filter_criteria": "validity > 7 days, unrevoked, issued between 2026-07-22T00:00:00Z and 2026-08-05T00:00:00Z",
+    "selection_algorithm": "Uniform random selection via CSPRNG",
+    "eligible_certificate_count": 50000,
+    "sampled_certificate_count": 1500,
+    "sample_percentage": 3.0
+  },
+  "summary": {
+    "overall_pass_rate_percentage": 90.0,
+    "median_time_to_renewal_seconds": 14400,
+    "p95_time_to_renewal_seconds": 172800,
+    "user_agent_version_breakdown": [
+      {
+        "software": "Certbot",
+        "version": "2.6.0",
+        "total": 500,
+        "passed": 490,
+        "failed": 10,
+        "pass_rate_percentage": 98.0
+      },
+      {
+        "software": "acme.sh",
+        "version": "3.0.5",
+        "total": 400,
+        "passed": 380,
+        "failed": 20,
+        "pass_rate_percentage": 95.0
+      },
+      {
+        "software": "cert-manager",
+        "version": "v1.11.0",
+        "total": 300,
+        "passed": 210,
+        "failed": 90,
+        "pass_rate_percentage": 70.0
+      }
+    ]
+  },
+  "results": [
+    {
+      "serial_number": "03A4F891BCDE0012",
+      "issuance_log_entry_index": 1048576,
+      "ari_renewal_window": {
+        "start": "2026-08-05T12:00:00Z",
+        "end": "2026-08-08T12:00:00Z"
+      },
+      "outcome": "pass",
+      "user_agent": "Certbot/2.6.0 (Ubuntu 22.04; certbot-ari-plugin/0.1.0)",
+      "parsed_client": {
+        "name": "Certbot",
+        "version": "2.6.0"
+      },
+      "user_agent_source": "renewal_request",
+      "renewal_timestamp": "2026-08-05T16:00:00Z",
+      "time_to_renewal_seconds": 14400
+    },
+    {
+      "serial_number": "03A4F891BCDE0013",
+      "issuance_log_entry_index": 1048577,
+      "ari_renewal_window": {
+        "start": "2026-08-05T12:00:00Z",
+        "end": "2026-08-08T12:00:00Z"
+      },
+      "outcome": "fail",
+      "user_agent": "legacy-acme-client/1.0.0",
+      "parsed_client": {
+        "name": "legacy-acme-client",
+        "version": "1.0.0"
+      },
+      "user_agent_source": "initial_issuance",
+      "renewal_timestamp": null,
+      "time_to_renewal_seconds": null
+    }
+  ]
+}
+

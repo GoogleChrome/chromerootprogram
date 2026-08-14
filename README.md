@@ -15,10 +15,10 @@ Any questions regarding the Chrome Quantum-Resistant Root Program can be directe
 
 The site is deployed automatically on commits to `main`. To add a new Chrome Root Program policy revision:
 
-- Archive the current version in `content/policy-archive/` (create the directory and copy the current policy to the proper version file).
+- Archive the current version in `content/crp/policy-archive/` (create the directory and copy the current policy to the proper version file).
 - Update `config.yaml`:
     - Update `context.versions` array so that the path for the now archived version is no longer marked as `current`.
-    - Add a new entry at the bottom of the array for the next version, with an archive path, `path: content/policy-archive/policy-version-NEW-VERSION`.
+    - Add a new entry at the bottom of the array for the next version, with an archive path, `path: crp/policy-archive/policy-version-NEW-VERSION`.
     - Bump `context.current_version` to the next version value. It should match the version number at the end of the versions array. Be sure all version numbers are in quotes so they are interpreted as strings, not floats.
 - Update `content/crp/policy.md` with the new policy content.
 
