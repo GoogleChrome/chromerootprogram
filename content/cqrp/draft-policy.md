@@ -76,7 +76,7 @@ There are no such eligibility restrictions placed on Independent Mirroring Opera
 
 ### **1.2. Beneficial Ownership**
 
-During the inclusion request process, CQRS Applicants MUST provide comprehensive ownership disclosures to enable the CQRP to fully evaluate the applicant's ultimate beneficial corporate ownership, parent entities, and corporate control structure. In it’s public Repository (as defined within the Baseline Requirements), the operator MUST disclose: 
+During the inclusion request process, CQRS Applicants MUST provide comprehensive ownership disclosures to enable the CQRP to fully evaluate the applicant's ultimate beneficial corporate ownership, parent entities, and corporate control structure. In its public Repository (as defined within the Baseline Requirements), the operator MUST disclose: 
 
 * Legal Entity Identification: Full legal name, entity type, jurisdiction of incorporation, official corporate registration number, and registered principal business address.  
 * Corporate Hierarchy: Full legal name, jurisdiction, and corporate registration number of the ultimate parent entity, along with a complete listing of all intermediate parent and subsidiary entities connecting the operator to its ultimate parent.  
@@ -124,7 +124,7 @@ To ensure that inclusion in the CQRS provides equitable public value, MTC CA Ope
 
 #### **2.1.1. Disclosures Manifest**
 
-MTC CA Operators MUST create, publish, and continuously maintain a [mtc-disclosures.json](disclosures/mtc-disclosures.schema.json) ([example](disclosures/mtc-disclosures.json)). The manifest MUST:
+MTC CA Operators MUST create, publish, and continuously maintain an [mtc-disclosures.json](disclosures/mtc-disclosures.schema.json) ([example](disclosures/mtc-disclosures.json)). The manifest MUST:
 
 * be hosted at a publicly accessible URL within the operator’s public Repository;  
 * conform to the latest version of the MTC Disclosures schema;  
