@@ -20,7 +20,7 @@ title: Chrome Quantum-resistant Root Program Policy, Version 0.3.0
 - [2. Minimum Requirements for MTC CA Operators](#2-minimum-requirements-for-mtc-ca-operators)
   - [2.1. Public General Availability](#21-public-general-availability)
     - [2.1.1. Disclosures Manifest](#211-disclosures-manifest)
-  - [2.2. Service Uptime & Maintenance Notifications](#22-service-uptime--maintenance-notifications)
+  - [2.2. Service Uptime and Maintenance Notifications](#22-service-uptime-and-maintenance-notifications)
   - [2.3. PKI Policy Governance](#23-pki-policy-governance)
     - [2.3.1. CA/Browser Forum TLS Server Authentication Baseline Requirements](#231-cabrowser-forum-tls-server-authentication-baseline-requirements)
     - [2.3.2. MTC CA Operator Policies](#232-mtc-ca-operator-policies)
@@ -43,15 +43,15 @@ title: Chrome Quantum-resistant Root Program Policy, Version 0.3.0
   - [2.6. CA Cosigners](#26-ca-cosigners)
     - [2.6.1. CA Cosigner Key Generation](#261-ca-cosigner-key-generation)
     - [2.6.2. CA Cosigner Key Use](#262-ca-cosigner-key-use)
-    - [2.6.3. CA Cosigner Key Lifecycle & Rotation](#263-ca-cosigner-key-lifecycle--rotation)
-  - [2.7. Oversight & Incident Reporting](#27-oversight--incident-reporting)
+    - [2.6.3. CA Cosigner Key Lifecycle and Rotation](#263-ca-cosigner-key-lifecycle-and-rotation)
+  - [2.7. Oversight and Incident Reporting](#27-oversight-and-incident-reporting)
     - [2.7.1. Annual Third Party Audits](#271-annual-third-party-audits)
     - [2.7.2. Timely and Transparent Communications](#272-timely-and-transparent-communications)
     - [2.7.3. Publicly Reporting on Incidents](#273-publicly-reporting-on-incidents)
       - [2.7.3.1. Incident Reports](#2731-incident-reports)
       - [2.7.3.2. Communicating with Chrome During Incidents](#2732-communicating-with-chrome-during-incidents)
 - [3. Minimum Requirements for Mirroring Operators](#3-minimum-requirements-for-mirroring-operators)
-  - [3.1. Mirroring Cosigner Key Generation & Use](#31-mirroring-cosigner-key-generation--use)
+  - [3.1. Mirroring Cosigner Key Generation and Use](#31-mirroring-cosigner-key-generation-and-use)
   - [3.2. Mirroring Cosigner Operations](#32-mirroring-cosigner-operations)
     - [3.2.1. Technical Specifications](#321-technical-specifications)
     - [3.2.2. Log Discovery and Synchronization](#322-log-discovery-and-synchronization)
@@ -188,7 +188,7 @@ MTC CA Operators MUST create, publish, and continuously maintain an [mtc-disclos
 * accurately specify all key-specific disclosure URLs for each CA Cosigner Key included in the CQRS; and  
 * be updated within 14 calendar days of any material change to any contained URL or disclosure metadata.
 
-### 2.2. Service Uptime & Maintenance Notifications
+### 2.2. Service Uptime and Maintenance Notifications
 
 The MTC CA Operator SHOULD maintain continuous availability of its Subscriber certificate issuance services. As the ecosystem relies on automated renewal of certificates, and prolonged downtime risks widespread TLS breakage for website operators, the MTC CA Operator MUST NOT experience any single, unplanned service outage exceeding 24 consecutive hours, during which certificate issuance and management is unavailable to Subscribers through any of the operator’s endpoints. Any planned scheduled maintenance that will interrupt these services MUST be publicly announced before the maintenance begins, minimally on the MTC CA Operator’s public status page (described below). To provide Subscribers with sufficient time to pre-renew certificates and adjust automation schedules, this announcement SHOULD be published no less than 48 hours before the outage begins.
 
@@ -492,7 +492,7 @@ To ensure resilience against operational disruption and support disaster recover
 > [!NOTE]
 > (\*) A future policy update is expected to allow use of up to 3 ML-DSA-87 CA Cosigner Keys. These keys (\*\*) MUST only issue 7-day certificates, and (\*\*\*) SHOULD generate landmarks approximately every hour, and MUST NOT exceed a total of 220 landmarks over any 7-day period. In general, the use of ML-DSA-44 keys and a 7-day Subscriber certificate validity is RECOMMENDED.
 
-#### 2.6.3. CA Cosigner Key Lifecycle & Rotation
+#### 2.6.3. CA Cosigner Key Lifecycle and Rotation
 
 MTC CA Operators are responsible for managing the lifecycle of their CA Cosigner Keys in coordination with the CQRP and the ecosystem to ensure a seamless transition during planned rotations. To facilitate this transition and safely stage the update across Chrome clients, MTC CA Operators MUST submit requests to add or remove CA Cosigner Keys from the CQRS at least 30 calendar days in advance of a quarterly scheduled update, utilizing key material that was generated no more than 4 years prior to the request submission date. Key additions and removals will only be targeted for processing on the 15th day of January, April, July, and October.
 
@@ -531,7 +531,7 @@ A valid rotation and invalid addition might look something like:
 * An operator currently has 4 Active keys and 2 Reserve keys. They submit a request to retire and remove 1 Active key, transition 1 Reserve key to Active, and add 1 new Reserve key. Upon processing, the net result is 4 Active and 2 Reserve keys. This is valid.  
 * An operator currently has 4 Active keys. They submit a request to transition 1 Reserve key to Active, but do not submit a retirement for an existing Active key. Because the processed result would be 5 Active keys, the update request will be rejected. This is invalid. 
 
-### 2.7. Oversight & Incident Reporting
+### 2.7. Oversight and Incident Reporting
 
 #### 2.7.1. Annual Third Party Audits
 
@@ -584,7 +584,7 @@ To ensure the availability of Subscriber certificate information, MTC CA Operato
 
 While reference implementations may distinguish between a "witness" (consistency verification) and a "mirror" (durable storage), a Chrome-recognized Mirroring Cosigner MUST perform both roles. It MUST verify log consistency prior to cosigning and MUST maintain public availability of the mirrored log data.
 
-### 3.1. Mirroring Cosigner Key Generation & Use
+### 3.1. Mirroring Cosigner Key Generation and Use
 
 Each Mirroring Operator MUST operate a single Mirroring Cosigner Key. To ensure consistent interoperability, minimize bandwidth overhead, and optimize signature verification performance across all Chrome clients, Mirroring Cosigner Keys MUST be ML-DSA-44 (OID: 2.16.840.1.101.3.4.3.17) (RFC 9881). Cosignatures MUST be generated and formatted in accordance with the tlog-cosignature [specification](https://github.com/C2SP/C2SP/blob/main/tlog-cosignature.md) [TODO: point to final/latest spec before v1.0.0 of this policy].
 
