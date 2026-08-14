@@ -5,9 +5,65 @@ title: Chrome Quantum-resistant Root Program Policy, Version 0.3.0
 
 ## Last updated: 2026-08-14
 
-[TOC]
+## Table of Contents
 
-## **Introduction**
+- [Introduction](#introduction)
+  - [Preparing and Applying for Inclusion](#preparing-and-applying-for-inclusion)
+  - [Chrome's Ongoing Commitment to Transport Security](#chromes-ongoing-commitment-to-transport-security)
+- [Change History](#change-history)
+- [Definitions](#definitions)
+- [1. Participation in the Root Store](#1-participation-in-the-root-store)
+  - [1.1. Eligibility](#11-eligibility)
+  - [1.2. Beneficial Ownership](#12-beneficial-ownership)
+  - [1.3. Operator Independence](#13-operator-independence)
+  - [1.4. Facilities and Geographic Diversity](#14-facilities-and-geographic-diversity)
+- [2. Minimum Requirements for MTC CA Operators](#2-minimum-requirements-for-mtc-ca-operators)
+  - [2.1. Public General Availability](#21-public-general-availability)
+    - [2.1.1. Disclosures Manifest](#211-disclosures-manifest)
+  - [2.2. Service Uptime & Maintenance Notifications](#22-service-uptime-maintenance-notifications)
+  - [2.3. PKI Policy Governance](#23-pki-policy-governance)
+    - [2.3.1. CA/Browser Forum TLS Server Authentication Baseline Requirements](#231-cabrowser-forum-tls-server-authentication-baseline-requirements)
+    - [2.3.2. MTC CA Operator Policies](#232-mtc-ca-operator-policies)
+  - [2.4. Certificate Issuance Lifecycle and Profiles](#24-certificate-issuance-lifecycle-and-profiles)
+    - [2.4.1. Domain Control Validation](#241-domain-control-validation)
+    - [2.4.2. Automation Support](#242-automation-support)
+    - [2.4.3. Certificate and CRL Profiles](#243-certificate-and-crl-profiles)
+      - [2.4.3.1. MTC CA Cosigner Certificate Profile](#2431-mtc-ca-cosigner-certificate-profile)
+      - [2.4.3.2. Subscriber TLS Server Authentication Certificate Profile](#2432-subscriber-tls-server-authentication-certificate-profile)
+      - [2.4.3.3. CRL Profile](#2433-crl-profile)
+    - [2.4.4. Preissuance Linting](#244-preissuance-linting)
+    - [2.4.5. Criteria for Chrome Usability](#245-criteria-for-chrome-usability)
+  - [2.5. MTC CA Issuance Log](#25-mtc-ca-issuance-log)
+    - [2.5.1. Issuance Log Operations](#251-issuance-log-operations)
+      - [2.5.1.1. Technical Specifications](#2511-technical-specifications)
+      - [2.5.1.2. Issuance Log Mirroring and Continuity](#2512-issuance-log-mirroring-and-continuity)
+      - [2.5.1.3. Data Retention and Log Pruning](#2513-data-retention-and-log-pruning)
+      - [2.5.1.4. Service Availability and Reporting](#2514-service-availability-and-reporting)
+    - [2.5.2. Issuance Log Cryptographic Integrity](#252-issuance-log-cryptographic-integrity)
+  - [2.6. CA Cosigners](#26-ca-cosigners)
+    - [2.6.1. CA Cosigner Key Generation](#261-ca-cosigner-key-generation)
+    - [2.6.2. CA Cosigner Key Use](#262-ca-cosigner-key-use)
+    - [2.6.3. CA Cosigner Key Lifecycle & Rotation](#263-ca-cosigner-key-lifecycle-rotation)
+  - [2.7. Oversight & Incident Reporting](#27-oversight-incident-reporting)
+    - [2.7.1. Annual Third Party Audits](#271-annual-third-party-audits)
+    - [2.7.2. Timely and Transparent Communications](#272-timely-and-transparent-communications)
+    - [2.7.3. Publicly Reporting on Incidents](#273-publicly-reporting-on-incidents)
+      - [2.7.3.1. Incident Reports](#2731-incident-reports)
+      - [2.7.3.2. Communicating with Chrome During Incidents](#2732-communicating-with-chrome-during-incidents)
+- [3. Minimum Requirements for Mirroring Operators](#3-minimum-requirements-for-mirroring-operators)
+  - [3.1. Mirroring Cosigner Key Generation & Use](#31-mirroring-cosigner-key-generation-use)
+  - [3.2. Mirroring Cosigner Operations](#32-mirroring-cosigner-operations)
+    - [3.2.1. Technical Specifications](#321-technical-specifications)
+    - [3.2.2. Log Discovery and Synchronization](#322-log-discovery-and-synchronization)
+    - [3.2.3. Cosigning Timeliness](#323-cosigning-timeliness)
+    - [3.2.4. Data Retention and Log Pruning](#324-data-retention-and-log-pruning)
+    - [3.2.5. Service Availability and Reporting](#325-service-availability-and-reporting)
+    - [3.2.6. Log Inconsistency Reporting](#326-log-inconsistency-reporting)
+  - [3.3. Mirroring Cosigner States](#33-mirroring-cosigner-states)
+  - [3.4. Mirroring Cosigner Lifecycle and Rotation](#34-mirroring-cosigner-lifecycle-and-rotation)
+- [References](#references)
+
+## Introduction
 
 The Chrome Quantum-resistant Root Program (CQRP) establishes the minimum requirements for [Merkle Tree Certificate](https://datatracker.ietf.org/doc/draft-ietf-plants-merkle-tree-certs/) [TODO: point to final/latest spec before v1.0.0 of this policy] Certification Authorities (referred to as "MTC CAs") to be trusted by default in Chrome.
 
@@ -27,17 +83,17 @@ Inclusion in the Chrome Root Store does not guarantee admission into the CQRS, n
 
 Because this area is evolving rapidly this policy will change over time. Stakeholders can expect an emphasis on **security, simplicity, predictability, transparency,** and **resilience.** To respond effectively to emerging security risks and standards, Chrome reserves the right to modify this policy as necessary. Although Chrome intends to provide reasonable notice for policy updates, advance notice is not guaranteed. Participants in the CQRS are expected to maintain the operational agility and technical capabilities required to implement policy changes without disrupting ecosystem availability.
 
-### **Preparing and Applying for Inclusion**
+### Preparing and Applying for Inclusion
 
 Organizations are welcome to apply for inclusion in the CQRS as MTC CA Operators or Independent Mirroring Operators if they meet the minimum requirements detailed in this policy and follow the submission guidelines detailed in [Preparing and Applying for Inclusion](apply.md).
 
-### **Chrome's Ongoing Commitment to Transport Security**
+### Chrome's Ongoing Commitment to Transport Security
 
 The CQRP is purpose-driven and designed to serve Chrome users' security needs. Its existence and this corresponding policy represent Google's [ongoing commitment](https://transparencyreport.google.com/https/overview?hl=en) to upholding secure and reliable network connections in Chrome.
 
 In support of this commitment, Google, as it deems appropriate and at its sole discretion, includes or removes MTC Operators and Independent Mirroring Operators in the CQRS. The selection and ongoing inclusion of these operators is done to enhance the security of Chrome. Inclusion in the root store, both initially and sustained, is not guaranteed to any CQRS Applicant, MTC CA Operator, or Independent Mirroring Operator.
 
-## **Change History**
+## Change History
 
 | Version | Date | Note |
 | :---- | :---- | :---- |
@@ -45,7 +101,7 @@ In support of this commitment, Google, as it deems appropriate and at its sole d
 | 0.2.0 | 2026.06.17 | Second draft release with feedback considered. |
 | 0.1.0 | 2026.05.14 | Initial draft release for feedback. |
 
-## **Definitions**
+## Definitions
 
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [BCP 14](https://www.rfc-editor.org/info/bcp14) when, and only when, they appear in all capitals, as shown here.
 
@@ -61,11 +117,11 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 
 **Key Sunset**: The process by which Chrome deprecates and phases out default trust in an MTC CA Cosigner Key. To safely sunset a key and prevent retroactive issuance, Chrome establishes a Key Sunset Date technically enforced in client configurations through bounded minimum and maximum certificate serial numbers and log instances. Certificates linked to inclusion proofs outside this explicitly bounded window will not be accepted by Chrome clients. This is analogous to the SCTNotAfter feature used by the Chrome Root Store to gradually phase-out trust in CA key material.
 
-## **1. Participation in the Root Store**
+## 1. Participation in the Root Store
 
 Unless noted, the requirements in this section apply to both MTC CA Operators and Independent Mirroring Operators.
 
-### **1.1. Eligibility**
+### 1.1. Eligibility
 
 Initial eligibility for inclusion in the CQRS as an MTC CA Operator is restricted to [organizations](https://certificate.transparency.dev/logs/) responsible for operating a “[usable](https://googlechrome.github.io/CertificateTransparency/log_states.html)” Certificate Transparency (CT) Log prior to February 1, 2026. These organizations have already demonstrated the operational excellence and high-availability infrastructure required to run global security services that underpin default TLS connections in Chrome. Since MTC technology shares significant architectural similarities with CT, these operators are uniquely qualified to ensure MTCs are able to get off the ground quickly and successfully.
 
@@ -74,7 +130,7 @@ Initial eligibility for inclusion in the CQRS as an MTC CA Operator is restricte
 
 There are no such eligibility restrictions placed on Independent Mirroring Operators.
 
-### **1.2. Beneficial Ownership**
+### 1.2. Beneficial Ownership
 
 During the inclusion request process, CQRS Applicants MUST provide comprehensive ownership disclosures to enable the CQRP to fully evaluate the applicant's ultimate beneficial corporate ownership, parent entities, and corporate control structure. In its public Repository (as defined within the Baseline Requirements), the operator MUST disclose: 
 
@@ -93,13 +149,13 @@ When ownership intends to transfer, trust in the new operator is not automatical
 
 Not limited to the circumstances above, the CQRP reserves the right to require re-application to the CQRS.
 
-### **1.3. Operator Independence**
+### 1.3. Operator Independence
 
 To prevent single points of failure, every entity participating in the CQRS, whether an MTC CA Operator (and by default also a Mirroring Operator) or an Independent Mirroring Operator, MUST be completely distinct from all other operators in the CQRS. Organizational independence is maintained through transparency, continuous monitoring, and ongoing re-evaluation processes.
 
 For the purposes of this policy, an entity is 'distinct' from another operator if and only if they are separate legal, corporate, and operational entities that share no common ownership, ultimate corporate control, parent companies, administrative access, or control over cosigner key material.
 
-### **1.4. Facilities and Geographic Diversity**
+### 1.4. Facilities and Geographic Diversity
 
 To provide baseline assurance of physical, environmental, and operational security, all MTC CA Operator and Mirroring Operator infrastructure SHOULD be hosted in facilities certified under ISO/IEC 27001 or an equivalent security framework, with compliance independently audited and publicly reported on at least an annual basis. 
 
@@ -112,19 +168,19 @@ Specific only to MTC CA Operators:
 
 Inclusion or usability standards will not be reduced solely to satisfy geographic diversity preferences.
 
-## **2. Minimum Requirements for MTC CA Operators**
+## 2. Minimum Requirements for MTC CA Operators
 
 The requirements in this section only apply to MTC CA Operators.
 
-### **2.1. Public General Availability**
+### 2.1. Public General Availability
 
 To ensure the CQRS supports the diverse needs of the web, MTC CA Operators MUST offer Subscriber certificate issuance as a service generally available to the public. This requirement does not prohibit the MTC CA Operator from also offering other certificate issuance services that are not generally available to the public, provided those services do not negatively impact the availability of the CA Cosigner(s) trusted by default in Chrome. To manage risk and ensure system stability during initial deployment, upon initial inclusion in the CQRS, an MTC CA Operator MAY conduct a phased rollout for up to 60 calendar days, during which certificate issuance MAY be restricted to a controlled set of Subscribers. Following the conclusion of this period, the MTC CA Operator MUST transition the service to full public general availability.
 
 To ensure that inclusion in the CQRS provides equitable public value, MTC CA Operators MUST NOT condition the acceptance of a certificate request or the issuance of a certificate on the Subscriber’s use of other services, products, or platforms offered by the MTC CA Operator or any affiliated entity. This requirement does not prohibit the MTC CA Operator from requiring the use of its own platform or account management services for the purpose of authentication, quota management, or abuse prevention, provided these access mechanisms are made generally available to the public.
 
-#### **2.1.1. Disclosures Manifest**
+#### 2.1.1. Disclosures Manifest
 
-MTC CA Operators MUST create, publish, and continuously maintain an [mtc-disclosures.json](disclosures/mtc-disclosures.schema.json) ([example](disclosures/mtc-disclosures.json)). The manifest MUST:
+MTC CA Operators MUST create, publish, and continuously maintain an [mtc-disclosures.json](https://github.com/GoogleChrome/chromerootprogram/blob/main/content/cqrp/disclosures/mtc-disclosures.schema.json) ([example](https://github.com/GoogleChrome/chromerootprogram/blob/main/content/cqrp/disclosures/mtc-disclosures.json)). The manifest MUST:
 
 * be hosted at a publicly accessible URL within the operator’s public Repository;  
 * conform to the latest version of the MTC Disclosures schema;  
@@ -132,7 +188,7 @@ MTC CA Operators MUST create, publish, and continuously maintain an [mtc-disclos
 * accurately specify all key-specific disclosure URLs for each CA Cosigner Key included in the CQRS; and  
 * be updated within 14 calendar days of any material change to any contained URL or disclosure metadata.
 
-### **2.2. Service Uptime & Maintenance Notifications**
+### 2.2. Service Uptime & Maintenance Notifications
 
 The MTC CA Operator SHOULD maintain continuous availability of its Subscriber certificate issuance services. As the ecosystem relies on automated renewal of certificates, and prolonged downtime risks widespread TLS breakage for website operators, the MTC CA Operator MUST NOT experience any single, unplanned service outage exceeding 24 consecutive hours, during which certificate issuance and management is unavailable to Subscribers through any of the operator’s endpoints. Any planned scheduled maintenance that will interrupt these services MUST be publicly announced before the maintenance begins, minimally on the MTC CA Operator’s public status page (described below). To provide Subscribers with sufficient time to pre-renew certificates and adjust automation schedules, this announcement SHOULD be published no less than 48 hours before the outage begins.
 
@@ -144,13 +200,13 @@ The status page MUST:
 * provide real-time status updates, root-cause summaries, and estimated resolution timelines during active service degradations, API error spikes, or outages; and  
 * maintain a publicly viewable archive of all past service incidents and maintenance events for a minimum of 12 months.
 
-### **2.3. PKI Policy Governance**
+### 2.3. PKI Policy Governance
 
-#### **2.3.1. CA/Browser Forum TLS Server Authentication Baseline Requirements**
+#### 2.3.1. CA/Browser Forum TLS Server Authentication Baseline Requirements
 
 MTC CA Operators that issue TLS server authentication Subscriber certificates trusted in Chrome by default MUST adhere to the latest version of the CA/Browser Forum "Baseline Requirements for the Issuance and Management of Publicly-Trusted TLS Server Certificates" ([Baseline Requirements](https://cabforum.org/working-groups/server/baseline-requirements/requirements/)), except as described in the remainder of this policy. Because MTCs fundamentally differ from traditional X.509 certificates, this policy modifies, strengthens, limits, or exempts MTC CAs from certain Baseline Requirements. In the event of any conflict or incompatibility between the Baseline Requirements and this policy, the requirements of this policy SHALL take precedence.
 
-#### **2.3.2. MTC CA Operator Policies**
+#### 2.3.2. MTC CA Operator Policies
 
 MTC CA Operators MUST accurately describe the policies and practices of their MTC CA(s) within a combined CP/CPS that is:
 
@@ -187,13 +243,13 @@ Because a CP/CPS is considered a binding operational commitment it needs to prov
 
 The requirements in this section do not prohibit MTC CA Operators from maintaining additional policy documents, which may also be considered authoritative by other stakeholders. However, the consolidated policy document made available to the CQRP MUST NOT conflict with any additional policy documents that might exist for the corresponding PKI.
 
-### **2.4. Certificate Issuance Lifecycle and Profiles**
+### 2.4. Certificate Issuance Lifecycle and Profiles
 
 For the purpose of this policy, MTC Subscriber certificate issuance occurs when the CA Cosigner private key is applied to sign an issuance log checkpoint that incorporates the corresponding `TBSCertificateLogEntry` into the Merkle Tree.
 
 MTC CA Operators MUST provide both Standalone and Landmark-relative certificates.
 
-#### **2.4.1. Domain Control Validation** 
+#### 2.4.1. Domain Control Validation 
 
 MTC CA Operators MUST validate domain control in accordance with Section 3.2.2.4 (“Validation of Domain Value”) and Section 3.2.2.5 (“Authentication of IP Address”) of the Baseline Requirements, subject to the following modifications: 
 
@@ -211,7 +267,7 @@ The following domain control validation methods are being deprecated in the Base
 
 Domain control validation data reuse MUST be limited to a maximum of 10 days.
 
-#### **2.4.2. Automation Support** 
+#### 2.4.2. Automation Support
 
 To enable reliable, rapid issuance and renewal without manual intervention, Subscriber certificates MUST be able to be issued and retrieved using an ACME-based service. The ACME service MUST conform to [RFC 8555](https://datatracker.ietf.org/doc/html/rfc8555) and interoperate with standard ACME clients without requiring custom client-side software modifications for account registration, domain authorization, order processing, certificate issuance and management, and retrieval workflows. Any divergences from RFC 8555 MUST be documented in the combined CP/CPS. 
 
@@ -223,7 +279,7 @@ Specific to this operational ARI testing:
 
 * The MTC CA Operator MUST select a random sample comprising no less than 3% of its time-valid and unrevoked Subscriber certificates whose validity exceeds 7 days and whose `notBefore` timestamp is within the last 336 hours.  
 * For each sampled certificate, the MTC CA Operator MUST publish a modified ARI renewal window recommending an accelerated renewal timeline that begins within 24 hours of sample selection and spans no more than 72 hours in total duration.  
-* Within 14 calendar days of completing each operational ARI test cycle, the MTC CA Operator MUST publish [{test_cycle_id}-ari-operational-test-report.json](disclosures/ari-operational-test-report.schema.json) ([example](disclosures/ari-operational-test-report.json)) in its Repository.  
+* Within 14 calendar days of completing each operational ARI test cycle, the MTC CA Operator MUST publish [{test_cycle_id}-ari-operational-test-report.json](https://github.com/GoogleChrome/chromerootprogram/blob/main/content/cqrp/disclosures/ari-operational-test-report.schema.json) ([example](https://github.com/GoogleChrome/chromerootprogram/blob/main/content/cqrp/disclosures/ari-operational-test-report.json)) in its Repository.  
 * If the MTC CA Operator maintains Subscriber contact information (such as through External Account Binding (EAB) associations or email addresses provided during ACME account registration), the MTC CA Operator SHOULD contact Subscribers whose ACME clients failed to renew sampled certificates during operational ARI testing.   
   * This outreach SHOULD inform the Subscriber of the test outcome, outline the security and resilience benefits of ARI, and seek to identify technical or operational challenges to successful ARI adoption.   
   * MTC CA Operators SHOULD aggregate these identified challenges and communicate them to chrome-quantum-resistant-root-program [at] google [dot] com before the next operational ARI testing is performed.   
@@ -232,11 +288,11 @@ Specific to this operational ARI testing:
 
 The MTC CA MUST also support the ACME Profiles Extension ([draft-ietf-acme-profiles](https://datatracker.ietf.org/doc/draft-ietf-acme-profiles/)) and use it as a mechanism to allow ACME clients to dynamically discover and select among different certificate lifetimes and formats (such as short-lived versus longer validity and Standalone versus Landmark-relative) over a single, unified ACME endpoint without requiring custom client modifications.
 
-#### **2.4.3. Certificate and CRL Profiles** 
+#### 2.4.3. Certificate and CRL Profiles
 
 The subsections below detail the profile requirements for MTC CA Cosigner Certificates, Subscriber TLS Certificates, and CRLs.
 
-##### **2.4.3.1. MTC CA Cosigner Certificate Profile**
+##### 2.4.3.1. MTC CA Cosigner Certificate Profile
 
 MTC CA Cosigner Certificates MUST conform to the MTC CA Certificate Profile defined in the MTC [specification](https://datatracker.ietf.org/doc/draft-ietf-plants-merkle-tree-certs/) [TODO: point to final/latest spec before v1.0.0 of this policy] and the mtc-tlog [specification](https://github.com/C2SP/C2SP/blob/main/mtc-tlog.md) [TODO: point to final/latest spec before v1.0.0 of this policy]. MTC CA Operators are exempt from the signature algorithm and key size restrictions specified in Section 6.1.5 ("Key Sizes and Algorithms") and Section 7.1.3 ("Algorithm Identifiers") of the Baseline Requirements when using the ML-DSA ([RFC 9881](https://www.rfc-editor.org/rfc/rfc9881.html)) keys permitted by this policy.
 
@@ -274,7 +330,7 @@ In addition to the above listed specifications, these certificates MUST adhere t
 > [!NOTE]
 > MTC CA Cosigner Certificates are expected to use the final OID for the `id-pe-mtcCertificationAuthority` extension once defined in the MTC [specification](https://datatracker.ietf.org/doc/draft-ietf-plants-merkle-tree-certs/) [TODO: point to final/latest spec before v1.0.0 of this policy].
 
-##### **2.4.3.2. Subscriber TLS Server Authentication Certificate Profile**
+##### 2.4.3.2. Subscriber TLS Server Authentication Certificate Profile
 
 MTC CA Operators MUST provide Subscriber certificates in the Standalone and Landmark-relative formats, both derived from the same underlying `TBSCertificateLogEntry` and defined in the MTC [specification](https://datatracker.ietf.org/doc/draft-ietf-plants-merkle-tree-certs/) [TODO: point to final/latest spec before v1.0.0 of this policy].
 
@@ -332,11 +388,11 @@ Except as modified above or where specified in the tables below, Subscriber cert
 | `issuerAlternativeName` | MAY | NO | MAY include an arbitrary cosmetic name (e.g., for the commercial entity the Subscriber engaged to cause the issuance of the certificate). If included, this cosmetic name MUST be encoded as a `directoryName` within the `GeneralNames` structure, and SHOULD be represented using the `organizationName` (O) and/or `commonName` (CN) attributes. Other `GeneralName` types MUST NOT be used for this cosmetic purpose. |
 | Signed Certificate Timestamp List | MUST NOT | - | - |
 
-##### **2.4.3.3. CRL Profile**
+##### 2.4.3.3. CRL Profile
 
 MTC CA Operators are exempt from the signature algorithm and encoding restrictions specified in Section 7.1.3.2 ("Signature AlgorithmIdentifier") of the Baseline Requirements when signing CRLs. Instead, CRLs MUST be signed using an Active CA Cosigner Key in accordance with Section 2.6.2. ("CA Cosigner Key Use") of this policy.
 
-#### **2.4.4. Preissuance Linting** 
+#### 2.4.4. Preissuance Linting
 
 For the purposes of Section 4.3.1.2 ("Pre-Issuance Linting") of the Baseline Requirements, MTC CA Operators SHOULD perform pre-issuance linting on `TBSCertificateLogEntry` structures prior to issuance log entry inclusion. As open-source and industry linting tools add support for MTC formats, MTC CA Operators SHOULD integrate newly released MTC linter rules into their pre-issuance pipelines within 60 calendar days of their public release.
 
@@ -345,36 +401,36 @@ Effective September 15, 2027:
 * Pre-issuance linting MUST block Subscriber certificate issuance (i.e., prevent a `TBSCertificateLogEntry` from being added to the MTC CA’s issuance log) for any certificate that does not conform to the applicable machine-readable certificate profile in effect at the time of issuance.  
 * MTC CA Operators MUST publish a public mapping in their Repository that identifies, for each requirement expressed in a machine-readable certificate profile defined in their CP/CPS (see Section 2.3.2. (“MTC CA Operator Policies”)), the corresponding checks performed by their pre-issuance linting workflow(s). Where a profile requirement is not enforced by pre-issuance linting, the CA MUST explicitly identify it as unenforced.
 
-#### **2.4.5. Criteria for Chrome Usability**
+#### 2.4.5. Criteria for Chrome Usability
 
 To guarantee that the certificate's issuance log inclusion has been independently witnessed and to protect Chrome clients from localized log tampering or split-views created by the MTC CA, Subscriber certificates MUST meet the following cosignature minimums to be usable in Chrome:
 
 * Standalone certificates MUST have at least 2 cosignatures. One of these MUST be from the MTC CA Operator, and one MUST be from a Mirroring Cosigner recognized by Chrome and not operated by the MTC CA Operator.  
 * In order for landmarks to be served by Chrome's Landmark Service, all checkpoints MUST be served with a minimum of 2 cosignatures. One of these MUST be from the MTC CA Operator and one MUST be from a Mirroring Cosigner recognized by Chrome and not operated by the MTC CA Operator.
 
-### **2.5. MTC CA Issuance Log**
+### 2.5. MTC CA Issuance Log
 
-#### **2.5.1. Issuance Log Operations**
+#### 2.5.1. Issuance Log Operations
 
-##### **2.5.1.1. Technical Specifications**
+##### 2.5.1.1. Technical Specifications
 
 The MTC CA Operator MUST operate an issuance log that cryptographically binds all issued Subscriber certificates into a verifiable Merkle Tree and MUST be made publicly available in accordance with the mtc-tlog [specification](https://github.com/C2SP/C2SP/blob/main/mtc-tlog.md) [TODO: point to final/latest spec before v1.0.0 of this policy].
 
 To guarantee interoperability between MTC CAs, mirrors, monitors, and ACME clients across the ecosystem, the issuance log MUST strictly implement the API endpoints, cryptographic formats, and Merkle Tree structures defined in the MTC [specification](https://datatracker.ietf.org/doc/draft-ietf-plants-merkle-tree-certs/) [TODO: point to final/latest spec before v1.0.0 of this policy] and the tlog-tiles [specification](https://github.com/C2SP/C2SP/blob/main/tlog-tiles.md) [TODO: point to final/latest spec before v1.0.0 of this policy]. 
 
-##### **2.5.1.2. Issuance Log Mirroring and Continuity**
+##### 2.5.1.2. Issuance Log Mirroring and Continuity
 
 To ensure Subscriber certificate information is widely available, MTC CA Operators MUST attempt to submit all issuance log updates to all Chrome-recognized Mirroring Cosigners in `Candidate`, `Qualified`, and `Usable` states described in Section 3.3. (“Mirroring Cosigner States”). Chrome will monitor to ensure that mirror checkpoints remain synchronized with the current issuer checkpoint in accordance with the 5-minute timeliness SLA defined in Section 3.2.3. (“Cosigning Timeliness”).
 
 To prevent log fragmentation and ensure consistent oversight, MTC CA Operators MUST issue Subscriber certificates to only one issuance log at a time per Active CA Cosigner Key. If an issuance log becomes inoperable, the MTC CA Operator MAY rotate to a new issuance log to maintain issuance availability. Every rotation to a new issuance log for the same Active CA Cosigner Key MUST be publicly reported as an incident, as specified in Section 2.7.3. (“Public Reporting on Incidents”). Rotation to a new issuance log or the subsequent retirement of a CA Cosigner Key does not invalidate Subscriber certificates previously issued to the inoperable issuance log. If the CA chooses to retire the associated CA Cosigner Key as a result of the issuance log failure, Chrome may apply a Key Sunset Date, as described in Section 2.6.3. (“CA Cosigner Key Lifecycle & Rotation”) to allow previously issued certificates to remain trusted by Chrome clients until their natural expiry.
 
-##### **2.5.1.3. Data Retention and Log Pruning**
+##### 2.5.1.3. Data Retention and Log Pruning
 
 To sufficiently allow for real-time ecosystem monitoring and short-term post-incident triage of soon-to-be or recently expired Subscriber certificates, MTC CA Operators MUST ensure that log entries remain available in the corresponding issuance log for at least 35 days after the end of the certificate's validity period.
 
 To further prevent fragmented or hidden issuance logs and ensure monitors can predictably track all active issuance, Chrome enforces a strict upper bound on the number of issuance logs associated with a single CA Cosigner Key. For any given CA Cosigner Key, Chrome will only trust issuance log numbers 0 through 4. When transitioning to a new issuance log, the MTC CA Operator MUST use the next sequential issuance log number. Subscriber certificates issued to an issuance log number of 5 or greater will not be trusted by Chrome clients.
 
-##### **2.5.1.4. Service Availability and Reporting**
+##### 2.5.1.4. Service Availability and Reporting
 
 The MTC CA issuance log MUST maintain high availability for read operations:
 
@@ -385,15 +441,15 @@ Any planned scheduled maintenance that will interrupt issuance log service MUST 
 
 Upon becoming aware of any event that results in a failure to meet either availability requirement, the MTC Operator MUST submit a public incident report following the guidance in Section 2.7.3.1. (“Incident Reports”). The availability SLAs for a specific CA Cosigner Key's issuance log apply only until its final retention (Key Sunset Date + maximum permitted certificate lifetime + 35 days) has elapsed, after which Chrome no longer monitors the endpoint.
 
-#### **2.5.2. Issuance Log Cryptographic Integrity**
+#### 2.5.2. Issuance Log Cryptographic Integrity
 
 The foundational security guarantee of the CQRS is the immutability of the MTC CA issuance log. If an MTC CA issuance log presents a split-view or cannot serve its data in a cryptographically verifiable way, it is considered a catastrophic failure. Any non-cryptographically verifiable issuance log MUST automatically discontinue Subscriber certificate issuance and the MTC CA Operator MUST issue a public incident report. Such failures MAY result in the CA Cosigner’s removal from the CQRS.
 
-### **2.6. CA Cosigners** 
+### 2.6. CA Cosigners
 
 Each CA Cosigner MUST operate in full conformance with this policy throughout its entire operational lifecycle, beginning at the time of key generation and continuing until the key is removed from the CQRS.
 
-#### **2.6.1. CA Cosigner Key Generation**
+#### 2.6.1. CA Cosigner Key Generation
 
 To protect key material from unauthorized extraction, duplication, or misuse, CA Cosigner private keys MUST be generated, maintained, and perform all cryptographic operations within a Hardware Security Module (HSM) that is formally validated to FIPS 140-3 Level 3 or Common Criteria (CC) EAL 4+ (or higher). This requirement does not preclude the creation of secure, encrypted key backups or wrapped key transfers for disaster recovery or HSM migration, provided that the plaintext key material never exists outside of a validated HSM boundary and that all backup or transfer operations are performed under multi-person control by individuals in authorized Trusted Roles.
 
@@ -418,7 +474,7 @@ Effective January 1, 2029, the HSM storing CA Cosigner Keys not already trusted 
 
 MTC CA Operators MUST collect written evidence from a Qualified Auditor (as defined within the Baseline Requirements) using their approved format for key generation ceremonies, that identifies the date(s) and approximate location(s) of the key generation ceremony and attests to the operator's adherence to the requirements defined in Section 6.1.1.1 ("CA Key Pair Generation") and 6.2 ("Private Key Protection and Cryptographic Module Engineering Controls") of the Baseline Requirements. These audit letters MUST be hosted in the MTC CA Operator’s Repository. 
 
-#### **2.6.2. CA Cosigner Key Use**
+#### 2.6.2. CA Cosigner Key Use
 
 CA Cosigner Keys MUST only be used in support of the MTC CA and its ancillary functions. To maintain a flat trust hierarchy, MTC CAs MUST NOT issue Subordinate CA certificates of any kind.
 
@@ -436,7 +492,7 @@ To ensure resilience against operational disruption and support disaster recover
 > [!NOTE]
 > (\*) A future policy update is expected to allow use of up to 3 ML-DSA-87 CA Cosigner Keys. These keys (\*\*) MUST only issue 7-day certificates, and (\*\*\*) SHOULD generate landmarks approximately every hour, and MUST NOT exceed a total of 220 landmarks over any 7-day period. In general, the use of ML-DSA-44 keys and a 7-day Subscriber certificate validity is RECOMMENDED.
 
-#### **2.6.3. CA Cosigner Key Lifecycle & Rotation**
+#### 2.6.3. CA Cosigner Key Lifecycle & Rotation
 
 MTC CA Operators are responsible for managing the lifecycle of their CA Cosigner Keys in coordination with the CQRP and the ecosystem to ensure a seamless transition during planned rotations. To facilitate this transition and safely stage the update across Chrome clients, MTC CA Operators MUST submit requests to add or remove CA Cosigner Keys from the CQRS at least 30 calendar days in advance of a quarterly scheduled update, utilizing key material that was generated no more than 4 years prior to the request submission date. Key additions and removals will only be targeted for processing on the 15th day of January, April, July, and October.
 
@@ -446,7 +502,7 @@ MTC CA Operators MAY issue Subscriber certificates concurrently from multiple Ac
 
 A key rotation schedule might look something akin to:
 
-```text
+```
          | Y1  | Y2  | Y3  | Y4  | Y5  | Y6  | Y7  | Y8  | Y9  | Y10 |
 ---------|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
 Key 1    | [A] | [-] |     |     |     |     |     |     |     |     |
@@ -475,17 +531,17 @@ A valid rotation and invalid addition might look something like:
 * An operator currently has 4 Active keys and 2 Reserve keys. They submit a request to retire and remove 1 Active key, transition 1 Reserve key to Active, and add 1 new Reserve key. Upon processing, the net result is 4 Active and 2 Reserve keys. This is valid.  
 * An operator currently has 4 Active keys. They submit a request to transition 1 Reserve key to Active, but do not submit a retirement for an existing Active key. Because the processed result would be 5 Active keys, the update request will be rejected. This is invalid. 
 
-### **2.7. Oversight & Incident Reporting** 
+### 2.7. Oversight & Incident Reporting
 
-#### **2.7.1. Annual Third Party Audits**
+#### 2.7.1. Annual Third Party Audits
 
 At this time, MTC CAs are exempt from the annual, contiguous audit requirements detailed in Section 8 ("Compliance Audit and Other Assessments") of the Baseline Requirements. This exemption exists because current compliance evaluation criteria are bound to traditional X.509 architectures and may not accurately apply to MTC operations, especially while the underlying standards remain in active development.
 
-#### **2.7.2. Timely and Transparent Communications**
+#### 2.7.2. Timely and Transparent Communications
 
 The CQRP may request additional information from an MTC CA Operator to verify that the commitments and obligations outlined in this policy are being met, or when updates to policy requirements are being considered. To ensure timely resolution of compliance questions and swift evaluation of potential ecosystem risks, MTC CA Operators MUST provide the requested information within 14 calendar days unless specified otherwise.
 
-#### **2.7.3. Publicly Reporting on Incidents**
+#### 2.7.3. Publicly Reporting on Incidents
 
 If an MTC CA Operator fails to meet this policy's commitments (excluding the requirements detailed in Section 3. (“Minimum Requirements for Mirroring Operators"), which have their own notification process) it is considered a publicly reportable incident. A reportable incident includes, but is not limited to:
 
@@ -495,7 +551,7 @@ If an MTC CA Operator fails to meet this policy's commitments (excluding the req
 * failure to meet the availability requirements from this policy.  
 * any other situation that may impact the MTC CA's integrity, trustworthiness, or compatibility.
 
-##### **2.7.3.1. Incident Reports**
+##### 2.7.3.1. Incident Reports
 
 To maintain transparency and enable the CQRP and the broader community to independently evaluate the severity and systemic risks of an event, rather than relying solely on the operator's internal assessment, MTC CA Operators MUST publicly disclose and/or respond to incident reports, regardless of perceived impact. Reports MUST be submitted in accordance with the current version of the [CCADB Incident Reporting Guidelines](https://www.ccadb.org/cas/incident-report). The CQRP uses the information in the public disclosure as the basis for evaluating incidents.
 
@@ -510,7 +566,7 @@ Factors that are significant to the CQRP when evaluating incidents include, but 
 * past history by the MTC CA Operator in its incident handling and its follow through on commitments, and,  
 * the severity of the security impact of the incident.
 
-##### **2.7.3.2. Communicating with Chrome During Incidents**
+##### 2.7.3.2. Communicating with Chrome During Incidents
 
 The CQRP prioritizes and remains committed to promoting public disclosure and discussion of incidents, as they can affect the entire Internet, not just Chrome and its users. The CQRP’s sole responsibility when responding to incidents is upholding the safety and security of Chrome's users.
 
@@ -520,7 +576,7 @@ As standard practice, the CQRP does not:
 * advise on or approve an operator’s proposed or planned response to an incident; or  
 * offer guarantees of specific outcomes in response to the course of action deemed most appropriate by the operator.
 
-## **3. Minimum Requirements for Mirroring Operators**
+## 3. Minimum Requirements for Mirroring Operators
 
 The requirements in this section apply to MTC CA Operators and Independent Mirroring Operators.
 
@@ -528,7 +584,7 @@ To ensure the availability of Subscriber certificate information, MTC CA Operato
 
 While reference implementations may distinguish between a "witness" (consistency verification) and a "mirror" (durable storage), a Chrome-recognized Mirroring Cosigner MUST perform both roles. It MUST verify log consistency prior to cosigning and MUST maintain public availability of the mirrored log data.
 
-### **3.1. Mirroring Cosigner Key Generation & Use**
+### 3.1. Mirroring Cosigner Key Generation & Use
 
 Each Mirroring Operator MUST operate a single Mirroring Cosigner Key. To ensure consistent interoperability, minimize bandwidth overhead, and optimize signature verification performance across all Chrome clients, Mirroring Cosigner Keys MUST be ML-DSA-44 (OID: 2.16.840.1.101.3.4.3.17) (RFC 9881). Cosignatures MUST be generated and formatted in accordance with the tlog-cosignature [specification](https://github.com/C2SP/C2SP/blob/main/tlog-cosignature.md) [TODO: point to final/latest spec before v1.0.0 of this policy].
 
@@ -538,28 +594,28 @@ Mirroring Cosigner Keys MUST be dedicated exclusively to cosigning issuance log 
 
 To facilitate a key rotation schedule, an individual Mirroring Cosigner Key SHOULD NOT be used for more than 4 years.
 
-### **3.2. Mirroring Cosigner Operations**
+### 3.2. Mirroring Cosigner Operations
 
-#### **3.2.1. Technical Specifications**
+#### 3.2.1. Technical Specifications
 
 Mirroring Cosigners MUST strictly implement the API endpoints, cryptographic formats, and validation logic defined in the MTC [specification](https://datatracker.ietf.org/doc/draft-ietf-plants-merkle-tree-certs/) [TODO: point to final/latest spec before v1.0.0 of this policy], the mtc-tlog [specification](https://github.com/C2SP/C2SP/blob/main/mtc-tlog.md) [TODO: point to the final/latest spec before v1.0.0 of this policy] the tlog-mirror [specification](https://github.com/C2SP/C2SP/blob/main/tlog-mirror.md) [TODO: point to final/latest spec before v1.0.0 of this policy], and and the tlog-cosignature [specification](https://github.com/C2SP/C2SP/blob/main/tlog-cosignature.md) [TODO: point to final/latest spec before v1.0.0 of this policy]. 
 
-#### **3.2.2. Log Discovery and Synchronization**
+#### 3.2.2. Log Discovery and Synchronization
 
 Mirroring Cosigners MUST consume Chrome’s [cosigners.json](https://www.gstatic.com/mtcs/cosigners/v1/cosigners.json) at least every 24 hours to ensure newly added CA Cosigners are promptly recognized and eligible for mirroring. Upon a CA Cosigner Key no longer being included in [cosigners.json](https://www.gstatic.com/mtcs/cosigners/v1/cosigners.json), Mirroring Cosigners MAY stop mirroring the corresponding issuance log(s).
 
-#### **3.2.3. Cosigning Timeliness**
+#### 3.2.3. Cosigning Timeliness
 
 To ensure clients receive timely cryptographic proofs, Mirroring Cosigners:
 
 * SHOULD ensure that the newly cosigned checkpoint, along with all supporting log tiles and entries necessary to cryptographically verify it, is available on its public endpoints immediately after cosignature issuance.  
 * MUST ensure that the cosigned checkpoint and all supporting log tiles and entries are available on its public endpoints within 5 minutes of cosignature issuance.
 
-#### **3.2.4. Data Retention and Log Pruning**
+#### 3.2.4. Data Retention and Log Pruning
 
 Mirroring Cosigners MUST ensure that log entries remain available for at least 35 days after the end of the certificate's validity period. To guarantee that mirrors function as complete, highly available backups of the transparency ecosystem and do not create premature data unavailability, Mirroring Cosigners SHOULD NOT prune entries until the corresponding entries have been pruned from the corresponding issuance log, except that Mirroring Cosigners MAY independently prune any entry once 90 days have elapsed since the end of the certificate's validity period.
 
-#### **3.2.5. Service Availability and Reporting**
+#### 3.2.5. Service Availability and Reporting
 
 Mirroring Cosigners MUST maintain high availability for both read and write operations:
 
@@ -570,11 +626,11 @@ Any planned scheduled maintenance that will interrupt these services MUST be pub
 
 Upon becoming aware of any event that results in a failure to meet either availability requirement, the Mirroring Operator MUST notify mtcs [at] chromium [dot] org within 1 calendar day. This initial notification SHOULD include a high-level description of the incident and an estimated timeline for service restoration. Following the resolution of such an incident, the Mirroring Operator MUST submit a post-mortem report to mtcs [at] chromium [dot] org within 14 calendar days of service being sufficiently restored. This report SHOULD outline the technical and procedural safeguards that failed and the mitigations enacted to prevent recurrence.
 
-#### **3.2.6. Log Inconsistency Reporting**
+#### 3.2.6. Log Inconsistency Reporting
 
 To aid in the discovery of log incidents such as split-views, Mirroring Operators SHOULD report any checkpoint discovered from an issuance log that is inconsistent with the mirror's previous checkpoint for that log to mtcs [at] chromium [dot] org. Generating a valid cosignature over an MTC CA log state that is cryptographically inconsistent with the Mirroring Cosigner's prior view of that log constitutes a critical operational failure by the Mirroring Cosigner. This failure to enforce append-only consistency will result in the mirror's transition to the `Frozen` state, and may result in the removal of the Mirroring Operator from Chrome's [cosigners.json](https://www.gstatic.com/mtcs/cosigners/v1/cosigners.json).
 
-### **3.3. Mirroring Cosigner States**
+### 3.3. Mirroring Cosigner States
 
 To safely introduce and retire Mirroring Cosigners without disrupting the broader ecosystem, Chrome recognizes the following distinct operational states. Only cosignatures from `Usable` or `Frozen` (if the cosignature was generated prior to the freeze point) Mirroring Cosigners count toward the minimum Chrome client trust requirements defined in Section 2.4.5. ("Criteria for Chrome Usability").
 
@@ -584,7 +640,7 @@ To safely introduce and retire Mirroring Cosigners without disrupting the broade
 * `Frozen`: The state of a Mirroring Cosigner that is no longer actively generating new cosignatures or observing new MTC CAs, but continues to provide high-availability read access to mirrored logs. Cosignatures generated prior to the freeze point remain valid for Chrome client validation.  
 * `Removed`: The terminal state for a Mirroring Cosigner that is no longer trusted by Chrome. This may be due to the Mirroring Cosigner being shut down by the operator, violating this policy, suffering a catastrophic compromise, or other critical failure. Cosignatures from a `Removed` cosigner are immediately invalid and do not contribute to Chrome client validation, even if embedded within an otherwise valid Standalone certificate.
 
-### **3.4. Mirroring Cosigner Lifecycle and Rotation**
+### 3.4. Mirroring Cosigner Lifecycle and Rotation
 
 To ensure a seamless transition during planned retirement or replacement of Mirroring Cosigners and to minimize disruption to the ecosystem, Mirroring Operators MUST manage the lifecycle of their Mirroring Cosigner Keys in coordination with the CQRP.
 
@@ -597,7 +653,7 @@ Mirroring Operators MUST notify mtcs [at] chromium [dot] org at least 30 calenda
 
 The CQRP reserves the right to request adjustments to proposed state transition or key rotation timelines, or require additional information, to ensure the continued security, transparency, and operational stability of the ecosystem. New Mirroring Cosigners can be submitted to the CQRP by following Section 1.1.2. (“New Mirroring Cosigners”) of [Preparing and Applying for Inclusion](apply.md). 
 
-## **References**
+## References
 
 [BCP 14](https://www.rfc-editor.org/info/bcp14), Best Current Practice 14.
 
