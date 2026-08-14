@@ -15,7 +15,7 @@ Google includes or removes operators in the CQRS as it deems appropriate at its 
 > [!NOTE]
 > A future update to this process may require the use of the Common CA Database ([CCADB](https://www.ccadb.org/)) for inclusion submissions, rather than using the [Chromium Issues Tracker](https://issues.chromium.org/u/0/issues/new?component=2114629&pli=1&authuser=0&template=0).
 
-## **1. Roles and Prerequisites for Inclusion Requests**
+## 1. Roles and Prerequisites for Inclusion Requests
 
 Entities interested in applying for inclusion to the CQRS can do so under one of 2 operational roles:
 
@@ -24,32 +24,32 @@ Entities interested in applying for inclusion to the CQRS can do so under one of
 
 Except for CT Log [operators](https://certificate.transparency.dev/logs/) with at least one “[usable](https://googlechrome.github.io/CertificateTransparency/log_states.html)” log in Chrome before February 1, 2026, demonstrating the high-availability infrastructure and operational maturity required for global certificate issuance, a CQRS Applicant applying to become an MTC CA Operator need to first be an Independent Mirroring Operator in good standing for at least 90 consecutive calendar days before submitting an MTC CA Operator inclusion request.
 
-## **2. Submission Process**
+## 2. Submission Process
 
-### **2.1. Initial Submission**
+### 2.1. Initial Submission
 
 CQRS inclusion requests are submitted using the Operator template [TODO: create and link to template] in the Chromium Issues Tracker. Depending on the intended role of the operator, specific information is required and described by the template. By creating a new issue in the Chromium Issue Tracker the entity is asserting they are organizationally distinct from all existing operators present in [cosigners.json](https://www.gstatic.com/mtcs/cosigners/v1/cosigners.json).
 
 All application artifacts need to be hosted from a publicly-accessible Repository (as defined within the Baseline Requirements). At any point during its review, the CQRP may contact the operator seeking additional or clarifying information. Operators are expected to provide the requested information promptly, and no later than 14 days unless specified otherwise.
 
-### **2.2. Updating Submissions**
+### 2.2. Updating Submissions
 
 Inclusion request submissions are expected to remain up-to-date as operational representations change. This includes updating the issue in the Chromium Issues Tracker as planned key lifecycle events become known, as detailed in the subsections below.
 
 If an Independent Mirroring Operator intends to apply for inclusion as an MTC CA Operator, they are expected to use their preexisting issue and provide the additional template details required for MTC CA Operators.
 
-#### **2.2.1. Submitting new Mirroring Cosigner Keys**
+#### 2.2.1. Submitting new Mirroring Cosigner Keys
 
 Existing Mirroring Operators can apply to have a new Mirroring Cosigner Key included in the CQRS by updating their existing issue on the Chromium Issue Tracker.
 
-#### **2.2.2. Submitting new CA Cosigner Keys**
+#### 2.2.2. Submitting new CA Cosigner Keys
 
 Existing MTC CA Operators can apply to have CA Cosigner Keys rotated in the CQRS, which will be processed according to a quarterly schedule (targeted for processing on the 15th day of January, April, July, and October). This includes:
 
 1. At least 30 days prior to the target quarterly update date, the existing MTC CA Operator will publish the new MTC CA Cosigner Certificates (i.e., Reserve CA Cosigner Keys) on its Repository, update their existing issue in the Chromium Issues Tracker with the new key information, and announce the planned addition to mtcs [at] chromium [dot] org. The announcement needs to include the URL to the MTC CA Operators [mtc-disclosures.json](disclosures/mtc-disclosures.schema.json) ([example](disclosures/mtc-disclosures.json)).   
 2. After the CQRP reviews the issue and the key is added to the CQRS, the MTC CA Operator needs to update the issue explicitly stating when the Reserve CA Cosigner Key(s) are expected to transition to an Active state, which is when the MTC CA Operator can expect landmarks for the newly Active CA Cosigner Key(s) to be distributed to Chrome clients. 
 
-## **3. Evaluation Process**
+## 3. Evaluation Process
 
 Chrome evaluates inclusion requests through a structured review pipeline, generally adhering to the following high-level milestones:
 
@@ -65,7 +65,7 @@ All Mirroring Cosigners need to pass a minimum 30-day compliance monitoring peri
 
 All operators should expect ongoing querying of their cosigners from Google’s compliance monitoring infrastructure throughout the lifetime of the mirror and/or issuance log.
 
-## **4. Potential Outcomes**
+## 4. Potential Outcomes
 
 Inclusion requests may conclude with one of the following outcomes:
 
