@@ -502,8 +502,7 @@ MTC CA Operators MAY issue Subscriber certificates concurrently from multiple Ac
 
 A key rotation schedule might look something akin to:
 
-```
-         | Y1  | Y2  | Y3  | Y4  | Y5  | Y6  | Y7  | Y8  | Y9  | Y10 |
+<pre><code>         | Y1  | Y2  | Y3  | Y4  | Y5  | Y6  | Y7  | Y8  | Y9  | Y10 |
 ---------|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
 Key 1    | [A] | [-] |     |     |     |     |     |     |     |     |
 Key 2    | [A] | [A] | [-] |     |     |     |     |     |     |     |
@@ -521,8 +520,7 @@ Key 12   |     |     |     |     |     |     | [+] | [+] | [A] | [A] |
 Legend:
  [ + ] = Reserve (Offline / Inactive)
  [ A ] = Active (Online, issuing Subscriber certificates)
- [ - ] = Retired & Removed (Key Sunset applied, removed from CQRS, no longer trusted by Chrome)
-```
+ [ - ] = Retired & Removed (Key Sunset applied, removed from CQRS, no longer trusted by Chrome)</code></pre>
 
 The maximum limits of 4 Active CA Cosigner Keys and 2 Reserve CA Cosigner Keys are evaluated against the net effective state of the MTC CA Operator’s keys after a batch of updates is processed (e.g., on the 15th of the month), rather than the queueing state. A processed retirement of a key immediately frees up a slot in its respective category (Active or Reserve). An MTC CA Operator with the maximum number of keys (i.e., 4 Active and 2 Reserve) MAY submit an addition/activation request, provided they simultaneously submit a retirement request in the same processing batch. Because both actions are processed together, the net resulting state will not exceed the limit.
 
