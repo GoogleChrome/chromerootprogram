@@ -364,10 +364,10 @@ def main():
             continue
         print(version)
         output_path = os.path.join(config.get("output_dir"), version["path"], "index.html")
-        output_index = os.path.join(config.get("output_dir"), "index.html")
-        print(f"Will copy {output_index} to {output_path}")
+        output_policy = os.path.join(config.get("output_dir"), "crp", "policy", "index.html")
+        print(f"Will copy {output_policy} to {output_path}")
         os.makedirs(os.path.dirname(output_path), exist_ok=True)
-        shutil.copy(output_index, output_path)
+        shutil.copy(output_policy, output_path)
 
 if __name__ == "__main__":
     main()

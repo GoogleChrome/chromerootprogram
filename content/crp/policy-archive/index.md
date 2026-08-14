@@ -7,7 +7,7 @@ The following table contains historical versions of the Chrome Root Program Poli
 
 | Policy Version | Effective Date | Date Superseded |
 | :--- | :--- | :--- |
-| [Version 1.8](../crp/policy.md) *(Current)* | 2026-02-05 | N/A |
+| [Version 1.8](../policy.md) *(Current)* | 2026-02-05 | N/A |
 | [Version 1.7](policy-version-1-7/) | 2025-07-15 | 2026-02-05 |
 | [Version 1.6](policy-version-1-6/) | 2025-02-15 | 2025-07-15 |
 | [Version 1.5](policy-version-1-5/) | 2024-01-16 | 2025-02-15 |
