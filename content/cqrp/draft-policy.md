@@ -675,8 +675,6 @@ DRAFT [Transparent Log Mirrors](https://github.com/C2SP/C2SP/blob/main/tlog-mirr
 
 DRAFT [Tiled Transparency Logs](https://github.com/C2SP/C2SP/blob/main/tlog-tiles.md), [TODO: point to final/latest spec before v1.0.0 of this policy]
 
-DRAFT [Merkle Tree Certificates With Tiled Transparency Logs](https://github.com/C2SP/C2SP/blob/main/mtc-tlog.md), [TODO: point to final/latest spec before v1.0.0 of this policy]
-
 DRAFT [Transparency Log Cosignatures](https://github.com/C2SP/C2SP/blob/main/tlog-cosignature.md), [TODO: point to final/latest spec before v1.0.0 of this policy]
 
 [Baseline Requirements](https://cabforum.org/baseline-requirements-documents/), CA/Browser Forum Baseline Requirements for the Issuance and Management of Publicly-Trusted Certificates. CA/Browser Forum.
