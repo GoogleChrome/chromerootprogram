@@ -24,7 +24,7 @@ We are offering a dedicated MTC root store explicitly for the purposes of end-to
 Additionally, Chrome may monitor the logs included in this testing phase for availability and correctness, similar to how it currently monitors CT logs.
 
 ### How can I request access to include my organization's cosigners in the testing root store and when will that access be provided?
-Organizations currently operating either traditional root CAs or CT logs included in Chrome can request the inclusion of testing cosigners by creating a new issue in the [Chromium Issue Tracker](https://issues.chromium.org/) (use the *New Test MTC CA Operator* template).
+Organizations currently operating either traditional root CAs or CT logs included in Chrome can request the inclusion of testing cosigners by creating a new issue in the [Chromium Issue Tracker](https://issues.chromium.org/issues/new?component=2114629&template=2358664) (use the *New Test MTC CA Operator* template).
 
 Chrome will begin processing requests starting July 31, 2026, and aim to include these cosigner keys in the test root store within two weeks of reviewing the request. We will follow up on the issue tracker once the root store has been updated.
 
