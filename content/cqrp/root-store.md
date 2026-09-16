@@ -6,7 +6,7 @@ title: Chrome Quantum-resistant Root Program - CQRP Root Store
 
 Below is the list of **MTC CA Cosigners** and **Mirror Cosigners** included in the Chrome Quantum-resistant Root Store.
 
-Data is fetched directly from [`https://www.gstatic.com/mtcs/cosigners/v1/cosigners.json`](https://www.gstatic.com/mtcs/cosigners/v1/cosigners.json).
+Data is fetched directly from [`https://www.gstatic.com/mtcs/cosigners/v1/cosigners.json`](https://www.gstatic.com/mtcs/cosigners/v1/cosigners.json). Keys can be fetched from [`https://www.gstatic.com/mtcs/cosigners/v1/cosigners.pem`](https://www.gstatic.com/mtcs/cosigners/v1/cosigners.pem).
 
 <div id="loading-spinner" style="padding: 1.5em; font-weight: bold; color: #57606a; background: #f6f8fa; border-radius: 6px; margin: 1em 0;">
   ⏳ Loading cosigners data...
