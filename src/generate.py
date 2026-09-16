@@ -218,6 +218,12 @@ def render_markdown(input_dir, output_dir, env, page_context={}) -> ConversionRe
     for root, _, files in os.walk(input_dir):
         for filename in files:
             input_path = os.path.join(root, filename)
+
+            # Skip symbolic links to prevent arbitrary host-file disclosure (b/528741819)
+            if os.path.islink(input_path):
+                print(f"Warning: Skipping symbolic link: {input_path}")
+                continue
+
             # Determine the relative path (directory structure under input_dir).
             relative_path = os.path.relpath(os.path.dirname(input_path), input_dir)
 
