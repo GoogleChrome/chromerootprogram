@@ -21,11 +21,6 @@ def _require_within(base_dir: str, target_path: str, error_msg: str) -> str:
         raise ValueError(f"Security Violation: {error_msg} '{target_path}' escapes boundaries.")
     return canonical_target
 
-env = Environment(
-    loader=FileSystemLoader(template_dir),
-    autoescape=select_autoescape(["html", "xml"])
-)
-
 class Filters:
 
     @classmethod
@@ -353,7 +348,10 @@ def main():
             config["context"][key] = value
 
     # Load Jinja2 templates
-    env = Environment(loader=FileSystemLoader(config["template_dir"]))
+    env = Environment(
+        loader=FileSystemLoader(config["template_dir"]),
+        autoescape=select_autoescape(["html", "xml"]),
+    )
     env.filters["absolute_url"] = lambda x: Filters.absolute_url(
         config["context"]["base_url"], x
     )
