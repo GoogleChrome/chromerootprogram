@@ -159,6 +159,8 @@ def render_file(input_path, output_path, env, page_context={}):
     # Parse the front matter
     if match:
         front_matter = yaml.safe_load(match.group(1))  # Parse YAML
+        if not isinstance(front_matter, dict):
+            front_matter = {}
         md_content = match.group(2)  # Extract Markdown part
     else:
         front_matter = {}
