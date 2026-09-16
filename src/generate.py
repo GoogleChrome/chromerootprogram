@@ -11,8 +11,13 @@ from collections import namedtuple
 import urllib.parse
 import urllib.request
 
-from jinja2 import Environment, FileSystemLoader
+import jinja2
+from jinja2 import Environment, FileSystemLoader, select_autoescape
 
+env = Environment(
+    loader=FileSystemLoader(template_dir),
+    autoescape=select_autoescape(["html", "xml"])
+)
 
 class Filters:
 
