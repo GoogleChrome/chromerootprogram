@@ -1,4 +1,4 @@
 {
-    "current_version": {{ current_version }},
+    "current_version": {{ current_version | tojson }},
     "versions": {{ versions | reverse | list | tojson }}
 }

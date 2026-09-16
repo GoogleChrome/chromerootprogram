@@ -11,8 +11,15 @@ from collections import namedtuple
 import urllib.parse
 import urllib.request
 
-from jinja2 import Environment, FileSystemLoader
+import jinja2
+from jinja2 import Environment, FileSystemLoader, select_autoescape
 
+def _require_within(base_dir: str, target_path: str, error_msg: str) -> str:
+    canonical_base = os.path.realpath(base_dir)
+    canonical_target = os.path.realpath(os.path.join(canonical_base, target_path))
+    if not canonical_target.startswith(canonical_base + os.sep) and canonical_target != canonical_base:
+        raise ValueError(f"Security Violation: {error_msg} '{target_path}' escapes boundaries.")
+    return canonical_target
 
 class Filters:
 
@@ -154,6 +161,8 @@ def render_file(input_path, output_path, env, page_context={}):
     # Parse the front matter
     if match:
         front_matter = yaml.safe_load(match.group(1))  # Parse YAML
+        if not isinstance(front_matter, dict):
+            front_matter = {}
         md_content = match.group(2)  # Extract Markdown part
     else:
         front_matter = {}
@@ -211,6 +220,12 @@ def render_markdown(input_dir, output_dir, env, page_context={}) -> ConversionRe
     for root, _, files in os.walk(input_dir):
         for filename in files:
             input_path = os.path.join(root, filename)
+
+            # Skip symbolic links to prevent arbitrary host-file disclosure (b/528741819)
+            if os.path.islink(input_path):
+                print(f"Warning: Skipping symbolic link: {input_path}")
+                continue
+
             # Determine the relative path (directory structure under input_dir).
             relative_path = os.path.relpath(os.path.dirname(input_path), input_dir)
 
@@ -313,6 +328,12 @@ def main():
     config.setdefault("output_dir", OUTPUT_DIR_DEFAULT)
     config.setdefault("context", CONTEXT_DEFAULT.copy())
 
+    # Validate directory configuration containment (b/528741576)
+    repo_root = os.getcwd()
+    config["input_dir"] = _require_within(repo_root, config["input_dir"], "input_dir")
+    config["template_dir"] = _require_within(repo_root, config["template_dir"], "template_dir")
+    config["output_dir"] = _require_within(repo_root, config["output_dir"], "output_dir")
+
     # Override directories from config root with CLI args, if given
     if args.input_dir:
         config["input_dir"] = args.input_dir
@@ -327,7 +348,10 @@ def main():
             config["context"][key] = value
 
     # Load Jinja2 templates
-    env = Environment(loader=FileSystemLoader(config["template_dir"]))
+    env = Environment(
+        loader=FileSystemLoader(config["template_dir"]),
+        autoescape=select_autoescape(["html", "xml"]),
+    )
     env.filters["absolute_url"] = lambda x: Filters.absolute_url(
         config["context"]["base_url"], x
     )
@@ -363,7 +387,9 @@ def main():
         if current_version and version.get("version", "") != current_version:
             continue
         print(version)
-        output_path = os.path.join(config.get("output_dir"), version["path"], "index.html")
+        # Validate that version["path"] stays strictly inside output_dir (b/528741576)
+        target_dir = _require_within(config["output_dir"], version["path"], "versions[].path")
+        output_path = os.path.join(target_dir, "index.html")
         output_policy = os.path.join(config.get("output_dir"), "crp", "policy", "index.html")
         print(f"Will copy {output_policy} to {output_path}")
         os.makedirs(os.path.dirname(output_path), exist_ok=True)
