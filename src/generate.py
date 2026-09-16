@@ -14,6 +14,13 @@ import urllib.request
 import jinja2
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
+def _require_within(base_dir: str, target_path: str, error_msg: str) -> str:
+    canonical_base = os.path.realpath(base_dir)
+    canonical_target = os.path.realpath(os.path.join(canonical_base, target_path))
+    if not canonical_target.startswith(canonical_base + os.sep) and canonical_target != canonical_base:
+        raise ValueError(f"Security Violation: {error_msg} '{target_path}' escapes boundaries.")
+    return canonical_target
+
 env = Environment(
     loader=FileSystemLoader(template_dir),
     autoescape=select_autoescape(["html", "xml"])
@@ -326,6 +333,12 @@ def main():
     config.setdefault("output_dir", OUTPUT_DIR_DEFAULT)
     config.setdefault("context", CONTEXT_DEFAULT.copy())
 
+    # Validate directory configuration containment (b/528741576)
+    repo_root = os.getcwd()
+    config["input_dir"] = _require_within(repo_root, config["input_dir"], "input_dir")
+    config["template_dir"] = _require_within(repo_root, config["template_dir"], "template_dir")
+    config["output_dir"] = _require_within(repo_root, config["output_dir"], "output_dir")
+
     # Override directories from config root with CLI args, if given
     if args.input_dir:
         config["input_dir"] = args.input_dir
@@ -376,7 +389,9 @@ def main():
         if current_version and version.get("version", "") != current_version:
             continue
         print(version)
-        output_path = os.path.join(config.get("output_dir"), version["path"], "index.html")
+        # Validate that version["path"] stays strictly inside output_dir (b/528741576)
+        target_dir = _require_within(config["output_dir"], version["path"], "versions[].path")
+        output_path = os.path.join(target_dir, "index.html")
         output_policy = os.path.join(config.get("output_dir"), "crp", "policy", "index.html")
         print(f"Will copy {output_policy} to {output_path}")
         os.makedirs(os.path.dirname(output_path), exist_ok=True)
