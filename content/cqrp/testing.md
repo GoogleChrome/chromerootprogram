@@ -3,7 +3,7 @@ title: Chrome Quantum-resistant Root Program - Testing Instructions
 ---
 # Testing Instructions
 
-## Last updated: July 17, 2026
+## Last updated: September 24, 2026
 
 As [announced](https://blog.google/security/cultivating-a-robust-and-efficient-quantum-safe-https/) in February 2026, Chrome will not add traditional X.509 certificates containing post-quantum cryptography to its root store. Instead, Chrome will rely on Merkle Tree Certificates (MTCs) to mitigate the impact of post-quantum key and signature size increases while integrating transparency directly into the issuance process.
 
@@ -70,7 +70,7 @@ Though not technically enforced by the client, practices such as the use of stri
 ### Am I required to run a mirror during the testing phase?
 Yes. As Chrome will be enforcing realistic cosigner requirements (e.g., requiring mirroring cosignatures on Standalone certificates), we ask that participants in the testing phase contribute a Mirroring Cosigner usable by all CA Cosigners to ensure adequate and realistic mirroring capacity is available.
 
-The CA Cosigner issuance log should implement the API endpoints, cryptographic formats, and Merkle Tree structures defined in the MTC [specification](https://datatracker.ietf.org/doc/draft-ietf-plants-merkle-tree-certs/) (specifically `draft-ietf-plants-merkle-tree-certs-05`) and the `tlog-tiles` [specification](https://github.com/C2SP/C2SP/blob/main/tlog-tiles.md). The Mirroring Cosigner should implement the API endpoints, cryptographic formats, and validation logic defined in the MTC specification and the `tlog-mirror` [specification](https://github.com/C2SP/C2SP/blob/main/tlog-mirror.md).
+The CA Cosigner issuance log should implement the API endpoints, cryptographic formats, and Merkle Tree structures defined in the MTC [specification](https://datatracker.ietf.org/doc/draft-ietf-plants-merkle-tree-certs/) and the `tlog-tiles` [specification](https://github.com/C2SP/C2SP/blob/main/tlog-tiles.md). The Mirroring Cosigner should implement the API endpoints, cryptographic formats, and validation logic defined in the MTC specification and the `tlog-mirror` [specification](https://github.com/C2SP/C2SP/blob/main/tlog-mirror.md).
 
 ### How many cosignatures are required for Chrome to validate my test certificate?
 Chrome clients will enforce the same cosignature requirements to validate a certificate in the testing phase as with production certificates. Standalone certificates must have at least two cosignatures. One must be from the MTC CA Operator, and one must be from a Mirroring Cosigner recognized by the Chrome test root store. Chrome's servers will similarly ensure that issuer logs are mirrored before trusting subtrees for Landmark-relative certificates.
