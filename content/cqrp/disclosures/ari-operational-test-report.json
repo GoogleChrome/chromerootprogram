@@ -50,13 +50,7 @@
         "end": "2026-08-08T12:00:00Z"
       },
       "outcome": "pass",
-      "user_agent": "Certbot/2.6.0 (Ubuntu 22.04; certbot-ari-plugin/0.1.0)",
-      "parsed_client": {
-        "name": "Certbot",
-        "version": "2.6.0"
-      },
-      "user_agent_source": "renewal_request",
-      "renewal_timestamp": "2026-08-05T16:00:00Z",
+        "renewal_timestamp": "2026-08-05T16:00:00Z",
       "time_to_renewal_seconds": 14400
     },
     {
@@ -67,15 +61,8 @@
         "end": "2026-08-08T12:00:00Z"
       },
       "outcome": "fail",
-      "user_agent": "legacy-acme-client/1.0.0",
-      "parsed_client": {
-        "name": "legacy-acme-client",
-        "version": "1.0.0"
-      },
-      "user_agent_source": "initial_issuance",
       "renewal_timestamp": null,
       "time_to_renewal_seconds": null
     }
   ]
 }
-
