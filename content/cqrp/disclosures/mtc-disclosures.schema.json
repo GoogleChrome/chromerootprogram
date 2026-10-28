@@ -1,14 +1,13 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/GoogleChrome/chromerootprogram/tree/main/content/cqrp/disclosures/mtc-disclosures.schema.json",
+  "$id": "https://github.com/GoogleChrome/chromerootprogram/blob/main/content/cqrp/disclosures/mtc-disclosures.schema.json",
   "title": "MTC CA Operator Disclosures Schema",
-  "description": "Schema for MTC CA Operator disclosures supporting per-key and global disclosure URLs.",
+  "description": "Schema for MTC CA and Mirroring Operator disclosures supporting per-key and global disclosure URLs.",
   "type": "object",
   "required": [
     "operator_name",
     "last_updated",
-    "global_disclosures",
-    "ca_cosigner_keys"
+    "global_disclosures"
   ],
   "properties": {
     "$schema": {
@@ -17,7 +16,8 @@
     },
     "operator_name": {
       "type": "string",
-      "description": "Legal name of the MTC CA Operator."
+      "minLength": 1,
+      "description": "Legal name of the Operator."
     },
     "last_updated": {
       "type": "string",
@@ -26,18 +26,17 @@
     },
     "global_disclosures": {
       "type": "object",
-      "description": "Operator-wide disclosures applicable across all CA Cosigner Keys.",
+      "description": "Operator-wide disclosures applicable across all operations and CA Cosigner Keys.",
       "required": [
         "ca_repository_url",
         "legal_entity_and_ownership_url",
-        "operational_status_url",
-        "facility_certification_url"
+        "operational_status_url"
       ],
       "properties": {
         "ca_repository_url": {
           "type": "string",
           "format": "uri",
-          "description": "URL to the CA Operator's public repository where items like policy documents, Subscriber agreements, and historical revisions reside."
+          "description": "URL to the Operator's public repository where items like policy documents, Subscriber agreements, certificate profiles, and historical revisions reside."
         },
         "legal_entity_and_ownership_url": {
           "type": "string",
@@ -52,14 +51,14 @@
         "facility_certification_url": {
           "type": "string",
           "format": "uri",
-          "description": "URL to ISO/IEC 27001 or equivalent facility audit certification."
+          "description": "URL to ISO/IEC 27001, AICPA SOC 2 Type II / SOC 3, or equivalent facility audit certification. Required when applying or operating as an MTC CA Operator."
         }
       },
       "additionalProperties": false
     },
     "ca_cosigner_keys": {
       "type": "array",
-      "description": "List of disclosures specific to each CA Cosigner Key operated by the CA.",
+      "description": "List of disclosures specific to each CA Cosigner Key included in the CQRS. May be omitted by applicants initially onboarding solely as a Mirroring Operator.",
       "minItems": 1,
       "items": {
         "type": "object",
@@ -71,6 +70,7 @@
         "properties": {
           "friendly_name": {
             "type": "string",
+            "minLength": 1,
             "description": "Human-readable name for the CA Cosigner Key."
           },
           "key_sha256": {
@@ -93,7 +93,7 @@
               "policy_documents_url": {
                 "type": "string",
                 "format": "uri",
-                "description": "URL to the Markdown/AsciiDoc CP/CPS for this specific key."
+                "description": "URL to the Markdown/AsciiDoc combined CP/CPS governing this key."
               },
               "reserve_keys_url": {
                 "type": "string",
@@ -140,6 +140,20 @@
           }
         },
         "additionalProperties": false
+      }
+    }
+  },
+  "if": {
+    "required": [
+      "ca_cosigner_keys"
+    ]
+  },
+  "then": {
+    "properties": {
+      "global_disclosures": {
+        "required": [
+          "facility_certification_url"
+        ]
       }
     }
   },
