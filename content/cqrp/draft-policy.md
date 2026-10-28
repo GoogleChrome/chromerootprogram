@@ -641,7 +641,7 @@ Mirroring Cosigners MUST NOT prune any log entry with a serial number greater th
 Mirroring Cosigners MUST maintain high availability for both read and write operations:
 
 * Each mirror endpoint MUST maintain a request success rate (where a successful response is returned for a well-formed request) of at least 99.9% evaluated over any 72-hour period. This ensures sustained, low-grade request failures (e.g., due to rate limiting) are addressed independently of the 30-day overall requirement below.  
-* Each mirror endpoint MUST maintain a request success rate of at least 99.0% evaluated over any rolling 30-calendar-day period. This bounds cumulative downtime over a month and ensures that a single, large disruption, or a series of severe, non-consecutive outages, is addressed even if the system recovers in under 3 days. 
+* Each mirror endpoint MUST maintain a request success rate of at least 99.0% evaluated over any rolling 30-calendar-day period. This bounds cumulative downtime over a month and ensures that a single, large disruption, or a series of severe, non-consecutive outages, is addressed even if the system recovers in under 72 hours. 
 
 Any Planned Maintenance that will interrupt these services MUST be publicly announced in advance in accordance with the definition of Planned Maintenance in this policy (note that Planned Maintenance only exempts write operations from the 72-hour availability requirement above; write operations MUST still meet the 30-calendar-day requirement, and read operations are not exempt from either requirement).
 
