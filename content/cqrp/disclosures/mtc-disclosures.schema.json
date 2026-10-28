@@ -30,7 +30,7 @@
       "required": [
         "ca_repository_url",
         "legal_entity_and_ownership_url",
-        "status_and_incidents_url",
+        "operational_status_url",
         "facility_certification_url"
       ],
       "properties": {
@@ -44,10 +44,10 @@
           "format": "uri",
           "description": "URL detailing legal entity status, beneficial ownership, and corporate control."
         },
-        "status_and_incidents_url": {
+        "operational_status_url": {
           "type": "string",
           "format": "uri",
-          "description": "URL to public operational status and incident reporting pages."
+          "description": "URL to public operational status reporting pages."
         },
         "facility_certification_url": {
           "type": "string",
@@ -76,22 +76,24 @@
           "key_sha256": {
             "type": "string",
             "pattern": "^[a-fA-F0-9]{64}$",
-            "description": "Hex-encoded SHA-256 hash of the CA Cosigner Key public key."
+            "description": "Hex-encoded SHA-256 hash of the CA Cosigner Key's DER-encoded SubjectPublicKeyInfo (SPKI)."
           },
           "disclosures": {
             "type": "object",
-            "description": "Key-specific disclosure URLs.",
+            "description": "Key-specific disclosure URLs and CRL Distribution Points.",
             "required": [
               "policy_documents_url",
               "reserve_keys_url",
               "key_generation_attestation_url",
-              "infrastructure_architecture_url"
+              "infrastructure_architecture_url",
+              "full_crl_urls",
+              "partitioned_crl_urls"
             ],
             "properties": {
               "policy_documents_url": {
                 "type": "string",
                 "format": "uri",
-                "description": "URL to the Markdown/AsciiDoc CPS for this specific key."
+                "description": "URL to the Markdown/AsciiDoc CP/CPS for this specific key."
               },
               "reserve_keys_url": {
                 "type": "string",
@@ -112,6 +114,26 @@
                 "type": "string",
                 "format": "uri",
                 "description": "Optional override URL for facility certification if this key is hosted in a distinct facility."
+              },
+              "full_crl_urls": {
+                "type": "array",
+                "description": "Array of HTTP URLs for all Full (complete) CRLs issued by this CA Cosigner Key. MUST be an empty array ([]) if this key only issues partitioned CRLs or is an offline Reserve key.",
+                "items": {
+                  "type": "string",
+                  "format": "uri",
+                  "pattern": "^http://"
+                },
+                "uniqueItems": true
+              },
+              "partitioned_crl_urls": {
+                "type": "array",
+                "description": "Array of HTTP URLs for all Partitioned CRLs issued by this CA Cosigner Key. MUST be an empty array ([]) if this key only issues full CRLs or is an offline Reserve key.",
+                "items": {
+                  "type": "string",
+                  "format": "uri",
+                  "pattern": "^http://"
+                },
+                "uniqueItems": true
               }
             },
             "additionalProperties": false
