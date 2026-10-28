@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/GoogleChrome/chromerootprogram/tree/main/content/cqrp/disclosures/ari-operational-test-report.schema.json",
+  "$id": "https://github.com/GoogleChrome/chromerootprogram/blob/main/content/cqrp/disclosures/ari-operational-test-report.schema.json",
   "title": "MTC CA Operational ARI Test Report Schema",
   "description": "Schema for reporting quarterly operational ACME Renewal Information (ARI) client responsiveness test cycles.",
   "type": "object",
@@ -65,9 +65,9 @@
         },
         "sample_percentage": {
           "type": "number",
-          "minimum": 3.0,
+          "exclusiveMinimum": 0.0,
           "maximum": 100.0,
-          "description": "Percentage of eligible certificates sampled (MUST be at least 3.0%)."
+          "description": "Percentage of eligible certificates sampled (SHOULD be at least 3.0%, unless the 100,000-certificate cap applies)."
         }
       },
       "additionalProperties": false
@@ -138,9 +138,6 @@
           "issuance_log_entry_index",
           "ari_renewal_window",
           "outcome",
-          "user_agent",
-          "parsed_client",
-          "user_agent_source",
           "renewal_timestamp",
           "time_to_renewal_seconds"
         ],
@@ -168,23 +165,6 @@
             "type": "string",
             "enum": ["pass", "fail"]
           },
-          "user_agent": {
-            "type": "string",
-            "description": "Full untruncated HTTP User-Agent request header string."
-          },
-          "parsed_client": {
-            "type": "object",
-            "required": ["name", "version"],
-            "properties": {
-              "name": { "type": "string", "minLength": 1 },
-              "version": { "type": "string", "minLength": 1 }
-            },
-            "additionalProperties": false
-          },
-          "user_agent_source": {
-            "type": "string",
-            "enum": ["renewal_request", "initial_issuance"]
-          },
           "renewal_timestamp": {
             "type": ["string", "null"],
             "format": "date-time",
@@ -201,5 +181,3 @@
   },
   "additionalProperties": false
 }
-
-

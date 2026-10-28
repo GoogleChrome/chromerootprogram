@@ -3,7 +3,7 @@ title: Chrome Quantum-resistant Root Program - Testing Instructions
 ---
 # Testing Instructions
 
-## Last updated: October 16, 2026
+## Last updated: October 28, 2026
 
 As [announced](https://blog.google/security/cultivating-a-robust-and-efficient-quantum-safe-https/) in February 2026, Chrome will not add traditional X.509 certificates containing post-quantum cryptography to its root store. Instead, Chrome will rely on Merkle Tree Certificates (MTCs) to mitigate the impact of post-quantum key and signature size increases while integrating transparency directly into the issuance process.
 
@@ -97,10 +97,10 @@ Operators should also expect that Chrome monitors would verify that:
 3. Mirrors provide consistent, append-only views of mirrored logs.
 4. Log entries remain available for at least 35 days after the corresponding certificate's validity period ends.
 
-Chrome may send notifications to the Operator when availability and correctness failures are observed. During the testing phase, these notifications are purely to support Operators in developing robust implementations, and we encourage (but do not require) sharing postmortems and development challenges or milestones to [mtcs@chromium.org](mailto:mtcs@chromium.org) so that everyone can benefit from lessons learned.
+Chrome may send notifications to the Operator when availability and correctness failures are observed. During the testing phase, these notifications are purely to support Operators in developing robust implementations, and we encourage (but do not require) sharing postmortems and development challenges or milestones to mtcs [at] chromium [dot] org so that everyone can benefit from lessons learned.
 
 ### Where should I share my findings and feedback?
-Please share your implementation experiences and challenges on [mtcs@chromium.org](mailto:mtcs@chromium.org)! The hope is that everyone in the ecosystem can benefit from these learnings.
+Please share your implementation experiences and challenges on mtcs [at] chromium [dot] org! The hope is that everyone in the ecosystem can benefit from these learnings.
 
 ### What happens to my test setup when Phase 2 (production inclusion in the default Chrome Quantum-resistant Root Store) launches in 2027?
 The test setup can persist at the MTC CA Operators' discretion. We will maintain Chrome's testing infrastructure until Chrome accepts the first Phase 3 eligible MTC CA Operators.
