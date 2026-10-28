@@ -1,5 +1,5 @@
 {
-  "$schema": "https://github.com/GoogleChrome/chromerootprogram/tree/main/content/cqrp/disclosures/mtc-disclosures.schema.json",
+  "$schema": "https://github.com/GoogleChrome/chromerootprogram/blob/main/content/cqrp/disclosures/mtc-disclosures.schema.json",
   "operator_name": "Example Security CA Inc.",
   "last_updated": "2026-08-05T10:00:00Z",
   "global_disclosures": {
@@ -10,11 +10,11 @@
   },
   "ca_cosigner_keys": [
     {
-      "friendly_name": "Example MTC CA 2026 7-Day Key 1",
+      "friendly_name": "Example MTC CA 2026 7-Day Active Key 1",
       "key_sha256": "40328aac349197c2daccd7b8ca66b17f3e44d2d5fa66acc7d0a8c2924802fbfa",
       "disclosures": {
-        "policy_documents_url": "https://github.com/example-ca/pki-repository/blob/main/CPS-7day.md",
-        "reserve_keys_url": "https://github.com/example-ca/pki-repository/blob/main/upcoming_keys_7day.json",
+        "policy_documents_url": "https://github.com/example-ca/pki-repository/blob/main/CP-CPS.md",
+        "reserve_keys_url": "https://github.com/example-ca/pki-repository/blob/main/reserve_keys.json",
         "key_generation_attestation_url": "https://example-ca.com/audits/2026-key1-attestation.pdf",
         "infrastructure_architecture_url": "https://github.com/example-ca/pki-repository/blob/main/arch-key1.md",
         "full_crl_urls": [
@@ -24,11 +24,11 @@
       }
     },
     {
-      "friendly_name": "Example MTC CA 2026 47-Day Key 2",
+      "friendly_name": "Example MTC CA 2026 47-Day Active Key 2",
       "key_sha256": "8f3b211a549197c2daccd7b8ca66b17f3e44d2d5fa66acc7d0a8c2924802eabc",
       "disclosures": {
-        "policy_documents_url": "https://github.com/example-ca/pki-repository/blob/main/CPS-47day.md",
-        "reserve_keys_url": "https://github.com/example-ca/pki-repository/blob/main/upcoming_keys_47day.json",
+        "policy_documents_url": "https://github.com/example-ca/pki-repository/blob/main/CP-CPS.md",
+        "reserve_keys_url": "https://github.com/example-ca/pki-repository/blob/main/reserve_keys.json",
         "key_generation_attestation_url": "https://example-ca.com/audits/2026-key2-attestation.pdf",
         "infrastructure_architecture_url": "https://github.com/example-ca/pki-repository/blob/main/arch-key2.md",
         "facility_certification_url": "https://example-ca.com/compliance/iso27001-secondary-dc.pdf",
@@ -37,6 +37,30 @@
           "http://crl.example-ca.com/mtc-2026-47day-key2-p1.crl",
           "http://crl.example-ca.com/mtc-2026-47day-key2-p2.crl"
         ]
+      }
+    },
+    {
+      "friendly_name": "Example MTC CA 2026 Reserve Key 1",
+      "key_sha256": "c19a440b712397c2daccd7b8ca66b17f3e44d2d5fa66acc7d0a8c29248029901",
+      "disclosures": {
+        "policy_documents_url": "https://github.com/example-ca/pki-repository/blob/main/CP-CPS.md",
+        "reserve_keys_url": "https://github.com/example-ca/pki-repository/blob/main/reserve_keys.json",
+        "key_generation_attestation_url": "https://example-ca.com/audits/2026-reserve1-attestation.pdf",
+        "infrastructure_architecture_url": "https://github.com/example-ca/pki-repository/blob/main/arch-reserve1.md",
+        "full_crl_urls": [],
+        "partitioned_crl_urls": []
+      }
+    },
+    {
+      "friendly_name": "Example MTC CA 2026 Reserve Key 2",
+      "key_sha256": "d28b551c823497c2daccd7b8ca66b17f3e44d2d5fa66acc7d0a8c29248029902",
+      "disclosures": {
+        "policy_documents_url": "https://github.com/example-ca/pki-repository/blob/main/CP-CPS.md",
+        "reserve_keys_url": "https://github.com/example-ca/pki-repository/blob/main/reserve_keys.json",
+        "key_generation_attestation_url": "https://example-ca.com/audits/2026-reserve2-attestation.pdf",
+        "infrastructure_architecture_url": "https://github.com/example-ca/pki-repository/blob/main/arch-reserve2.md",
+        "full_crl_urls": [],
+        "partitioned_crl_urls": []
       }
     }
   ]
