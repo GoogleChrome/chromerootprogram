@@ -138,10 +138,6 @@
           "issuance_log_entry_index",
           "ari_renewal_window",
           "outcome",
-          "user_agent",
-          "parsed_client",
-          "user_agent_source",
-          "renewal_timestamp",
           "time_to_renewal_seconds"
         ],
         "properties": {
@@ -168,23 +164,6 @@
             "type": "string",
             "enum": ["pass", "fail"]
           },
-          "user_agent": {
-            "type": "string",
-            "description": "Full untruncated HTTP User-Agent request header string."
-          },
-          "parsed_client": {
-            "type": "object",
-            "required": ["name", "version"],
-            "properties": {
-              "name": { "type": "string", "minLength": 1 },
-              "version": { "type": "string", "minLength": 1 }
-            },
-            "additionalProperties": false
-          },
-          "user_agent_source": {
-            "type": "string",
-            "enum": ["renewal_request", "initial_issuance"]
-          },
           "renewal_timestamp": {
             "type": ["string", "null"],
             "format": "date-time",
@@ -201,5 +180,3 @@
   },
   "additionalProperties": false
 }
-
-
