@@ -8,6 +8,11 @@ Below is the list of **MTC CA Cosigners** and **Mirror Cosigners** included in t
 
 Data is fetched directly from [`https://www.gstatic.com/mtcs/cosigners/v1/cosigners.json`](https://www.gstatic.com/mtcs/cosigners/v1/cosigners.json). Keys can be fetched from [`https://www.gstatic.com/mtcs/cosigners/v1/cosigners.pem`](https://www.gstatic.com/mtcs/cosigners/v1/cosigners.pem).
 
+The **Monitoring Prefix** (`base_url` in `cosigners.json`) is a URL prefix, not a page. Append the path of the resource you want:
+
+- **MTC CA Cosigners:** `<monitoring prefix>/<log number>/checkpoint` and `<monitoring prefix>/<log number>/landmarks`. **Min Log Number** is the lowest log number Chrome accepts, and the **checkpoint** link in each row points at that log.
+- **Mirror Cosigners:** `<monitoring prefix>/<hex SHA-256 of the log origin>/checkpoint`, as defined by [tlog-mirror](https://c2sp.org/tlog-mirror), where the log origin is `oid/1.3.6.1.4.1.<Base ID>.0.<log number>`. A mirror only serves the logs it mirrors. The **Submission Prefix** (`submission_prefix`) is the separate prefix used to submit entries to the mirror.
+
 <div id="loading-spinner" style="padding: 1.5em; font-weight: bold; color: #57606a; background: #f6f8fa; border-radius: 6px; margin: 1em 0;">
   ⏳ Loading cosigners data...
 </div>
@@ -25,7 +30,8 @@ Data is fetched directly from [`https://www.gstatic.com/mtcs/cosigners/v1/cosign
         <th>Environment</th>
         <th>Friendly Name</th>
         <th>Operator</th>
-        <th>Base URL</th>
+        <th>Monitoring Prefix</th>
+        <th>Min Log Number</th>
         <th>Base ID</th>
         <th>Max Lifetime</th>
         <th>Key SHA-256</th>
@@ -41,7 +47,7 @@ Data is fetched directly from [`https://www.gstatic.com/mtcs/cosigners/v1/cosign
         <th>Environment</th>
         <th>Friendly Name</th>
         <th>Operator</th>
-        <th>Base URL</th>
+        <th>Monitoring / Submission Prefix</th>
         <th>State</th>
         <th>Key SHA-256</th>
       </tr>
@@ -108,12 +114,20 @@ async function loadCosigners() {
         const opName = (item.operator_history && item.operator_history.length > 0) ? item.operator_history[0].name : "Unknown";
         const lifetime = item.max_cert_lifetime_seconds ? (item.max_cert_lifetime_seconds / 86400) + " days" : "N/A";
         const realmBadge = getRealmBadge(item.realm);
+        // base_url is a prefix, not a page. Link to the checkpoint of the
+        // minimum log instead: <base_url>/<min_log_number>/checkpoint.
+        const minLog = item.min_log_number;
+        const prefix = (item.base_url || "").replace(/\/+$/, "");
+        const checkpointLink = minLog
+          ? `<br><a href="${prefix}/${minLog}/checkpoint" target="_blank" rel="noopener">checkpoint</a>`
+          : "";
         const tr = document.createElement("tr");
         tr.innerHTML = `
           <td>${realmBadge}</td>
           <td><strong>${item.friendly_name || ""}</strong></td>
           <td>${opName}</td>
-          <td><a href="${item.base_url}" target="_blank" rel="noopener">${item.base_url}</a></td>
+          <td style="word-break: break-all;"><code>${item.base_url || ""}</code></td>
+          <td>${minLog || "N/A"}${checkpointLink}</td>
           <td><code>${item.base_id || ""}</code></td>
           <td>${lifetime}</td>
           <td><code title="${item.key_sha256}">${(item.key_sha256 || "").substring(0, 12)}...</code></td>
@@ -121,7 +135,7 @@ async function loadCosigners() {
         issuersBody.appendChild(tr);
       });
     } else {
-      issuersBody.innerHTML = '<tr><td colspan="7">No issuer cosigners currently listed.</td></tr>';
+      issuersBody.innerHTML = '<tr><td colspan="8">No issuer cosigners currently listed.</td></tr>';
     }
 
     // Build Mirrors table
@@ -137,7 +151,10 @@ async function loadCosigners() {
           <td>${realmBadge}</td>
           <td><strong>${item.friendly_name || ""}</strong></td>
           <td>${opName}</td>
-          <td><a href="${item.base_url}" target="_blank" rel="noopener">${item.base_url}</a></td>
+          <td style="word-break: break-all;">
+            Monitoring: <code>${item.base_url || ""}</code><br>
+            Submission: <code>${item.submission_prefix || "N/A"}</code>
+          </td>
           <td><span style="background: #dafbe1; color: #1a7f37; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 11px;">${state}</span></td>
           <td><code title="${item.key_sha256}">${(item.key_sha256 || "").substring(0, 12)}...</code></td>
         `;
