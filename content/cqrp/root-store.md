@@ -6,12 +6,14 @@ title: Chrome Quantum-resistant Root Program - CQRP Root Store
 
 Below is the list of **MTC CA Cosigners** and **Mirror Cosigners** included in the Chrome Quantum-resistant Root Store.
 
-Data is fetched directly from [`https://www.gstatic.com/mtcs/cosigners/v1/cosigners.json`](https://www.gstatic.com/mtcs/cosigners/v1/cosigners.json). Keys can be fetched from [`https://www.gstatic.com/mtcs/cosigners/v1/cosigners.pem`](https://www.gstatic.com/mtcs/cosigners/v1/cosigners.pem).
+Data is fetched from [`https://www.gstatic.com/mtcs/cosigners/v1/cosigners.json`](https://www.gstatic.com/mtcs/cosigners/v1/cosigners.json). Keys can be fetched from [`https://www.gstatic.com/mtcs/cosigners/v1/cosigners.pem`](https://www.gstatic.com/mtcs/cosigners/v1/cosigners.pem). The fields are described in [`https://www.gstatic.com/mtcs/cosigners/v1/cosigners_schema.json`](https://www.gstatic.com/mtcs/cosigners/v1/cosigners_schema.json).
 
-The **Monitoring Prefix** (`base_url` in `cosigners.json`) is a URL prefix, not a page. Append the path of the resource you want:
+The **Monitoring Prefix** (`base_url` in `cosigners.json`) is a URL prefix. Append the path of the resource you want:
 
-- **MTC CA Cosigners:** `<monitoring prefix>/<log number>/checkpoint` and `<monitoring prefix>/<log number>/landmarks`. **Min Log Number** is the lowest log number Chrome accepts, and the **checkpoint** link in each row points at that log.
-- **Mirror Cosigners:** `<monitoring prefix>/<hex SHA-256 of the log origin>/checkpoint`, as defined by [tlog-mirror](https://c2sp.org/tlog-mirror), where the log origin is `oid/1.3.6.1.4.1.<Base ID>.0.<log number>`. A mirror only serves the logs it mirrors. The **Submission Prefix** (`submission_prefix`) is the separate prefix used to submit entries to the mirror.
+- **MTC CA Cosigners:** `<monitoring prefix>/<log number>/checkpoint` and `<monitoring prefix>/<log number>/landmarks`, as defined by [mtc-tlog](https://c2sp.org/mtc-tlog). A CA keeps a numbered series of issuance logs, starting at 1, and moves to the next **log number** when it replaces a log. **Min Log Number** is the lowest log number Chrome accepts for that CA, and the **checkpoint** link in each row points at that log.
+- **Mirror Cosigners:** `<monitoring prefix>/<hex SHA-256 of the log origin>/checkpoint`, as defined by [tlog-mirror](https://c2sp.org/tlog-mirror), where the log origin is `oid/1.3.6.1.4.1.<CA's Base ID>.0.<log number>`. A mirror only serves the logs it mirrors. The **Submission Prefix** (`submission_prefix`) is the separate prefix used to submit entries to the mirror.
+
+The **Base ID** (`base_id`) identifies a cosigner: its signature on a checkpoint is labelled `oid/1.3.6.1.4.1.<Base ID>`.
 
 <div id="loading-spinner" style="padding: 1.5em; font-weight: bold; color: #57606a; background: #f6f8fa; border-radius: 6px; margin: 1em 0;">
   ⏳ Loading cosigners data...
@@ -48,6 +50,7 @@ The **Monitoring Prefix** (`base_url` in `cosigners.json`) is a URL prefix, not 
         <th>Friendly Name</th>
         <th>Operator</th>
         <th>Monitoring / Submission Prefix</th>
+        <th>Base ID</th>
         <th>State</th>
         <th>Key SHA-256</th>
       </tr>
@@ -155,13 +158,14 @@ async function loadCosigners() {
             Monitoring: <code>${item.base_url || ""}</code><br>
             Submission: <code>${item.submission_prefix || "N/A"}</code>
           </td>
+          <td><code>${item.base_id || ""}</code></td>
           <td><span style="background: #dafbe1; color: #1a7f37; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 11px;">${state}</span></td>
           <td><code title="${item.key_sha256}">${(item.key_sha256 || "").substring(0, 12)}...</code></td>
         `;
         mirrorsBody.appendChild(tr);
       });
     } else {
-      mirrorsBody.innerHTML = '<tr><td colspan="6">No mirror cosigners currently listed.</td></tr>';
+      mirrorsBody.innerHTML = '<tr><td colspan="7">No mirror cosigners currently listed.</td></tr>';
     }
 
     loading.style.display = "none";
